@@ -25,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/force-migrate', function() {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+    return \Illuminate\Support\Facades\Artisan::output();
+});
+
 Route::middleware(['throttle:api', SecurityHeaders::class])->group(function () {
 
     // ══════════════════════════════════════════════════════════════════
