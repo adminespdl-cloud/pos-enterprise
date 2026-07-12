@@ -1,0 +1,50 @@
+# ── Node / npm ─────────────────────────────────────────────────────
+node_modules/
+dist/
+.npm
+coverage/
+*.tsbuildinfo
+
+# ── Laravel / PHP ──────────────────────────────────────────────────
+vendor/
+.env
+.env.production
+.env.local
+*.log
+storage/logs/*.log
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*.php
+public/storage
+.phpunit.result.cache
+coverage.xml
+
+# ── Android / Gradle ───────────────────────────────────────────────
+.gradle/
+local.properties
+app/build/
+build/
+*.jks
+*.keystore
+keystore.properties
+*.ap_
+*.dex
+
+# ── Docker ─────────────────────────────────────────────────────────
+postgres_data/
+redis_data/
+
+# ── OS / IDE ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Proyek lain di scratch (exclude dari repo POS) ─────────────────
+rab-listrik/
+rab-otomatis-webapp/
