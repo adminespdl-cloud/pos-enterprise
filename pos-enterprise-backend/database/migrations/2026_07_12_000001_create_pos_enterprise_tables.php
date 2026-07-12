@@ -8,6 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Setup PostgreSQL extensions required for advanced constraints
+        DB::statement('CREATE EXTENSION IF NOT EXISTS btree_gist');
+
         // ============================================================
         // 1. COMPANIES
         // ============================================================
@@ -101,7 +104,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('company_id')->constrained('companies')->cascadeOnDelete();
-            $table->foreignUuid('parent_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->uuid('parent_id')->nullable();
             $table->string('name', 100);
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
@@ -109,6 +112,8 @@ return new class extends Migration
 
             $table->unique(['company_id', 'name', 'parent_id']);
             $table->index(['company_id', 'parent_id', 'sort_order']);
+            
+            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete();
         });
 
         // ============================================================
