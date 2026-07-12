@@ -12,7 +12,11 @@
         "spatie/laravel-query-builder": "^5.0",
         "intervention/image": "^3.0",
         "maatwebsite/excel": "^3.1",
-        "barryvdh/laravel-dompdf": "^2.0"
+        "barryvdh/laravel-dompdf": "^2.0",
+        "ext-gd": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-zip": "*",
+        "ext-bcmath": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
