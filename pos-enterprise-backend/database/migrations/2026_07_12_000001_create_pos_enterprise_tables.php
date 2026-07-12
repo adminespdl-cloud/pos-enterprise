@@ -112,7 +112,9 @@ return new class extends Migration
 
             $table->unique(['company_id', 'name', 'parent_id']);
             $table->index(['company_id', 'parent_id', 'sort_order']);
-            
+        });
+
+        Schema::table('categories', function (Blueprint $table) {
             $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete();
         });
 
