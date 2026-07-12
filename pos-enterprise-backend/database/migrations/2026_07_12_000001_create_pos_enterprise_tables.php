@@ -8,9 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Setup PostgreSQL extensions required for advanced constraints
-        DB::statement('CREATE EXTENSION IF NOT EXISTS btree_gist');
-
         // ============================================================
         // 1. COMPANIES
         // ============================================================
@@ -64,7 +61,7 @@ return new class extends Migration
             $table->string('phone', 20)->unique()->nullable();
             $table->string('password_hash', 255)->nullable();
             $table->string('pin_hash', 255)->nullable();
-            $table->enum('role', ['super_admin', 'admin', 'manager', 'cashier'])->default('cashier');
+            $table->string('role', 20)->default('cashier'); // super_admin, admin, manager, cashier
             $table->boolean('is_active')->default(true);
             $table->timestamp('last_login_at')->nullable();
             $table->smallInteger('login_attempts')->default(0);
@@ -99,23 +96,20 @@ return new class extends Migration
         });
 
         // ============================================================
-        // 6. CATEGORIES (Self-referential)
+        // 6. CATEGORIES
+        // parent_id is a plain UUID column, no FK constraint to avoid
+        // PostgreSQL self-referential issues. App logic handles integrity.
         // ============================================================
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('company_id')->constrained('companies')->cascadeOnDelete();
-            $table->uuid('parent_id')->nullable();
+            $table->uuid('parent_id')->nullable()->index();
             $table->string('name', 100);
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['company_id', 'name', 'parent_id']);
             $table->index(['company_id', 'parent_id', 'sort_order']);
-        });
-
-        Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete();
         });
 
         // ============================================================
@@ -135,7 +129,7 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->boolean('is_track_stock')->default(true);
             $table->boolean('has_variants')->default(false);
-            $table->enum('status', ['active', 'inactive', 'deleted'])->default('active');
+            $table->string('status', 20)->default('active'); // active, inactive, deleted
             $table->timestamps();
             $table->softDeletes();
 
@@ -143,7 +137,7 @@ return new class extends Migration
             $table->index(['company_id', 'category_id']);
             $table->index(['company_id', 'barcode']);
             $table->index(['company_id', 'sku']);
-            $table->index('updated_at'); // Untuk delta sync
+            $table->index('updated_at');
         });
 
         // ============================================================
@@ -154,14 +148,13 @@ return new class extends Migration
             $table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('sku', 50)->nullable();
             $table->string('barcode', 50)->nullable();
-            $table->jsonb('attributes')->default('{}'); // {"size":"Large","flavor":"Vanilla"}
+            $table->jsonb('attributes')->default('{}');
             $table->decimal('price', 15, 2)->default(0);
             $table->decimal('cost_price', 15, 2)->default(0);
             $table->string('image_url')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['product_id', 'sku']);
             $table->index(['product_id', 'is_active']);
         });
 
@@ -171,14 +164,14 @@ return new class extends Migration
         Schema::create('inventory_stocks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
-            $table->foreignUuid('variant_id')->nullable()->constrained('product_variants')->cascadeOnDelete();
+            $table->uuid('variant_id')->nullable();
             $table->foreignUuid('outlet_id')->constrained('outlets')->cascadeOnDelete();
             $table->decimal('quantity', 12, 3)->default(0);
             $table->decimal('minimum_stock', 12, 3)->default(0);
             $table->timestamp('updated_at')->useCurrent();
 
-            // Satu baris per (produk, varian, outlet)
             $table->unique(['product_id', 'variant_id', 'outlet_id']);
+            $table->foreign('variant_id')->references('id')->on('product_variants')->cascadeOnDelete();
         });
 
         // ============================================================
@@ -188,15 +181,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('outlet_id')->constrained('outlets');
             $table->foreignUuid('product_id')->constrained('products');
-            $table->foreignUuid('variant_id')->nullable()->constrained('product_variants');
-            $table->enum('type', [
-                'purchase','sale','void','transfer_in','transfer_out',
-                'adjustment','opname','opening_stock'
-            ]);
-            $table->decimal('quantity', 12, 3); // negatif = keluar
+            $table->uuid('variant_id')->nullable();
+            $table->string('type', 30); // purchase, sale, void, transfer_in, transfer_out, adjustment, opname, opening_stock
+            $table->decimal('quantity', 12, 3);
             $table->decimal('quantity_before', 12, 3);
             $table->decimal('quantity_after', 12, 3);
-            $table->uuid('reference_id')->nullable();  // transaction_id, grn_id, etc.
+            $table->uuid('reference_id')->nullable();
             $table->string('reference_type', 50)->nullable();
             $table->text('notes')->nullable();
             $table->foreignUuid('created_by')->nullable()->constrained('users');
@@ -204,6 +194,7 @@ return new class extends Migration
 
             $table->index(['outlet_id', 'product_id', 'created_at']);
             $table->index(['outlet_id', 'created_at']);
+            $table->foreign('variant_id')->references('id')->on('product_variants');
         });
 
         // ============================================================
@@ -217,48 +208,33 @@ return new class extends Migration
             $table->string('email', 100)->nullable();
             $table->date('birth_date')->nullable();
             $table->unsignedBigInteger('points_balance')->default(0);
-            $table->enum('tier', ['bronze', 'silver', 'gold', 'platinum'])->default('bronze');
+            $table->string('tier', 20)->default('bronze'); // bronze, silver, gold, platinum
             $table->unsignedInteger('total_transaction_count')->default(0);
             $table->decimal('total_transaction_amount', 15, 2)->default(0);
             $table->boolean('is_active')->default(true);
-            $table->foreignUuid('registered_at_outlet_id')->nullable()->constrained('outlets')->nullOnDelete();
+            $table->uuid('registered_at_outlet_id')->nullable();
             $table->timestamps();
 
             $table->unique(['company_id', 'phone']);
             $table->unique(['company_id', 'email']);
             $table->index(['company_id', 'tier']);
+            $table->foreign('registered_at_outlet_id')->references('id')->on('outlets')->nullOnDelete();
         });
 
         // ============================================================
-        // 12. POINT_TRANSACTIONS
-        // ============================================================
-        Schema::create('point_transactions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('member_id')->constrained('members')->cascadeOnDelete();
-            $table->foreignUuid('transaction_id')->nullable()->constrained('transactions')->nullOnDelete();
-            $table->enum('type', ['earn', 'redeem', 'adjustment', 'expire']);
-            $table->bigInteger('points'); // negatif = redeem/expire
-            $table->unsignedBigInteger('balance_after');
-            $table->string('description', 255)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-
-            $table->index(['member_id', 'created_at']);
-        });
-
-        // ============================================================
-        // 13. VOUCHERS
+        // 12. VOUCHERS
         // ============================================================
         Schema::create('vouchers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('company_id')->constrained('companies')->cascadeOnDelete();
             $table->string('code', 50);
-            $table->enum('type', ['nominal', 'percent']);
+            $table->string('type', 20); // nominal, percent
             $table->decimal('value', 15, 2);
             $table->decimal('min_transaction', 15, 2)->default(0);
             $table->decimal('max_discount', 15, 2)->nullable();
             $table->unsignedInteger('usage_limit')->nullable();
             $table->unsignedInteger('usage_count')->default(0);
-            $table->jsonb('applicable_outlets')->nullable(); // null = semua outlet
+            $table->jsonb('applicable_outlets')->nullable();
             $table->timestamp('valid_from');
             $table->timestamp('valid_until');
             $table->boolean('is_active')->default(true);
@@ -269,7 +245,7 @@ return new class extends Migration
         });
 
         // ============================================================
-        // 14. SHIFTS
+        // 13. SHIFTS
         // ============================================================
         Schema::create('shifts', function (Blueprint $table) {
             $table->uuid('id')->primary();
@@ -281,38 +257,34 @@ return new class extends Migration
             $table->decimal('closing_cash', 15, 2)->nullable();
             $table->decimal('expected_cash', 15, 2)->nullable();
             $table->decimal('cash_difference', 15, 2)->nullable();
-            $table->enum('status', ['open', 'closed'])->default('open');
+            $table->string('status', 10)->default('open'); // open, closed
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            // PostgreSQL EXCLUDE constraint: kasir hanya bisa punya 1 shift open per outlet
-            // Diimplementasikan via raw SQL di DatabaseSeeder / migration lanjutan
             $table->index(['outlet_id', 'status']);
             $table->index(['cashier_id', 'status']);
         });
 
-        // EXCLUDE constraint untuk mencegah duplikasi shift open
+        // Partial unique index: kasir hanya bisa punya 1 shift open per outlet
+        // Simpler and more compatible than EXCLUDE USING gist
         DB::statement("
-            ALTER TABLE shifts
-            ADD CONSTRAINT shifts_one_open_per_cashier_outlet
-            EXCLUDE USING gist (
-                cashier_id WITH =,
-                outlet_id WITH =,
-                (status = 'open') WITH =
-            ) WHERE (status = 'open')
+            CREATE UNIQUE INDEX shifts_one_open_per_cashier_outlet
+            ON shifts (cashier_id, outlet_id)
+            WHERE status = 'open'
         ");
 
         // ============================================================
-        // 15. TRANSACTIONS (Partitioned, append-only)
+        // 14. TRANSACTIONS
+        // MUST be created BEFORE point_transactions
         // ============================================================
         Schema::create('transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('outlet_id')->constrained('outlets');
             $table->foreignUuid('shift_id')->nullable()->constrained('shifts');
             $table->foreignUuid('cashier_id')->constrained('users');
-            $table->foreignUuid('member_id')->nullable()->constrained('members')->nullOnDelete();
+            $table->uuid('member_id')->nullable();
             $table->string('transaction_number', 50)->unique();
-            $table->enum('status', ['completed', 'voided', 'pending_sync'])->default('completed');
+            $table->string('status', 20)->default('completed'); // completed, voided, pending_sync
             $table->decimal('subtotal', 15, 2)->default(0);
             $table->decimal('discount_amount', 15, 2)->default(0);
             $table->decimal('tax_amount', 15, 2)->default(0);
@@ -320,7 +292,7 @@ return new class extends Migration
             $table->unsignedInteger('points_earned')->default(0);
             $table->unsignedInteger('points_redeemed')->default(0);
             $table->text('void_reason')->nullable();
-            $table->foreignUuid('voided_by')->nullable()->constrained('users');
+            $table->uuid('voided_by')->nullable();
             $table->timestamp('voided_at')->nullable();
             $table->string('device_id', 100)->nullable();
             $table->text('notes')->nullable();
@@ -330,6 +302,26 @@ return new class extends Migration
             $table->index(['shift_id']);
             $table->index(['member_id', 'created_at']);
             $table->index(['cashier_id', 'created_at']);
+            $table->foreign('member_id')->references('id')->on('members')->nullOnDelete();
+            $table->foreign('voided_by')->references('id')->on('users');
+        });
+
+        // ============================================================
+        // 15. POINT_TRANSACTIONS
+        // Now AFTER transactions table exists
+        // ============================================================
+        Schema::create('point_transactions', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('member_id')->constrained('members')->cascadeOnDelete();
+            $table->uuid('transaction_id')->nullable();
+            $table->string('type', 20); // earn, redeem, adjustment, expire
+            $table->bigInteger('points');
+            $table->unsignedBigInteger('balance_after');
+            $table->string('description', 255)->nullable();
+            $table->timestamp('created_at')->useCurrent();
+
+            $table->index(['member_id', 'created_at']);
+            $table->foreign('transaction_id')->references('id')->on('transactions')->nullOnDelete();
         });
 
         // ============================================================
@@ -339,8 +331,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('transaction_id')->constrained('transactions')->cascadeOnDelete();
             $table->foreignUuid('product_id')->constrained('products');
-            $table->foreignUuid('variant_id')->nullable()->constrained('product_variants');
-            // Snapshot nama produk pada saat transaksi (immutable)
+            $table->uuid('variant_id')->nullable();
             $table->string('product_name', 200);
             $table->string('product_sku', 50)->nullable();
             $table->string('variant_name', 200)->nullable();
@@ -352,6 +343,7 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
 
             $table->index(['transaction_id']);
+            $table->foreign('variant_id')->references('id')->on('product_variants');
         });
 
         // ============================================================
@@ -360,7 +352,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('transaction_id')->constrained('transactions')->cascadeOnDelete();
-            $table->enum('method', ['cash', 'qris', 'transfer', 'voucher', 'points']);
+            $table->string('method', 20); // cash, qris, transfer, voucher, points
             $table->decimal('amount', 15, 2);
             $table->string('reference_number', 100)->nullable();
             $table->string('voucher_code', 50)->nullable();
@@ -382,7 +374,7 @@ return new class extends Migration
             $table->unsignedInteger('pending_count')->default(0);
             $table->unsignedInteger('failed_count')->default(0);
             $table->text('last_error')->nullable();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent();
 
             $table->unique(['outlet_id', 'device_id']);
         });
@@ -392,10 +384,10 @@ return new class extends Migration
         // ============================================================
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('company_id')->nullable()->constrained('companies');
-            $table->foreignUuid('user_id')->nullable()->constrained('users');
-            $table->string('action', 100);       // e.g. "transaction.created"
-            $table->string('entity_type', 100);  // e.g. "Transaction"
+            $table->uuid('company_id')->nullable();
+            $table->uuid('user_id')->nullable();
+            $table->string('action', 100);
+            $table->string('entity_type', 100);
             $table->uuid('entity_id')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->string('device_id', 100)->nullable();
@@ -405,6 +397,8 @@ return new class extends Migration
 
             $table->index(['company_id', 'entity_type', 'entity_id']);
             $table->index(['user_id', 'created_at']);
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -414,9 +408,9 @@ return new class extends Migration
         Schema::dropIfExists('sync_logs');
         Schema::dropIfExists('payments');
         Schema::dropIfExists('transaction_items');
+        Schema::dropIfExists('point_transactions');
         Schema::dropIfExists('transactions');
         Schema::dropIfExists('shifts');
-        Schema::dropIfExists('point_transactions');
         Schema::dropIfExists('vouchers');
         Schema::dropIfExists('members');
         Schema::dropIfExists('inventory_movements');
