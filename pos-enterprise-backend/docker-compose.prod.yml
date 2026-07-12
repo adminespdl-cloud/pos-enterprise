@@ -68,7 +68,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
       target: production
     image: pos-backend:latest
     container_name: pos_backend
