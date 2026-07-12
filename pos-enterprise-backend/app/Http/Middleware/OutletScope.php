@@ -1,63 +1,39 @@
 <?php
-
 namespace App\Http\Middleware;
-
-use App\Enums\UserRole;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-/**
- * Middleware untuk memastikan user hanya bisa akses resource
- * yang berada dalam outlet yang sama (Outlet Scoping).
- *
- * Setiap request yang membutuhkan outlet context harus menyertakan
- * header X-Outlet-ID atau parameter outlet_id.
- */
-class OutletScope
-{
-    public function handle(Request $request, Closure $next): Response
-    {
-        $user = $request->user();
-
-        if (!$user) {
-            return response()->json([
-                'status'  => 'error',
-                'message' => 'Unauthenticated.',
-                'code'    => 'UNAUTHENTICATED',
-            ], 401);
-        }
-
-        // Super Admin dan Admin tidak dibatasi per outlet
-        if (in_array($user->role, [UserRole::SuperAdmin, UserRole::Admin])) {
-            return $next($request);
-        }
-
-        // Ambil outlet_id dari header atau request parameter
-        $outletId = $request->header('X-Outlet-ID')
-            ?? $request->input('outlet_id')
-            ?? $request->route('outlet');
-
+class OutletScope {
+    public function handle(Request $request, Closure $next): Response {
+        $outletId = $request->header('X-Outlet-ID');
         if (!$outletId) {
             return response()->json([
                 'status'  => 'error',
                 'message' => 'Header X-Outlet-ID diperlukan.',
-                'code'    => 'OUTLET_REQUIRED',
+                'code'    => 'MISSING_OUTLET_HEADER',
             ], 400);
         }
-
-        // Cek akses user ke outlet
-        if (!$user->hasOutletAccess($outletId)) {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['status' => 'error', 'message' => 'Unauthenticated.'], 401);
+        }
+        // Admin & Super Admin punya akses ke semua outlet dalam company
+        if (in_array($user->role, ['super_admin', 'admin'])) {
+            $outlet = \App\Models\Outlet::where('id', $outletId)
+                ->where('company_id', $user->company_id)
+                ->first();
+        } else {
+            $outlet = $user->outlets()->where('outlets.id', $outletId)->first();
+        }
+        if (!$outlet) {
             return response()->json([
                 'status'  => 'error',
-                'message' => 'Anda tidak memiliki akses ke outlet ini.',
-                'code'    => 'OUTLET_FORBIDDEN',
+                'message' => 'Akses ke outlet ini tidak diizinkan.',
+                'code'    => 'OUTLET_ACCESS_DENIED',
             ], 403);
         }
-
-        // Simpan outlet_id ke request untuk digunakan controller
-        $request->attributes->set('current_outlet_id', $outletId);
-
+        $request->merge(['outlet' => $outlet]);
+        $request->attributes->set('current_outlet', $outlet);
         return $next($request);
     }
 }

@@ -1,32 +1,15 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-/**
- * Security headers middleware untuk hardening HTTP responses.
- */
-class SecurityHeaders
-{
-    public function handle(Request $request, Closure $next): Response
-    {
+class SecurityHeaders {
+    public function handle(Request $request, Closure $next): Response {
         $response = $next($request);
-
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('X-Frame-Options', 'DENY');
         $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
-        $response->headers->set('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-        $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-        $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-
-        // Hapus header yang memperlihatkan teknologi
-        $response->headers->remove('X-Powered-By');
-        $response->headers->remove('Server');
-
         return $response;
     }
 }

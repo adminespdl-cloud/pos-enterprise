@@ -1,36 +1,24 @@
 <?php
-
 namespace App\Enums;
-
-enum UserRole: string
-{
+enum UserRole: string {
     case SuperAdmin = 'super_admin';
     case Admin      = 'admin';
     case Manager    = 'manager';
     case Cashier    = 'cashier';
-
-    public function label(): string
-    {
+    public function label(): string {
         return match($this) {
             self::SuperAdmin => 'Super Admin',
             self::Admin      => 'Admin',
-            self::Manager    => 'Manajer',
+            self::Manager    => 'Manager',
             self::Cashier    => 'Kasir',
         };
     }
-
-    public function canManageOutlet(): bool
-    {
-        return in_array($this, [self::SuperAdmin, self::Admin, self::Manager]);
-    }
-
-    public function canManageProducts(): bool
-    {
-        return in_array($this, [self::SuperAdmin, self::Admin, self::Manager]);
-    }
-
-    public function canViewReports(): bool
-    {
-        return in_array($this, [self::SuperAdmin, self::Admin, self::Manager]);
+    public function abilities(): array {
+        return match($this) {
+            self::SuperAdmin => ['*'],
+            self::Admin      => ['outlet:*', 'product:*', 'user:*', 'report:*', 'sync:*'],
+            self::Manager    => ['outlet:read', 'product:*', 'report:*', 'sync:*', 'shift:*', 'transaction:*'],
+            self::Cashier    => ['sync:*', 'shift:*', 'transaction:create', 'transaction:read', 'product:read', 'member:read', 'member:create'],
+        };
     }
 }
