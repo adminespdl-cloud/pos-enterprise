@@ -26,8 +26,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/force-migrate', function() {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
-    return \Illuminate\Support\Facades\Artisan::output();
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return response()->json(['message' => 'Success', 'output' => \Illuminate\Support\Facades\Artisan::output()]);
+    } catch (\Throwable $e) {
+        return response()->json(['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()], 500);
+    }
 });
 
 Route::middleware(['throttle:api', SecurityHeaders::class])->group(function () {
