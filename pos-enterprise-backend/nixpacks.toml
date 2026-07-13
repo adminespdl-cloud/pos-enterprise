@@ -9,12 +9,9 @@ cmds = [
     "composer install --no-dev --optimize-autoloader --ignore-platform-reqs --no-interaction --no-scripts"
 ]
 
-[phases.build]
-cmds = [
-    "php artisan config:cache",
-    "php artisan route:cache",
-    "php artisan view:cache"
-]
+# CATATAN: config:cache dan route:cache TIDAK dilakukan di build phase
+# karena env vars Railway (DB_HOST, DB_PASSWORD, APP_KEY) baru tersedia saat runtime,
+# bukan saat build. Caching di build phase akan menyebabkan env vars terabaikan.
 
 [start]
-cmd = "php artisan optimize:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+cmd = "php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
