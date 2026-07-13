@@ -1,19 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return response()->json([
-        'name' => 'POS Enterprise API',
-        'status' => 'active',
-        'version' => '1.0.0',
-        'environment' => config('app.env'),
-        'timestamp' => now()->toIso8601String(),
-    ]);
-});
-
-Route::get('/dev/seed', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
-    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
-    return response()->json(['message' => 'Database reset and seeded successfully.']);
-});
+// Catch-all route to serve the React SPA for Web Admin
+Route::get('/{any}', function () {
+    return file_get_contents(public_path('index.html'));
+})->where('any', '.*');
