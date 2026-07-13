@@ -1,0 +1,164 @@
+name: Android CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'pos-enterprise-android/**'
+      - '.github/workflows/android.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'pos-enterprise-android/**'
+
+defaults:
+  run:
+    working-directory: pos-enterprise-android
+
+jobs:
+  # ══════════════════════════════════════════════════════════════════
+  # JOB 1: Unit Tests (JVM — cepat, tanpa emulator)
+  # ══════════════════════════════════════════════════════════════════
+  test:
+    name: Unit Tests (JVM)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-
+
+      - name: Grant Gradle execute permission
+        run: chmod +x gradlew
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-test-results
+          path: pos-enterprise-android/app/build/reports/tests/testDebugUnitTest/
+          retention-days: 7
+
+  # ══════════════════════════════════════════════════════════════════
+  # JOB 2: Build Release APK
+  # ══════════════════════════════════════════════════════════════════
+  build:
+    name: Build Release APK
+    runs-on: ubuntu-latest
+    needs: [test]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Grant Gradle execute permission
+        run: chmod +x gradlew
+
+      - name: Build Release APK (unsigned)
+        run: ./gradlew assembleRelease --stacktrace
+        env:
+          # Nonaktifkan signing sementara jika secrets tidak ada
+          SKIP_SIGNING: ${{ !secrets.KEYSTORE_BASE64 }}
+
+      - name: Upload unsigned APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: pos-enterprise-unsigned
+          path: pos-enterprise-android/app/build/outputs/apk/release/app-release-unsigned.apk
+          retention-days: 14
+
+  # ══════════════════════════════════════════════════════════════════
+  # JOB 3: Sign & Release (main branch only)
+  # ══════════════════════════════════════════════════════════════════
+  sign-and-release:
+    name: Sign APK & Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download unsigned APK
+        uses: actions/download-artifact@v4
+        with:
+          name: pos-enterprise-unsigned
+          path: apk/
+
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+        continue-on-error: true  # Skip jika keystore belum dikonfigurasi
+
+      - name: Sign APK
+        run: |
+          if [ -f keystore.jks ]; then
+            $ANDROID_HOME/build-tools/34.0.0/apksigner sign \
+              --ks keystore.jks \
+              --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
+              --ks-pass pass:"${{ secrets.KEYSTORE_PASSWORD }}" \
+              --key-pass pass:"${{ secrets.KEY_PASSWORD }}" \
+              --out apk/pos-enterprise-signed.apk \
+              apk/app-release-unsigned.apk
+            echo "APK_SIGNED=true" >> $GITHUB_ENV
+          else
+            echo "⚠️ Keystore tidak ditemukan — skip signing"
+            cp apk/app-release-unsigned.apk apk/pos-enterprise-signed.apk
+            echo "APK_SIGNED=false" >> $GITHUB_ENV
+          fi
+
+      - name: Get version from build.gradle
+        id: version
+        run: |
+          VERSION=$(grep 'versionName' app/build.gradle.kts | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name:  v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          name:      POS Enterprise v${{ steps.version.outputs.version }} (#${{ github.run_number }})
+          body: |
+            ## POS Enterprise Android Release
+
+            **Build:** #${{ github.run_number }}
+            **Commit:** ${{ github.sha }}
+            **Signed:** ${{ env.APK_SIGNED }}
+
+            ### Changelog
+            ${{ github.event.head_commit.message }}
+
+            ### Catatan Instalasi
+            1. Aktifkan "Install dari sumber tidak dikenal" di Settings
+            2. Install APK di tablet Android 8.0+ (landscape)
+          files: apk/pos-enterprise-signed.apk
+          draft:  false
+          prerelease: ${{ contains(github.ref_name, 'develop') }}
