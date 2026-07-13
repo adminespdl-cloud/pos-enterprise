@@ -173,6 +173,18 @@ class AuthController extends Controller
             'device'  => $deviceId,
         ]);
 
+        // Android requires 'outlet' in LoginResponseData
+        $outlet = $user->outlets()->first() ?? \App\Models\Outlet::where('company_id', $user->company_id)->first();
+        $outletData = $outlet ? [
+            'id' => $outlet->id,
+            'name' => $outlet->name,
+            'company_id' => $outlet->company_id,
+        ] : [
+            'id' => '00000000-0000-0000-0000-000000000000',
+            'name' => 'Default Outlet',
+            'company_id' => $user->company_id ?? '00000000-0000-0000-0000-000000000000',
+        ];
+
         return response()->json([
             'status' => 'success',
             'data'   => [
@@ -185,6 +197,7 @@ class AuthController extends Controller
                     'role'    => $user->role->value,
                     'company_id' => $user->company_id,
                 ],
+                'outlet'     => $outletData,
             ],
         ], 200);
     }
