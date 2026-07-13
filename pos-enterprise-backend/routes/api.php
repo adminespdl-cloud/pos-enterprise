@@ -25,6 +25,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/db-test', function() {
+    try {
+        $dbConn = \Illuminate\Support\Facades\DB::connection()->getPdo();
+        $dbName = \Illuminate\Support\Facades\DB::connection()->getDatabaseName();
+        return response()->json([
+            'db_connected' => true,
+            'db_name' => $dbName,
+            'app_key_set' => !empty(config('app.key')),
+            'app_env' => config('app.env'),
+            'db_host' => config('database.connections.pgsql.host'),
+            'db_port' => config('database.connections.pgsql.port'),
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'db_connected' => false,
+            'error' => $e->getMessage(),
+            'app_key_set' => !empty(config('app.key')),
+            'app_env' => config('app.env'),
+            'db_driver' => config('database.default'),
+            'db_host' => config('database.connections.pgsql.host'),
+        ], 500);
+    }
+});
+
 Route::get('/force-migrate', function() {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
