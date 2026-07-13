@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WELCOME KOORDINATOR PADALARANG</title>
+    <meta name="author" content="phpmu.com">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker-bs3.css">
+    <style type="text/css"> .files{ position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; } </style>
+    <script type="text/javascript" src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jquery-1.12.3.min.js"></script>
+    <!-- <script src="https://ksktgojabar.xyz/asset/ckeditor/ckeditor.js"></script> -->
+    <style type="text/css">.checkbox-scroll { border:1px solid #ccc; width:100%; height: 114px; padding-left:8px; overflow-y: scroll; }</style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+     crossorigin="">
+
+     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+     crossorigin=""></script>
+
+    <!-- <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/pace.min.css"> -->
+    
+  </head>
+  <body class="hold-transition skin-green-light fixed sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+          <style type="text/css">
+  .sekolah{
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    font-family: fontAwesome;
+    color:#fff;
+  }
+  .sekolah:hover{
+    color:#fff;
+  }
+</style>
+        <!-- Logo -->
+        <a href="https://ksktgojabar.xyz/koordinator/home" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>JABAR-GO</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  RENCANA KERJA
+                  <span class="label label-success"><div id="allRN"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allJar"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision">THERMOVISION TM <span class="label label-success" id="allTM"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound">ULTRASOUND <span class="label label-success" id="allUltra"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/gardu" >GARDU <span class="label label-success" id="allGardu" ></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd" >THERMOVISION GD <span class="label label-success" id="allGD" ></span></a></li>
+                </ul>
+              </li>
+              <!-- <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  PEKERJAAN TERJADWAL
+                  <span class="label label-success"><div id="allTerima"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/jadwal/row">ROW <span class="label label-success" id="allTRow"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allTJar"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/gardu" >GARDU <span class="label label-success" id="allTGardu" ></span></a></li>
+                </ul>
+              </li> -->
+                            <li>
+                <a href="https://ksktgojabar.xyz/koordinator/password">Ganti Password</a>
+              </li>
+                                        </ul>
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+            
+          $(function() {
+            function notif() {
+              $.ajax({
+                url: 'https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585',
+                success: function(data) {
+                  if (data.length > 0) {
+                    var get = JSON.parse(data);
+                    $('#allRN').html(get.all);
+                    $('#allJar').html(get.jar);
+                    $('#allTM').html(get.tm);
+                    $('#allUltra').html(get.ultra);
+                    $('#allGardu').html(get.gardu);
+                    $('#allGD').html(get.gd);
+                  }
+                }
+              });
+            }
+
+            // function notifTerima() {
+            //   $.ajax({
+            //     url: 'https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585',
+            //     success: function(data) {
+            //       if (data.length > 0) {
+            //         var get = JSON.parse(data);
+            //         $('#allTerima').html(get.all);
+            //         $('#allTJar').html(get.jar);
+            //         $('#allTRow').html(get.row);
+            //         $('#allTGardu').html(get.gardu);
+            //       }
+            //     }
+            //   });
+            // }
+            
+            setInterval(
+            function () {
+              notif()
+              // notifTerima()
+            }, 60000);
+            
+          });
+
+        </script>      </header>
+
+      <aside class="main-sidebar">
+                  <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header" style='text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU <span class='uppercase'>koordinator PADALARANG</span></li>
+            <li class=""><a href="https://ksktgojabar.xyz/koordinator/home"><i class="fa fa-dashboard"></i> <span>DASHBOARD</span></a></li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT BAIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiperalatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisigardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisithermo'><i class='fa fa-circle-o'></i> THERMO TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiultra'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 1</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/visual'><i class='fa fa-circle-o'></i> KONDISI VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 2</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/tegangan'><i class='fa fa-circle-o'></i> TEG. UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview     ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>RENCANA KERJA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/row'><i class='fa fa-circle-o'></i> ROW</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PERENCANAAN JADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>LIST PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN TERJADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN HARI INI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>EKSEKUSI PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>REALISASI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARJAR</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/harjar'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/harjar'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO TM</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermo'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermo'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ULTRASOUND</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/ultra'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/ultra'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARDU</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/hardu'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/hardu'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO GD</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermogd'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermogd'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ROW</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/row'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/mandorline'><i class='fa fa-circle-o'></i> BULANAN PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/row'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/mandorline'><i class='fa fa-circle-o'></i> TAHUNAN PARTOLI</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>LAP. MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/renperalatan'><i class='fa fa-circle-o'></i>REN. PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rengardu'><i class='fa fa-circle-o'></i>REN. GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li> -->
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rekap'><i class='fa fa-circle-o'></i> REKAP MATERIAL</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li> -->
+              </ul>
+            </li>
+            <li class="treeview            ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>LAPORAN ASSESMENT</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment'><i class='fa fa-circle-o'></i> REKAP ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/periode'><i class='fa fa-circle-o'></i> REKAP PERIODE ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/mandorline'><i class='fa fa-circle-o'></i> ROW PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/tegangan'><i class='fa fa-circle-o'></i> TEGANGAN UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermotm'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/visual'><i class='fa fa-circle-o'></i> VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermogd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="fa fa-bar-chart"></i> <span>GRAFIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/bulanan'><i class='fa fa-circle-o'></i> GRAFIK BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/padam'><i class='fa fa-circle-o'></i> GRAFIK BULANAN PADAM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik'><i class='fa fa-circle-o'></i> TOTAL HEALTH INDEX</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-warning-sign"></i> <span>GANGGUAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/'><i class='fa fa-circle-o'></i> LIST GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/grafik'><i class='fa fa-circle-o'></i> GRAFIK GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/top'><i class='fa fa-circle-o'></i> GRAFIK TOP GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/zona'><i class='fa fa-circle-o'></i> GRAFIK PER ZONA</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/penyebab'><i class='fa fa-circle-o'></i> GRAFIK PENYEBAB</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/durasi'><i class='fa fa-circle-o'></i> GRAFIK DURASI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/indikasi'><i class='fa fa-circle-o'></i> GRAFIK INDIKASI</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-globe"></i> <span>PETA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/jaringan/peta/potensi?pencarian=all'><i class='fa fa-circle-o'></i> PETA POTENSI GANGGUAN</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gangguan'><i class='fa fa-circle-o'></i> PETA HISTORICAL GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/tiang'><i class='fa fa-circle-o'></i> PETA TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gardu'><i class='fa fa-circle-o'></i> PETA GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/pohon'><i class='fa fa-circle-o'></i> PETA POHON</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/peralatan'><i class='fa fa-circle-o'></i> PETA PERALATAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/beban'><i class='fa fa-circle-o'></i> PETA BEBAN GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview  active ">
+              <a href="#"><i class="glyphicon glyphicon-hdd"></i> <span>DATA ASSET</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datatiang/index'><i class='fa fa-circle-o'></i> TIANG</a></li>
+                <li class="active" ><a href='https://ksktgojabar.xyz/koordinator/datagardu/index'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datapohon/index'><i class='fa fa-circle-o'></i> POHON</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>PEK & MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/pekerjaan'><i class='fa fa-circle-o'></i> LIST PEKERJAAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/material'><i class='fa fa-circle-o'></i> LIST MATERIAL</a></li>
+              </ul>
+            </li>
+            <li><a href="https://ksktgojabar.xyz/koordinator/home/logout"><i class="fa fa-power-off"></i> <span>LOGOUT</span></a></li>
+          </ul>
+        </section>      </aside>
+
+      <div class="content-wrapper">
+
+        <section class="content">
+            <!-- Page heading -->
+<div class="row">
+<div class="col-lg-12">
+    <h3 class="page-header">Daftar Gardu</h3>
+</div>
+<div class="box-body">
+  <div class="col-sm-3">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Feeder All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?koordinator=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=BTJR&sts=All'>BTJR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CBA&sts=All'>CBA</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CCP&sts=All'>CCP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CDMR&sts=All'>CDMR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CKLW&sts=All'>CKLW</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CKRH&sts=All'>CKRH</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=CPTK&sts=All'>CPTK</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=GLNG&sts=All'>GLNG</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=GNDK&sts=All'>GNDK</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=LBSR&sts=All'>LBSR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=LCB&sts=All'>LCB</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=LCM&sts=All'>LCM</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=LCP&sts=All'>LCP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=MWTI&sts=All'>MWTI</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=NLP&sts=All'>NLP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PBH&sts=All'>PBH</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PBI&sts=All'>PBI</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCC&sts=All'>PCC</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCJ&sts=All'>PCJ</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCK&sts=All'>PCK</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCM&sts=All'>PCM</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCN&sts=All'>PCN</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCO&sts=All'>PCO</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCP&sts=All'>PCP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCS&sts=All'>PCS</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PCU&sts=All'>PCU</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PGB&sts=All'>PGB</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PGMB (EX PGM)&sts=All'>PGMB (EX PGM)</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PGP&sts=All'>PGP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PKH&sts=All'>PKH</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PRBY&sts=All'>PRBY</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PRMB&sts=All'>PRMB</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PSLU&sts=All'>PSLU</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=PTB&sts=All'>PTB</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=RJDL&sts=All'>RJDL</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=SLCU&sts=All'>SLCU</a></li>      </ul>
+    </div>
+  </div>
+  <div style="width: 18%;  float: left;">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">STATUS All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=All&sts=Baik'>Baik</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=All&sts=Cukup'>Cukup</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=All&sts=Kurang'>Kurang</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datagardu/index?pyl=All&sts=Buruk'>Buruk</a></li>      </ul>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <div class="panel panel-default">
+      <div class="panel-body">
+          <a href="https://ksktgojabar.xyz/jaringan/gardu/export?ulp=ULP.53585" class="btn btn-default" style="float: right; margin-right: 20px;">Export</a>      </div>
+  </div>
+</div>
+<div class="col-sm-12">
+
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="overflow-x: scroll;">
+            <div class="dataTable_wrapper">
+                        <h3><b>Total Gardu 623</b></h3>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ULP</th>
+                    <th>FEEDER</th>
+                    <th>EAM</th>
+                    <th>KODE GARDU</th>
+                    <th>KODE TIANG</th>
+                    <th>DAYA</th>
+                    <th>ALAMAT</th>
+                    <th>FCO GD</th>
+                    <th>LA GD</th>
+                    <th>BUSHING TM</th>
+                    <th>BUSHING TR</th>
+                    <th>GROUNDING TM</th>
+                    <th>GROUNDING TR</th>
+                    <th>KONSTRUKSI GARDU</th>
+                    <th>KONSTRUKSI PHBTR</th>
+                    <th>STATUS GARDU</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                                                <td>1</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000013550</td>
+                            <td>GD-ACJJ</td>
+                            <td></td>
+                            <td>250</td>
+                            <td>RW 30, Ciburuy, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39435" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>2</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012746</td>
+                            <td>GD-AES</td>
+                            <td>CKRH135</td>
+                            <td>100</td>
+                            <td>Cimahi, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39124" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>3</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012801</td>
+                            <td>GD-AGF</td>
+                            <td>PSLU190</td>
+                            <td>250</td>
+                            <td>Ciburahol-Cipeundeuy,Sarimukti,JawaBarat,40554,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39226" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>4</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000014905</td>
+                            <td>GD-AKO</td>
+                            <td>CKRH97R15A</td>
+                            <td>250</td>
+                            <td>Jl. Cimerang</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39139" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>5</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000013069</td>
+                            <td>GD-AKP</td>
+                            <td>CKRH137</td>
+                            <td>200</td>
+                            <td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39146" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>6</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000013206</td>
+                            <td>GD-APK</td>
+                            <td>TKYO201R3</td>
+                            <td>100</td>
+                            <td>JL. RAYA CIKALONG WETAN-CIPEUNDEUY, Ciharashas, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39064" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>7</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>53585GD010000012710</td>
+                            <td>GD-ASN</td>
+                            <td>CKRH57L8L6</td>
+                            <td>160</td>
+                            <td>Jalan Cangkorah, Cimahi, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38965" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>8</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012754</td>
+                            <td>GD-ATM</td>
+                            <td>CKRH97R36</td>
+                            <td>250</td>
+                            <td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39136" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>9</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012522</td>
+                            <td>GD-AWR</td>
+                            <td>CBA-SDA-91R56</td>
+                            <td>160</td>
+                            <td>Gadobangkong, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39157" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>10</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012523</td>
+                            <td>GD-AWRA</td>
+                            <td>CBA-SDA-91R58</td>
+                            <td>250</td>
+                            <td>Margajaya, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39160" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>11</td>
+                            <td>PADALARANG</td>
+                            <td>CCP</td>
+                            <td>53585GD010000014827</td>
+                            <td>GD-AZ</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>400</td>
+                            <td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38985" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>12</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012528</td>
+                            <td>GD-AZA</td>
+                            <td>CBA-SDA-91R88</td>
+                            <td>160</td>
+                            <td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39150" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>13</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012524</td>
+                            <td>GD-AZB</td>
+                            <td>CBA-SDA-91R60</td>
+                            <td>160</td>
+                            <td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39154" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>14</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000014998</td>
+                            <td>GD-AZC</td>
+                            <td>CKRH97R15A</td>
+                            <td>100</td>
+                            <td>STASIUN GEDOBANGKONG CIAMPEL</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39151" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>15</td>
+                            <td>PADALARANG</td>
+                            <td>PBI</td>
+                            <td>53585GD010000014841</td>
+                            <td>GD-AZH</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>250</td>
+                            <td>Kota Baru Parahyangan, Jayamekar, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39322" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>16</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012739</td>
+                            <td>GD-BAR</td>
+                            <td>CKRH92R9L5</td>
+                            <td>160</td>
+                            <td>Cimahi, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39119" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>17</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012738</td>
+                            <td>GD-BARA</td>
+                            <td>CKRH92R9L2</td>
+                            <td>250</td>
+                            <td>Cimahi, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39115" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>18</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012740</td>
+                            <td>GD-BARB</td>
+                            <td>CKRH92R15</td>
+                            <td>250</td>
+                            <td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39116" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>19</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012768</td>
+                            <td>GD-BATU</td>
+                            <td>CPTK50R9R5</td>
+                            <td>100</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39363" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>20</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012623</td>
+                            <td>GD-BCAI</td>
+                            <td>SLCU64</td>
+                            <td>250</td>
+                            <td>Nyalindung, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39006" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>21</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012622</td>
+                            <td>GD-BCAS</td>
+                            <td>TKYO78L23R4</td>
+                            <td>250</td>
+                            <td>Nyalindung, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39009" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>22</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012598</td>
+                            <td>GD-BCIA_CKLW</td>
+                            <td>CKLW407R84</td>
+                            <td>250</td>
+                            <td>03, Ciburuy, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38989" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>23</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012599</td>
+                            <td>GD-BCI_CKLW</td>
+                            <td>CKLW413</td>
+                            <td>250</td>
+                            <td>19, Tagogapu, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38990" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>24</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000019430</td>
+                            <td>GD-BCM</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>160</td>
+                            <td>Cimareme, Kabupaten Bandung Barat, Jawa Barat</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39145" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>25</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>53585GD010000012714</td>
+                            <td>GD-BCP</td>
+                            <td>CKRH110L11R4L2</td>
+                            <td>250</td>
+                            <td>Cimerang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38980" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>26</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>53585GD010000012715</td>
+                            <td>GD-BCPA</td>
+                            <td>CKRH110L13</td>
+                            <td>160</td>
+                            <td>Cimerang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38982" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>27</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012731</td>
+                            <td>GD-BDH</td>
+                            <td>CKRH82L55</td>
+                            <td>250</td>
+                            <td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39106" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>28</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012733</td>
+                            <td>GD-BDHA</td>
+                            <td>CKRH125R5</td>
+                            <td>250</td>
+                            <td>Laksanamekar, Jawa Barat, 40524, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39113" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>29</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012730</td>
+                            <td>GD-BDHB</td>
+                            <td>SLCU229L14</td>
+                            <td>100</td>
+                            <td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39103" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>30</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012509</td>
+                            <td>GD-BDK</td>
+                            <td>CBA-SDA-37R23R3</td>
+                            <td>250</td>
+                            <td>N3 Raya Padalarang, Kertamulya, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39177" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>31</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012597</td>
+                            <td>GD-BDS</td>
+                            <td>CKLW601R11L21</td>
+                            <td>160</td>
+                            <td>Ciburuy, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38988" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>32</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012771</td>
+                            <td>GD-BGA</td>
+                            <td>CPTK50R9R18</td>
+                            <td>250</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39362" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>33</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012778</td>
+                            <td>GD-BGDA</td>
+                            <td>CPTK50R54L20</td>
+                            <td>160</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39368" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>34</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012548</td>
+                            <td>GD-BGI</td>
+                            <td>CKLW351L8</td>
+                            <td>100</td>
+                            <td>Cipada, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39474" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>35</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012777</td>
+                            <td>GD-BGL</td>
+                            <td>CPTK50R54L10</td>
+                            <td>315</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39367" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>36</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000013541</td>
+                            <td>GD-BHL</td>
+                            <td>CBA-MKL-25</td>
+                            <td>100</td>
+                            <td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39391" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>37</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000013542</td>
+                            <td>GD-BHLA</td>
+                            <td>CBA-MKL-33</td>
+                            <td>100</td>
+                            <td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39389" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>38</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012664</td>
+                            <td>GD-BJG</td>
+                            <td>TKYO174</td>
+                            <td>100</td>
+                            <td>Puteran, Jawa Barat, 40115, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39087" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>39</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012663</td>
+                            <td>GD-BJGA</td>
+                            <td>TKYO173L3</td>
+                            <td>100</td>
+                            <td>Ciharashas, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39086" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>40</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000019289</td>
+                            <td>GD-BJK</td>
+                            <td></td>
+                            <td>400</td>
+                            <td>JLN RAYA PADALARANG - CIANJUR</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39171" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>41</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012555</td>
+                            <td>GD-BJM</td>
+                            <td>CKLW223L13</td>
+                            <td>100</td>
+                            <td>Cipada, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39485" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>42</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012840</td>
+                            <td>GD-BJN</td>
+                            <td>PSLU418</td>
+                            <td>100</td>
+                            <td>Jatimekar,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39255" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>43</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012575</td>
+                            <td>GD-BJO</td>
+                            <td>CKLW91</td>
+                            <td>250</td>
+                            <td>RW 04, DESA CISOMANG, Tenjolaut, Jawa Barat, 41164, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39507" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>44</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012785</td>
+                            <td>GD-BJR</td>
+                            <td>CPTK164</td>
+                            <td>250</td>
+                            <td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39260" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>45</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012786</td>
+                            <td>GD-BJRA</td>
+                            <td>CPTK168</td>
+                            <td>100</td>
+                            <td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39261" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>46</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012756</td>
+                            <td>GD-BKN</td>
+                            <td>CKRH137L6R2</td>
+                            <td>100</td>
+                            <td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39123" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>47</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012647</td>
+                            <td>GD-BKO</td>
+                            <td>TKYO139</td>
+                            <td>160</td>
+                            <td>Mandalamukti, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39038" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>48</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000013068</td>
+                            <td>GD-BKRY</td>
+                            <td>SLCU88</td>
+                            <td>100</td>
+                            <td>DUSUN 3, Ciptagumati, Jawa Barat, 41164, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39048" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>49</td>
+                            <td>PADALARANG</td>
+                            <td>PBH</td>
+                            <td>53585GD010000014891</td>
+                            <td>GD-BKS_PBH</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>630</td>
+                            <td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39307" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>50</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000012465</td>
+                            <td>GD-BLA</td>
+                            <td>CBA-KPG-48</td>
+                            <td>315</td>
+                            <td>RW 20, Ciburuy, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39438" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>51</td>
+                            <td>PADALARANG</td>
+                            <td>LCB</td>
+                            <td>53585GD010000014823</td>
+                            <td>GD-BLL</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>400</td>
+                            <td>Galanggang, Jawa Barat, 40767, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39219" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>52</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012569</td>
+                            <td>GD-BLP</td>
+                            <td>CKLW285</td>
+                            <td>50</td>
+                            <td>Mandalamukti, Jawa Barat, 41164, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39499" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>53</td>
+                            <td>PADALARANG</td>
+                            <td>PBI</td>
+                            <td>53585GD010000014837</td>
+                            <td>GD-BMC</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>630</td>
+                            <td>Celini, Jalan Kota Batu Parahyangan, Kota Baru Parahyangan, Padalarang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39327" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>54</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000013067</td>
+                            <td>GD-BNH</td>
+                            <td>CKLW168R29</td>
+                            <td>100</td>
+                            <td>Pasirlangu, Jawa Barat, 40551, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39476" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>55</td>
+                            <td>PADALARANG</td>
+                            <td>PKH</td>
+                            <td>53585GD010000019586</td>
+                            <td>GD-BPKP</td>
+                            <td>PADALARANG</td>
+                            <td>250</td>
+                            <td>YAYASAN BPK PENABUR KBP</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39377" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>56</td>
+                            <td>PADALARANG</td>
+                            <td>PRMB</td>
+                            <td>53585GD010000014815</td>
+                            <td>GD-BPM</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>400</td>
+                            <td>Jalan Orion, RW 19, Ciburuy, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39450" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>57</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012666</td>
+                            <td>GD-BRD</td>
+                            <td>CKLW531R104</td>
+                            <td>250</td>
+                            <td>JL. RAYA CIKALONG WETAN-CIPEUNDEUY, Ciharashas, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39062" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>58</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012667</td>
+                            <td>GD-BRDA</td>
+                            <td>CKLW531R104R14</td>
+                            <td>160</td>
+                            <td>Rende, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39061" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>59</td>
+                            <td>PADALARANG</td>
+                            <td>CKRH</td>
+                            <td>53585GD010000012511</td>
+                            <td>GD-BRM</td>
+                            <td>CBA-SDA-37R23R6</td>
+                            <td>160</td>
+                            <td>N3 Raya Padalarang, Kertamulya, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39176" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>60</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012772</td>
+                            <td>GD-BRP</td>
+                            <td>CPTK50R9R25</td>
+                            <td>50</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39361" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>61</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012779</td>
+                            <td>GD-BRPA</td>
+                            <td>CPTK50R54L22</td>
+                            <td>50</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39359" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>62</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000013070</td>
+                            <td>GD-BRPB</td>
+                            <td>CPTK50R54L6</td>
+                            <td>50</td>
+                            <td>Mekarsari, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39357" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>63</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000012508</td>
+                            <td>GD-BRV</td>
+                            <td>CBA-KPG-32</td>
+                            <td>250</td>
+                            <td>Gunungmasigit, Jawa Barat, 40532, Ind0nesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39395" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>64</td>
+                            <td>PADALARANG</td>
+                            <td>LCM</td>
+                            <td>53585GD010000014819</td>
+                            <td>GD-BSC_LCM</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>400</td>
+                            <td>Baros, Jawa Barat, 40533, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39220" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>65</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012608</td>
+                            <td>GD-BSN</td>
+                            <td>TKYO8</td>
+                            <td>100</td>
+                            <td>Cempakamekar, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39001" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>66</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012609</td>
+                            <td>GD-BSR</td>
+                            <td>SLCU13</td>
+                            <td>100</td>
+                            <td>Cempakamekar, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39002" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>67</td>
+                            <td>PADALARANG</td>
+                            <td>CDMR</td>
+                            <td>53585GD010000015008</td>
+                            <td>GD-BTA</td>
+                            <td>CKRH97R15A</td>
+                            <td>160</td>
+                            <td>BIGITA THYPENA</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38987" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>68</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000012494</td>
+                            <td>GD-BTP</td>
+                            <td>CBA-KPG-31R78</td>
+                            <td>250</td>
+                            <td>Gunungmasigit, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39406" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>69</td>
+                            <td>PADALARANG</td>
+                            <td>PRBY</td>
+                            <td>53585GD010000012495</td>
+                            <td>GD-BTPC</td>
+                            <td>CBA-KPG-31R88</td>
+                            <td>250</td>
+                            <td>Gunungmasigit, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39408" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>70</td>
+                            <td>PADALARANG</td>
+                            <td>LCB</td>
+                            <td>53585GD010000014822</td>
+                            <td>GD-BTR</td>
+                            <td>PRIMA CIBABAT</td>
+                            <td>630</td>
+                            <td>Galanggang, Jawa Barat, 40767, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39217" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>71</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>53585GD010000012703</td>
+                            <td>GD-BUR</td>
+                            <td>CKRH34</td>
+                            <td>200</td>
+                            <td>Batujajar Barat, Jawa Barat, 40563, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38932" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>72</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>53585GD010000012574</td>
+                            <td>GD-BURA</td>
+                            <td>CKLW312R37L13</td>
+                            <td>160</td>
+                            <td>Batujajar Barat, Jawa Barat, 40563, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/38930" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>73</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012633</td>
+                            <td>GD-BUT</td>
+                            <td>TKYO78R36L5</td>
+                            <td>50</td>
+                            <td>Mandalasari, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39035" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>74</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012632</td>
+                            <td>GD-BUTA</td>
+                            <td>SLCU68</td>
+                            <td>100</td>
+                            <td>Nyalindung, Jawa Barat, 40532, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39029" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>75</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012835</td>
+                            <td>GD-BYB</td>
+                            <td>PSLU379L5</td>
+                            <td>200</td>
+                            <td>Nyenang,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39233" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>76</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012824</td>
+                            <td>GD-CAG</td>
+                            <td>PSLU317R13</td>
+                            <td>50</td>
+                            <td>Kanangasari,JawaBarat,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39247" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>77</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012804</td>
+                            <td>GD-CAL</td>
+                            <td>PSLU204</td>
+                            <td>100</td>
+                            <td>Sukahaji,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39263" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>78</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012646</td>
+                            <td>GD-CAP</td>
+                            <td>SLCU86R9</td>
+                            <td>50</td>
+                            <td>Mandalasari, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39037" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>79</td>
+                            <td>PADALARANG</td>
+                            <td>PBI</td>
+                            <td>53585GD010000013840</td>
+                            <td>GD-CARC</td>
+                            <td></td>
+                            <td>250</td>
+                            <td>JL. PARAHYANGAN RAYA, KERTAJAYA, KEC. PADALARANG, KABUPATEN BANDUNG BARAT, JAWA BARAT 40553</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39328" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>80</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012692</td>
+                            <td>GD-CAT</td>
+                            <td>LWGJ79</td>
+                            <td>50</td>
+                            <td>Sirnagalih, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39088" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>81</td>
+                            <td>PADALARANG</td>
+                            <td>LBSR</td>
+                            <td>53585GD010000006030</td>
+                            <td>GD-CBA</td>
+                            <td>GLNG5</td>
+                            <td>400</td>
+                            <td>Kertamulya, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39204" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>82</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012645</td>
+                            <td>GD-CBK</td>
+                            <td>TKYO134</td>
+                            <td>100</td>
+                            <td>Mandalamukti, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39040" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>83</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012559</td>
+                            <td>GD-CBN</td>
+                            <td>CKLW407R41</td>
+                            <td>50</td>
+                            <td>Mekarjaya, Kec. Cikalong Wetan, Kabupaten Bandung Barat, Jawa Barat</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39496" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>84</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012668</td>
+                            <td>GD-CBP</td>
+                            <td>TKYO206</td>
+                            <td>100</td>
+                            <td>Cikalong, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39076" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>85</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000012773</td>
+                            <td>GD-CBS</td>
+                            <td>CPTK50R15R3</td>
+                            <td>100</td>
+                            <td>Cilame, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39373" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>86</td>
+                            <td>PADALARANG</td>
+                            <td>PGP</td>
+                            <td>53585GD010000014882</td>
+                            <td>GD-CBSG</td>
+                            <td>SDKT311L4</td>
+                            <td>100</td>
+                            <td>Cimahi, Jawa Barat, 40552, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39374" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>87</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012809</td>
+                            <td>GD-CBU</td>
+                            <td>PSLU242L39</td>
+                            <td>160</td>
+                            <td>Margalaksana,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39264" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>88</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012793</td>
+                            <td>GD-CCR</td>
+                            <td>PSLU48R31R5</td>
+                            <td>50</td>
+                            <td>Ciburuy,JawaBarat,40553,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39222" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>89</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012553</td>
+                            <td>GD-CDA</td>
+                            <td>CKLW71R9</td>
+                            <td>160</td>
+                            <td>Cipada, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39492" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>90</td>
+                            <td>PADALARANG</td>
+                            <td>PBI</td>
+                            <td>53585GD010000012497</td>
+                            <td>GD-CDG</td>
+                            <td>CBA-SDA-30R21</td>
+                            <td>50</td>
+                            <td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39312" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>91</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000013841</td>
+                            <td>GD-CDO</td>
+                            <td></td>
+                            <td>50</td>
+                            <td>JL. SASAK SAAT TONGGOH CIDEPONG</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39229" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>92</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012652</td>
+                            <td>GD-CDPG</td>
+                            <td>TKYO156L2</td>
+                            <td>100</td>
+                            <td>DUSUN 3, Ciptagumati, Jawa Barat, 41164, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39053" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>93</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012568</td>
+                            <td>GD-CED</td>
+                            <td>CKLW265</td>
+                            <td>100</td>
+                            <td>Ganjarsari, Kec. Cikalong Wetan, Kabupaten Bandung Barat, Jawa Barat 40556</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39503" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>94</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012796</td>
+                            <td>GD-CEO</td>
+                            <td>PSLU94L1</td>
+                            <td>25</td>
+                            <td>Kanangasari,JawaBarat,40532,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39225" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>95</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012643</td>
+                            <td>GD-CES</td>
+                            <td>SLCU75</td>
+                            <td>25</td>
+                            <td>Mandalamukti, Jawa Barat, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39043" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>96</td>
+                            <td>PADALARANG</td>
+                            <td>PSLU</td>
+                            <td>53585GD010000012535</td>
+                            <td>GD-CET</td>
+                            <td>CKLW161</td>
+                            <td>50</td>
+                            <td>Bojongkoneng, Jawa Barat, 40553, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39467" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>97</td>
+                            <td>PADALARANG</td>
+                            <td>MWTI</td>
+                            <td>53585GD010000012828</td>
+                            <td>GD-CGB</td>
+                            <td>PSLU336L25R3</td>
+                            <td>100</td>
+                            <td>Rende,JawaBarat,40558,Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39265" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>98</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012673</td>
+                            <td>GD-CGD</td>
+                            <td>LWGJ1</td>
+                            <td>100</td>
+                            <td>Ciharashas, Jawa Barat, 40558, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39080" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>99</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012683</td>
+                            <td>GD-CGL</td>
+                            <td>SLCU184L27</td>
+                            <td>100</td>
+                            <td>Puteran, Jawa Barat, 40115, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39099" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>100</td>
+                            <td>PADALARANG</td>
+                            <td>CKLW</td>
+                            <td>53585GD010000012661</td>
+                            <td>GD-CGO</td>
+                            <td>SLCU128</td>
+                            <td>50</td>
+                            <td>Cikalong, Jawa Barat, 41163, Indonesia</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datagardu/view/39084" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                     </tbody>
+            </table>
+            <nav aria-label="page navigation">
+                <ul class="pagination"><li class="active"><a href="#">1</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datagardu/index/100" data-ci-pagination-page="2">2</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datagardu/index/200" data-ci-pagination-page="3">3</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datagardu/index/100" data-ci-pagination-page="2" rel="next">Selanjutnya</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datagardu/index/600" data-ci-pagination-page="7">Akhir</a></ul>            </nav>
+                        </div>
+        </div>
+    </div>
+</div>         </section>
+        <div style='clear:both'></div>
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+          
+<strong>Copyright &copy; 2019 - KSKT-GO PLN KALSELTENG </strong> All rights reserved.       </footer>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://ksktgojabar.xyz/asset/jquery-1.12.4.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/jquery-ui.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button);</script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="https://ksktgojabar.xyz/asset/admin/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/pace/pace.min.js"></script> -->
+    <!-- DataTables -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+    <!-- Morris.js charts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Slimscroll -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://ksktgojabar.xyz/asset/admin/dist/js/app.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
+    <script>
+      $(function () { 
+        $("#example1").DataTable({
+           dom: 'Bfrtip',
+          buttons: [
+              {
+                  extend: 'pdf',
+                  filename: 'datagardu',
+                  orientation: 'landscape'
+              },
+              {
+                  extend: 'excel',
+                  filename: 'datagardu',
+                  orientation: 'landscape'
+              }
+          ],
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('#example2').DataTable({
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('.datepicker').datepicker();
+      });
+    </script>  
+  </body>
+</html>

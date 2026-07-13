@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Pintar — Point of Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────── -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-icon">🏪</span>
+        <span class="logo-text">Kasir Pintar</span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Kasir</a>
+        <a href="laporan.html">Laporan</a>
+        <a href="admin.html">Pengaturan</a>
+    </div>
+</nav>
+
+<!-- ── Main Layout ─────────────────────────────────────────── -->
+<div class="app-container">
+
+    <!-- LEFT: Products -->
+    <div class="menu-section">
+        <div class="header-menu">
+            <div class="header-menu-left">
+                <h2>Pilih Produk</h2>
+                <div class="subtitle">Tap produk untuk menambah ke keranjang</div>
+            </div>
+            <div class="search-wrapper">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProduct()">
+            </div>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+
+    <!-- RIGHT: Cart -->
+    <div class="cart-section">
+        <div class="cart-header">
+            <div class="cart-header-row">
+                <h2>Detail Pesanan</h2>
+                <span class="cart-badge" id="cartBadge">0 item</span>
+            </div>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Belum ada produk dipilih.<br>Tap produk untuk mulai.</p>
+            </div>
+        </div>
+
+        <div class="total-section">
+            <div class="total-box">
+                <span class="total-box-label">Total Tagihan</span>
+                <span id="totalPrice">Rp 0</span>
+            </div>
+            <button class="btn-pay" onclick="processPayment()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Proses Pembayaran
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAYMENT MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div id="paymentModal" class="modal-overlay" style="display:none" onclick="handleModalBackdrop(event)">
+    <div class="modal-box">
+
+        <!-- Step 1: Choose method -->
+        <div id="payStep1">
+            <div class="modal-header">
+                <div class="modal-icon">💳</div>
+                <h3>Pilih Metode Pembayaran</h3>
+                <div class="modal-total-row">Total: <strong id="modalTotal">Rp 0</strong></div>
+            </div>
+            <div class="pay-methods">
+                <button class="pay-method-btn" onclick="selectPaymentMethod('cash')">
+                    <span class="pay-method-icon">💵</span>
+                    <span class="pay-method-label">Tunai</span>
+                    <span class="pay-method-desc">Hitung kembalian otomatis</span>
+                </button>
+                <button class="pay-method-btn" onclick="selectPaymentMethod('qris')">
+                    <span class="pay-method-icon">📱</span>
+                    <span class="pay-method-label">QRIS</span>
+                    <span class="pay-method-desc">Scan QR Code pembayaran</span>
+                </button>
+            </div>
+            <button class="btn-ghost" onclick="closePaymentModal()">Batal</button>
+        </div>
+
+        <!-- Step 2a: Cash -->
+        <div id="payStep2Cash" style="display:none">
+            <div class="modal-header">
+                <div class="modal-icon">💵</div>
+                <h3>Pembayaran Tunai</h3>
+                <div class="modal-total-row">Total: <strong id="cashTotal">Rp 0</strong></div>
+            </div>
+            <div class="cash-input-group">
+                <label>Uang yang Diterima (Rp)</label>
+                <input type="number" id="cashInput" placeholder="0" oninput="calcChange()" min="0">
+            </div>
+            <div id="changeDisplay" class="change-display" style="display:none">
+                <span class="change-label">Kembalian</span>
+                <span class="change-value" id="changeAmount">Rp 0</span>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-ghost" onclick="goBackPayment()">← Kembali</button>
+                <button class="btn-confirm" id="cashConfirmBtn" onclick="confirmCashPayment()">Konfirmasi Bayar</button>
+            </div>
+        </div>
+
+        <!-- Step 2b: QRIS -->
+        <div id="payStep2QRIS" style="display:none">
+            <div class="modal-header">
+                <div class="modal-icon">📱</div>
+                <h3>Pembayaran QRIS</h3>
+                <div class="modal-total-row">Total: <strong id="qrisTotal">Rp 0</strong></div>
+            </div>
+            <div class="qris-wrap">
+                <img id="qrisImage" src="" alt="QR Code" style="display:none">
+                <div id="qrisNoImage" class="qris-no-image" style="display:none">
+                    <div style="font-size:3rem">📷</div>
+                    <p>QRIS belum dikonfigurasi.<br>Upload QR di halaman <a href="admin.html">Pengaturan</a>.</p>
+                </div>
+            </div>
+            <p class="qris-hint">Tunjukkan QR ini ke pelanggan untuk di-scan</p>
+            <div class="modal-actions">
+                <button class="btn-ghost" onclick="goBackPayment()">← Kembali</button>
+                <button class="btn-confirm" id="qrisConfirmBtn" onclick="confirmQRISPayment()">Konfirmasi Sudah Bayar</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="payStep3" style="display:none">
+            <div class="success-step">
+                <div class="success-check">✓</div>
+                <h3>Pembayaran Berhasil!</h3>
+                <div id="successChangeInfo"></div>
+            </div>
+            <div class="modal-actions modal-actions-success">
+                <button class="btn-print" onclick="printReceipt()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    Cetak Struk
+                </button>
+                <button class="btn-confirm" onclick="closePaymentModal()">Transaksi Baru</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Firebase & Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="app.js"></script>
+<script>
+function handleModalBackdrop(e) {
+    if (e.target.id === 'paymentModal') closePaymentModal();
+}
+</script>
+</body>
+</html>

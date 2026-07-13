@@ -10,6 +10,7 @@ import { TransactionsPage } from '@/pages/transactions/TransactionsPage'
 import { ProductsPage }     from '@/pages/products/ProductsPage'
 import { MembersPage }      from '@/pages/members/MembersPage'
 import { ReportsPage }      from '@/pages/reports/ReportsPage'
+import { OutletsPage }      from '@/pages/outlets/OutletsPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,7 +36,7 @@ export default function App() {
               <Route path="members"      element={<MembersPage />} />
               {/* Placeholder routes */}
               <Route path="shifts"   element={<ComingSoon title="Manajemen Shift" />} />
-              <Route path="outlets"  element={<ComingSoon title="Manajemen Outlet" />} />
+              <Route path="outlets"  element={<OutletsPage />} />
               <Route path="reports"  element={<ReportsPage />} />
               <Route path="alerts"   element={<ComingSoon title="Peringatan & Notifikasi" />} />
               <Route path="settings" element={<ComingSoon title="Pengaturan Sistem" />} />

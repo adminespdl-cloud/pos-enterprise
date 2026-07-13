@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WELCOME KOORDINATOR PADALARANG</title>
+    <meta name="author" content="phpmu.com">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker-bs3.css">
+    <style type="text/css"> .files{ position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; } </style>
+    <script type="text/javascript" src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jquery-1.12.3.min.js"></script>
+    <!-- <script src="https://ksktgojabar.xyz/asset/ckeditor/ckeditor.js"></script> -->
+    <style type="text/css">.checkbox-scroll { border:1px solid #ccc; width:100%; height: 114px; padding-left:8px; overflow-y: scroll; }</style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+     crossorigin="">
+
+     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+     crossorigin=""></script>
+
+    <!-- <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/pace.min.css"> -->
+    
+  </head>
+  <body class="hold-transition skin-green-light fixed sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+          <style type="text/css">
+  .sekolah{
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    font-family: fontAwesome;
+    color:#fff;
+  }
+  .sekolah:hover{
+    color:#fff;
+  }
+</style>
+        <!-- Logo -->
+        <a href="https://ksktgojabar.xyz/koordinator/home" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>JABAR-GO</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  RENCANA KERJA
+                  <span class="label label-success"><div id="allRN"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allJar"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision">THERMOVISION TM <span class="label label-success" id="allTM"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound">ULTRASOUND <span class="label label-success" id="allUltra"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/gardu" >GARDU <span class="label label-success" id="allGardu" ></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd" >THERMOVISION GD <span class="label label-success" id="allGD" ></span></a></li>
+                </ul>
+              </li>
+              <!-- <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  PEKERJAAN TERJADWAL
+                  <span class="label label-success"><div id="allTerima"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/jadwal/row">ROW <span class="label label-success" id="allTRow"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allTJar"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/gardu" >GARDU <span class="label label-success" id="allTGardu" ></span></a></li>
+                </ul>
+              </li> -->
+                            <li>
+                <a href="https://ksktgojabar.xyz/koordinator/password">Ganti Password</a>
+              </li>
+                                        </ul>
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+            
+          $(function() {
+            function notif() {
+              $.ajax({
+                url: 'https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585',
+                success: function(data) {
+                  if (data.length > 0) {
+                    var get = JSON.parse(data);
+                    $('#allRN').html(get.all);
+                    $('#allJar').html(get.jar);
+                    $('#allTM').html(get.tm);
+                    $('#allUltra').html(get.ultra);
+                    $('#allGardu').html(get.gardu);
+                    $('#allGD').html(get.gd);
+                  }
+                }
+              });
+            }
+
+            // function notifTerima() {
+            //   $.ajax({
+            //     url: 'https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585',
+            //     success: function(data) {
+            //       if (data.length > 0) {
+            //         var get = JSON.parse(data);
+            //         $('#allTerima').html(get.all);
+            //         $('#allTJar').html(get.jar);
+            //         $('#allTRow').html(get.row);
+            //         $('#allTGardu').html(get.gardu);
+            //       }
+            //     }
+            //   });
+            // }
+            
+            setInterval(
+            function () {
+              notif()
+              // notifTerima()
+            }, 60000);
+            
+          });
+
+        </script>      </header>
+
+      <aside class="main-sidebar">
+                  <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header" style='text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU <span class='uppercase'>koordinator PADALARANG</span></li>
+            <li class=""><a href="https://ksktgojabar.xyz/koordinator/home"><i class="fa fa-dashboard"></i> <span>DASHBOARD</span></a></li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT BAIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiperalatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisigardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisithermo'><i class='fa fa-circle-o'></i> THERMO TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiultra'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 1</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/visual'><i class='fa fa-circle-o'></i> KONDISI VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 2</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/tegangan'><i class='fa fa-circle-o'></i> TEG. UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview     ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>RENCANA KERJA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/row'><i class='fa fa-circle-o'></i> ROW</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PERENCANAAN JADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>LIST PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN TERJADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN HARI INI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>EKSEKUSI PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>REALISASI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARJAR</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/harjar'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/harjar'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO TM</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermo'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermo'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ULTRASOUND</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/ultra'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/ultra'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARDU</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/hardu'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/hardu'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO GD</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermogd'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermogd'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ROW</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/row'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/mandorline'><i class='fa fa-circle-o'></i> BULANAN PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/row'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/mandorline'><i class='fa fa-circle-o'></i> TAHUNAN PARTOLI</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>LAP. MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/renperalatan'><i class='fa fa-circle-o'></i>REN. PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rengardu'><i class='fa fa-circle-o'></i>REN. GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li> -->
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rekap'><i class='fa fa-circle-o'></i> REKAP MATERIAL</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li> -->
+              </ul>
+            </li>
+            <li class="treeview            ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>LAPORAN ASSESMENT</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment'><i class='fa fa-circle-o'></i> REKAP ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/periode'><i class='fa fa-circle-o'></i> REKAP PERIODE ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/mandorline'><i class='fa fa-circle-o'></i> ROW PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/tegangan'><i class='fa fa-circle-o'></i> TEGANGAN UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermotm'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/visual'><i class='fa fa-circle-o'></i> VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermogd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="fa fa-bar-chart"></i> <span>GRAFIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/bulanan'><i class='fa fa-circle-o'></i> GRAFIK BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/padam'><i class='fa fa-circle-o'></i> GRAFIK BULANAN PADAM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik'><i class='fa fa-circle-o'></i> TOTAL HEALTH INDEX</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-warning-sign"></i> <span>GANGGUAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/'><i class='fa fa-circle-o'></i> LIST GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/grafik'><i class='fa fa-circle-o'></i> GRAFIK GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/top'><i class='fa fa-circle-o'></i> GRAFIK TOP GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/zona'><i class='fa fa-circle-o'></i> GRAFIK PER ZONA</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/penyebab'><i class='fa fa-circle-o'></i> GRAFIK PENYEBAB</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/durasi'><i class='fa fa-circle-o'></i> GRAFIK DURASI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/indikasi'><i class='fa fa-circle-o'></i> GRAFIK INDIKASI</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-globe"></i> <span>PETA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/jaringan/peta/potensi?pencarian=all'><i class='fa fa-circle-o'></i> PETA POTENSI GANGGUAN</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gangguan'><i class='fa fa-circle-o'></i> PETA HISTORICAL GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/tiang'><i class='fa fa-circle-o'></i> PETA TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gardu'><i class='fa fa-circle-o'></i> PETA GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/pohon'><i class='fa fa-circle-o'></i> PETA POHON</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/peralatan'><i class='fa fa-circle-o'></i> PETA PERALATAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/beban'><i class='fa fa-circle-o'></i> PETA BEBAN GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview   active">
+              <a href="#"><i class="glyphicon glyphicon-hdd"></i> <span>DATA ASSET</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datatiang/index'><i class='fa fa-circle-o'></i> TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datagardu/index'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="active" ><a href='https://ksktgojabar.xyz/koordinator/datapohon/index'><i class='fa fa-circle-o'></i> POHON</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>PEK & MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/pekerjaan'><i class='fa fa-circle-o'></i> LIST PEKERJAAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/material'><i class='fa fa-circle-o'></i> LIST MATERIAL</a></li>
+              </ul>
+            </li>
+            <li><a href="https://ksktgojabar.xyz/koordinator/home/logout"><i class="fa fa-power-off"></i> <span>LOGOUT</span></a></li>
+          </ul>
+        </section>      </aside>
+
+      <div class="content-wrapper">
+
+        <section class="content">
+            <!-- Page heading -->
+<div class="row">
+<div class="col-lg-12">
+    <h3 class="page-header">Daftar Pohon</h3>
+</div>
+<div class="box-body">
+  <div style="width: 18%; float: left;">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Feeder All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=PRBY&sts=All'>PRBY</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=BTJR&sts=All'>BTJR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=GLNG&sts=All'>GLNG</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=SLCU&sts=All'>SLCU</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=CKRH&sts=All'>CKRH</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=RJDL&sts=All'>RJDL</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=MWTI&sts=All'>MWTI</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl=CKLW&sts=All'>CKLW</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/?pyl= PGP&sts=All'> PGP</a></li>      </ul>
+    </div>
+  </div>
+  <div style="width: 18%;  float: left;">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">STATUS All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datapohon/index?pyl=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/index?pyl=All&sts=Baik'>Baik</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/index?pyl=All&sts=Cukup'>Cukup</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/index?pyl=All&sts=Kurang'>Kurang</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datapohon/index?pyl=All&sts=Buruk'>Buruk</a></li>      </ul>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <div class="panel panel-default">
+      <div class="panel-body">
+          <a href="https://ksktgojabar.xyz/jaringan/pohon/export?ulp=ULP.53585&feeder=All" class="btn btn-default" style="float: right; margin-right: 20px;">Export</a>      </div>
+  </div>
+</div>
+<div class="col-sm-12">
+
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="overflow-x: scroll;">
+            <div class="dataTable_wrapper">
+                        <h3><b>Total Pohon 1687</b></h3>
+            <table id="example1" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>FEEDER</th>
+                    <th>SEGMENT</th>
+                    <th>KODE TIANG</th>
+                    <th>JENIS POHON</th>
+                    <th>NAMA POHON</th>
+                    <th>PEMILIK POHON</th>
+                    <th>JARAK POHON</th>
+                    <th>JARAK SAAT INI</th>
+                    <th>TANGGAL EKSEKUSI</th>
+                    <th>LAT</th>
+                    <th>LNG</th>
+                    <th>STATUS SAAT INI</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                                                <td>1</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L52</td>
+                            <td>Nangka</td>
+                            <td>Nangka651</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8469519</td>
+                            <td>107.5175959</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25838" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>2</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L22</td>
+                            <td>Cengkeh</td>
+                            <td>Cengkeh001</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8469094</td>
+                            <td>107.5103276</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25780" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>3</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L4</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang461</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.28</td>
+                            <td>2026-08-19</td>
+                            <td>-6.8505682</td>
+                            <td>107.5126351</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25884" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>4</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L2</td>
+                            <td>Alpukat</td>
+                            <td>Alpukat661</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.849115</td>
+                            <td>107.5115683</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25852" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>5</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R19</td>
+                            <td>Pisang</td>
+                            <td>Pisang381</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>1.68</td>
+                            <td>2026-07-16</td>
+                            <td>-6.8513663</td>
+                            <td>107.5194265</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25787" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>6</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L6</td>
+                            <td>Mahoni</td>
+                            <td>Mahoni051</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.8497933</td>
+                            <td>107.5111267</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25844" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>7</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang201</td>
+                            <td>Instansi (Lainnya)</td>
+                            <td>2</td>
+                            <td>1.34</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8485925</td>
+                            <td>107.516618</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25836" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>8</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L8</td>
+                            <td>Rambutan</td>
+                            <td>Rambutan791</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8512067</td>
+                            <td>107.5121883</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25880" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>9</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L2</td>
+                            <td>Mangga</td>
+                            <td>Mangga051</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.8499461</td>
+                            <td>107.5126687</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25886" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>10</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R7</td>
+                            <td>Mangga</td>
+                            <td>Mangga411</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8495535</td>
+                            <td>107.5184051</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25822" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>11</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R23L2R1</td>
+                            <td>Mangga</td>
+                            <td>Mangga901</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8518273</td>
+                            <td>107.5184858</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25784" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>12</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L20</td>
+                            <td>Mangga</td>
+                            <td>Mangga471</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8519737</td>
+                            <td>107.5089606</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25872" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>13</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L18</td>
+                            <td>Cengkeh</td>
+                            <td>Cengkeh821</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8474133</td>
+                            <td>107.5109234</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25782" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>14</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L84</td>
+                            <td>Akasia</td>
+                            <td>Akasia221</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8403967</td>
+                            <td>107.5241533</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25788" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>15</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L26</td>
+                            <td>Mangga</td>
+                            <td>Mangga451</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8519933</td>
+                            <td>107.5079352</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25863" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>16</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L5</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang981</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.28</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8496581</td>
+                            <td>107.5112499</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25846" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>17</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R8</td>
+                            <td>Mangga</td>
+                            <td>Mangga801</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8500193</td>
+                            <td>107.5184821</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25806" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>18</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L1</td>
+                            <td>Mangga</td>
+                            <td>Mangga901</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.84943</td>
+                            <td>107.5126078</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25887" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>19</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R18</td>
+                            <td>Pisang</td>
+                            <td>Pisang851</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>0.68</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8511816</td>
+                            <td>107.5191432</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25790" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>20</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L23</td>
+                            <td>Tanaman Rambat / Areuy</td>
+                            <td>Tanaman Rambat / Areuy341</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.01</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8466868</td>
+                            <td>107.510588</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25779" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>21</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L11</td>
+                            <td>Mangga</td>
+                            <td>Mangga741</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8492968</td>
+                            <td>107.5124031</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25858" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>22</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L22</td>
+                            <td>Nangka</td>
+                            <td>Nangka951</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8520011</td>
+                            <td>107.5085547</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25869" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>23</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L17</td>
+                            <td>Cengkeh</td>
+                            <td>Cengkeh891</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8477275</td>
+                            <td>107.5109795</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25783" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>24</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L23</td>
+                            <td>Kencana</td>
+                            <td>Kencana541</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8467111</td>
+                            <td>107.5106119</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25778" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>25</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R18</td>
+                            <td>Kersen</td>
+                            <td>Kersen531</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8510476</td>
+                            <td>107.5190806</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25791" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>26</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L44</td>
+                            <td>Mangga</td>
+                            <td>Mangga151</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8500337</td>
+                            <td>107.5165691</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25901" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>27</td>
+                            <td> PGP</td>
+                            <td>AFTAK BATU</td>
+                            <td>PGP32L42R1</td>
+                            <td>Jambu</td>
+                            <td>Jambu521</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.72</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8505433</td>
+                            <td>107.51693</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25904" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>28</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R11</td>
+                            <td>Mangga</td>
+                            <td>Mangga251</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8505646</td>
+                            <td>107.5190547</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25796" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>29</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R9</td>
+                            <td>Mangga</td>
+                            <td>Mangga511</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8501319</td>
+                            <td>107.5185515</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25803" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>30</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R7L3</td>
+                            <td>Mangga</td>
+                            <td>Mangga691</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8489692</td>
+                            <td>107.5187157</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25810" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>31</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R7L1</td>
+                            <td>Nangka</td>
+                            <td>Nangka321</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8495211</td>
+                            <td>107.5183868</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25815" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>32</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R6</td>
+                            <td>Mangga</td>
+                            <td>Mangga191</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8496932</td>
+                            <td>107.5180307</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25824" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>33</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R2</td>
+                            <td>Mangga</td>
+                            <td>Mangga041</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8489679</td>
+                            <td>107.5169711</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25831" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>34</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L55</td>
+                            <td>Mahoni</td>
+                            <td>Mahoni041</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.33</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.846167</td>
+                            <td>107.5178974</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25837" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>35</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L9</td>
+                            <td>Mahoni</td>
+                            <td>Mahoni131</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.849922</td>
+                            <td>107.510443</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25842" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>36</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L3</td>
+                            <td>Bambu</td>
+                            <td>Bambu151</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>1.56</td>
+                            <td>2026-07-16</td>
+                            <td>-6.8491624</td>
+                            <td>107.5114051</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25849" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>37</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L1</td>
+                            <td>Mangga</td>
+                            <td>Mangga651</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8490372</td>
+                            <td>107.5115559</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25854" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>38</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L25</td>
+                            <td>Jambu</td>
+                            <td>Jambu191</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.28</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8519035</td>
+                            <td>107.5082166</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25865" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>39</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L21</td>
+                            <td>Jambu</td>
+                            <td>Jambu801</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.28</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8520544</td>
+                            <td>107.5088832</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25870" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>40</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L9</td>
+                            <td>Mangga</td>
+                            <td>Mangga821</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8513536</td>
+                            <td>107.5113107</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25876" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>41</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L7</td>
+                            <td>Belimbing</td>
+                            <td>Belimbing291</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.8512007</td>
+                            <td>107.5121934</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25882" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>42</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L27</td>
+                            <td>Mangga</td>
+                            <td>Mangga941</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.33</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8456928</td>
+                            <td>107.5116959</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25775" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>43</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R23L2</td>
+                            <td>Mangga</td>
+                            <td>Mangga171</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8519554</td>
+                            <td>107.5185781</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25786" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>44</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L5</td>
+                            <td>Mangga</td>
+                            <td>Mangga501</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8496226</td>
+                            <td>107.5146356</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25891" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>45</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L4</td>
+                            <td>Pisang</td>
+                            <td>Pisang321</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>0.56</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8495746</td>
+                            <td>107.5151684</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25894" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>46</td>
+                            <td> PGP</td>
+                            <td>AFTAK CLM</td>
+                            <td>PGP32L46L1</td>
+                            <td>Mangga</td>
+                            <td>Mangga571</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8495385</td>
+                            <td>107.5162095</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25897" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>47</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L46</td>
+                            <td>Mangga</td>
+                            <td>Mangga401</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8493265</td>
+                            <td>107.516327</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25899" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>48</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L43</td>
+                            <td>Mangga</td>
+                            <td>Mangga051</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.36</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8504744</td>
+                            <td>107.516729</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25902" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>49</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L44</td>
+                            <td>Mangga</td>
+                            <td>Mangga372</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8500599</td>
+                            <td>107.5165559</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25900" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>50</td>
+                            <td> PGP</td>
+                            <td>AFTAK BATU</td>
+                            <td>PGP32L42R1</td>
+                            <td>Mangga</td>
+                            <td>Mangga641</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8507728</td>
+                            <td>107.5168615</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25905" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>51</td>
+                            <td> PGP</td>
+                            <td>AFTAK BATU</td>
+                            <td>PGP32L42R2</td>
+                            <td>Cemara</td>
+                            <td>Cemara021</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.850485</td>
+                            <td>107.5170267</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25903" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>52</td>
+                            <td> PGP</td>
+                            <td></td>
+                            <td>PGP32L41-SSO-SKU</td>
+                            <td>Nangka</td>
+                            <td>Nangka321</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8507967</td>
+                            <td>107.5168685</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25906" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>53</td>
+                            <td> PGP</td>
+                            <td>AFTAK CMNA</td>
+                            <td>PGP32L64R5</td>
+                            <td>Mangga</td>
+                            <td>Mangga501</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8474342</td>
+                            <td>107.5204103</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25820" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>54</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R10</td>
+                            <td>Mangga</td>
+                            <td>Mangga541</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8503538</td>
+                            <td>107.5188743</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25798" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>55</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R13</td>
+                            <td>Mangga</td>
+                            <td>Mangga691</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8509938</td>
+                            <td>107.5189354</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25795" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>56</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L67</td>
+                            <td>Jati</td>
+                            <td>Jati461</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8463588</td>
+                            <td>107.5218359</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25805" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>57</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R9</td>
+                            <td>Mangga</td>
+                            <td>Mangga502</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.33</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8502461</td>
+                            <td>107.5186985</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25801" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>58</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R7L2</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang841</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.34</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8490169</td>
+                            <td>107.5186857</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25811" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>59</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L65</td>
+                            <td>Pisang</td>
+                            <td>Pisang181</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-1.32</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8466584</td>
+                            <td>107.5212562</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25808" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>60</td>
+                            <td> PGP</td>
+                            <td>AFTAK CMNA</td>
+                            <td>PGP32L64R5</td>
+                            <td>Mangga</td>
+                            <td>Mangga282</td>
+                            <td>Pribadi</td>
+                            <td>0</td>
+                            <td>-0.33</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8476851</td>
+                            <td>107.520243</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25817" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>61</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R7L1</td>
+                            <td>Mangga</td>
+                            <td>Mangga571</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8495111</td>
+                            <td>107.5183951</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25813" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>62</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R5</td>
+                            <td>Mangga</td>
+                            <td>Mangga161</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8495258</td>
+                            <td>107.5178236</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25827" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>63</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L64</td>
+                            <td>Pohon Lapuk</td>
+                            <td>Pohon Lapuk211</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8462817</td>
+                            <td>107.5208651</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25823" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>64</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R1</td>
+                            <td>Mangga</td>
+                            <td>Mangga091</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8488069</td>
+                            <td>107.5168268</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25833" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>65</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L48R3</td>
+                            <td>Mangga</td>
+                            <td>Mangga521</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8492048</td>
+                            <td>107.5174446</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25829" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>66</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L26</td>
+                            <td>Pucuk Merah</td>
+                            <td>Pucuk Merah511</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.34</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.8457625</td>
+                            <td>107.5115057</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25776" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>67</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L29</td>
+                            <td>Bambu</td>
+                            <td>Bambu641</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>1.68</td>
+                            <td>2026-07-16</td>
+                            <td>-6.8452194</td>
+                            <td>107.5121206</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25774" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>68</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L7</td>
+                            <td>Mahoni</td>
+                            <td>Mahoni561</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.8498564</td>
+                            <td>107.5107262</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25843" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>69</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L52</td>
+                            <td>Cengkeh</td>
+                            <td>Cengkeh051</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8470199</td>
+                            <td>107.5177304</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25840" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>70</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L3</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang821</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.28</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8490859</td>
+                            <td>107.5113943</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25850" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>71</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13L4</td>
+                            <td>Alpukat</td>
+                            <td>Alpukat411</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8494517</td>
+                            <td>107.5111783</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25847" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>72</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L31</td>
+                            <td>Alpukat</td>
+                            <td>Alpukat421</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.67</td>
+                            <td>2026-11-05</td>
+                            <td>-6.8449408</td>
+                            <td>107.5119247</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25772" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>73</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L13</td>
+                            <td>Mangga</td>
+                            <td>Mangga161</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8489988</td>
+                            <td>107.5115472</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25856" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>74</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L23</td>
+                            <td>Mangga</td>
+                            <td>Mangga271</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8519296</td>
+                            <td>107.5084119</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25867" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>75</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L29</td>
+                            <td>Pisang</td>
+                            <td>Pisang041</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>-0.32</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.845325</td>
+                            <td>107.5120549</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25773" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>76</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L8</td>
+                            <td>Mangga</td>
+                            <td>Mangga041</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8512768</td>
+                            <td>107.5115626</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25878" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>77</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L20</td>
+                            <td>Manggis</td>
+                            <td>Manggis111</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8520877</td>
+                            <td>107.5090992</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25875" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>78</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L83</td>
+                            <td>Jambu</td>
+                            <td>Jambu341</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.34</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8408767</td>
+                            <td>107.5237392</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25793" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>79</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L21</td>
+                            <td>Petai</td>
+                            <td>Petai951</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.67</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8471052</td>
+                            <td>107.5102914</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25781" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>80</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L24</td>
+                            <td>Pepaya</td>
+                            <td>Pepaya511</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.8464979</td>
+                            <td>107.5107714</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25777" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>81</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L6</td>
+                            <td>Mangga</td>
+                            <td>Mangga951</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8512383</td>
+                            <td>107.5124533</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25883" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>82</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10L3</td>
+                            <td>Cemara</td>
+                            <td>Cemara751</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.64</td>
+                            <td>2026-11-02</td>
+                            <td>-6.850355</td>
+                            <td>107.5126967</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25885" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>83</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L57</td>
+                            <td>Flamboyan</td>
+                            <td>Flamboyan531</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.67</td>
+                            <td>2026-07-28</td>
+                            <td>-6.845337</td>
+                            <td>107.5182566</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25834" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>84</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10</td>
+                            <td>Cemara</td>
+                            <td>Cemara252</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8493681</td>
+                            <td>107.5126406</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25888" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>85</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L10</td>
+                            <td>Cemara</td>
+                            <td>Cemara711</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.849456</td>
+                            <td>107.5127804</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25889" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>86</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L4</td>
+                            <td>Mangga</td>
+                            <td>Mangga591</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.64</td>
+                            <td>2026-07-25</td>
+                            <td>-6.8495266</td>
+                            <td>107.5148249</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25892" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>87</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L7</td>
+                            <td>Pisang</td>
+                            <td>Pisang121</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>0.56</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.84954</td>
+                            <td>107.5139833</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25890" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>88</td>
+                            <td> PGP</td>
+                            <td>AFTAK CLM</td>
+                            <td>PGP32L46L2</td>
+                            <td>Angsana</td>
+                            <td>Angsana221</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.28</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8496386</td>
+                            <td>107.5161918</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25895" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>89</td>
+                            <td> PGP</td>
+                            <td>AFTAK BGA</td>
+                            <td>PGP32L46L4</td>
+                            <td>Salam</td>
+                            <td>Salam381</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8495586</td>
+                            <td>107.5149202</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25893" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>90</td>
+                            <td> PGP</td>
+                            <td>SSO SKU SAMPAI PKBB</td>
+                            <td>PGP32L46</td>
+                            <td>Mangga</td>
+                            <td>Mangga732</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8494674</td>
+                            <td>107.5163986</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25898" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>91</td>
+                            <td> PGP</td>
+                            <td>AFTAK CLM</td>
+                            <td>PGP32L46L2</td>
+                            <td>Mangga</td>
+                            <td>Mangga641</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.64</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.8497032</td>
+                            <td>107.5162186</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/25896" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>92</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR69</td>
+                            <td>Mahoni</td>
+                            <td>Mahoni571</td>
+                            <td>Pribadi</td>
+                            <td>1</td>
+                            <td>0.61</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.9067906</td>
+                            <td>107.5025966</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/26030" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>93</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R64</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang731</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.22</td>
+                            <td>2026-08-16</td>
+                            <td>-6.9157564</td>
+                            <td>107.5076855</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3208" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>94</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R63</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang501</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.22</td>
+                            <td>2026-08-16</td>
+                            <td>-6.9157083</td>
+                            <td>107.507215</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3209" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>95</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R62</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang341</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.22</td>
+                            <td>2026-08-16</td>
+                            <td>-6.9156283</td>
+                            <td>107.506945</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3210" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>96</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R7</td>
+                            <td>Ketapang</td>
+                            <td>Ketapang021</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.14</td>
+                            <td>SEGERA EKSEKUSI</td>
+                            <td>-6.9119274</td>
+                            <td>107.5049343</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3342" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>97</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R4</td>
+                            <td>Mangga</td>
+                            <td>Mangga281</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>1.57</td>
+                            <td>2026-07-18</td>
+                            <td>-6.9116153</td>
+                            <td>107.5038966</td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3348" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>98</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R3</td>
+                            <td>Mangga</td>
+                            <td>Mangga861</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.57</td>
+                            <td>2026-10-26</td>
+                            <td>-6.911595</td>
+                            <td>107.503555</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3350" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>99</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td>BTJR57R1</td>
+                            <td>Mangga</td>
+                            <td>Mangga681</td>
+                            <td>Pribadi</td>
+                            <td>3</td>
+                            <td>2.57</td>
+                            <td>2026-10-26</td>
+                            <td>-6.9116028</td>
+                            <td>107.5027996</td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3351" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                                <td>100</td>
+                            <td>BTJR</td>
+                            <td>KP CKRH - LBS KHT</td>
+                            <td>BTJR54R2</td>
+                            <td>Kelapa</td>
+                            <td>Kelapa141</td>
+                            <td>Pribadi</td>
+                            <td>2</td>
+                            <td>0.28</td>
+                            <td>MENYENTUH, SEGERA EKSEKUSI</td>
+                            <td>-6.912368</td>
+                            <td>107.5015803</td>
+                            <td>Buruk</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datapohon/view/3354" class="btn btn-primary btn-circle">View</a> </td>
+                        </tr>
+                                     </tbody>
+            </table>
+            <nav aria-label="page navigation">
+                <ul class="pagination"><li class="active"><a href="#">1</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datapohon/index/100" data-ci-pagination-page="2">2</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datapohon/index/200" data-ci-pagination-page="3">3</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datapohon/index/100" data-ci-pagination-page="2" rel="next">Selanjutnya</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datapohon/index/1600" data-ci-pagination-page="17">Akhir</a></ul>            </nav>
+                        </div>
+        </div>
+    </div>
+</div>         </section>
+        <div style='clear:both'></div>
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+          
+<strong>Copyright &copy; 2019 - KSKT-GO PLN KALSELTENG </strong> All rights reserved.       </footer>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://ksktgojabar.xyz/asset/jquery-1.12.4.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/jquery-ui.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button);</script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="https://ksktgojabar.xyz/asset/admin/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/pace/pace.min.js"></script> -->
+    <!-- DataTables -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+    <!-- Morris.js charts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Slimscroll -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://ksktgojabar.xyz/asset/admin/dist/js/app.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
+    <script>
+      $(function () { 
+        $("#example1").DataTable({
+           dom: 'Bfrtip',
+          buttons: [
+              {
+                  extend: 'pdf',
+                  filename: 'datapohon',
+                  orientation: 'landscape'
+              },
+              {
+                  extend: 'excel',
+                  filename: 'datapohon',
+                  orientation: 'landscape'
+              }
+          ],
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('#example2').DataTable({
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('.datepicker').datepicker();
+      });
+    </script>  
+  </body>
+</html>

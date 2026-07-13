@@ -48,3 +48,7 @@ desktop.ini
 # ── Proyek lain di scratch (exclude dari repo POS) ─────────────────
 rab-listrik/
 rab-otomatis-webapp/
+
+pos-enterprise-android/gradle-temp/
+pos-enterprise-android/gradle-*.zip
+

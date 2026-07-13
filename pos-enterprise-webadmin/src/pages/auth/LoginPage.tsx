@@ -20,7 +20,13 @@ export function LoginPage() {
     setLoading(true)
     try {
       const res = await authApi.login(email, password)
-      const { token, user } = res.data.data
+      const { token, user, outlet } = res.data.data
+
+      // Pastikan user.outlets terisi — fallback ke field 'outlet' (singular) dari response
+      if ((!user.outlets || user.outlets.length === 0) && outlet?.id) {
+        user.outlets = [{ id: outlet.id, name: outlet.name }]
+      }
+
       setAuth(token, user)
       navigate('/')
       toast.success(`Selamat datang, ${user.name}!`)

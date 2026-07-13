@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Pintar — Laporan Penjualan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jsPDF + AutoTable for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-icon">🏪</span>
+        <span class="logo-text">Kasir Pintar</span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Kasir</a>
+        <a href="laporan.html" class="active">Laporan</a>
+        <a href="admin.html">Pengaturan</a>
+    </div>
+</nav>
+
+<div class="container-laporan">
+
+    <!-- Page Header -->
+    <div class="laporan-page-header">
+        <div>
+            <h2>Laporan Penjualan</h2>
+            <p>Analisis omset dan riwayat transaksi</p>
+        </div>
+        <button class="btn-export" onclick="exportPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export PDF
+        </button>
+    </div>
+
+    <!-- Period Filter Tabs -->
+    <div class="period-tabs">
+        <button class="period-tab active" data-period="all"     onclick="changePeriod('all')">Semua</button>
+        <button class="period-tab"         data-period="daily"   onclick="changePeriod('daily')">Hari Ini</button>
+        <button class="period-tab"         data-period="weekly"  onclick="changePeriod('weekly')">Minggu Ini</button>
+        <button class="period-tab"         data-period="monthly" onclick="changePeriod('monthly')">Bulan Ini</button>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon" style="background:var(--violet-light);color:var(--violet)">🛍️</div>
+            <div class="stat-body">
+                <div class="stat-label">Total Transaksi</div>
+                <div class="stat-value" id="txCount">—</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background:var(--green-light);color:#15803d">💰</div>
+            <div class="stat-body">
+                <div class="stat-label">Total Pendapatan</div>
+                <div class="stat-value" id="omsetTotal">—</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background:var(--coral-light);color:var(--coral-dark)">📊</div>
+            <div class="stat-body">
+                <div class="stat-label">Rata-rata / Transaksi</div>
+                <div class="stat-value" id="avgTx">—</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table class="laporan-table">
+            <thead>
+                <tr>
+                    <th style="width:40px">No</th>
+                    <th>Waktu</th>
+                    <th>Produk Terjual</th>
+                    <th>Metode</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="laporanTableBody">
+                <tr><td colspan="5" class="loading-row">Memuat data transaksi...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Firebase & Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

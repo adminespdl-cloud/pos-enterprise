@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tukang Sulap Laporan WA -> Excel</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ExcelJS & FileSaver -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.3) 0, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .file-upload {
+            position: relative;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px dashed var(--glass-border);
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .file-upload .text {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .file-upload .filename {
+            font-size: 12px;
+            color: var(--accent);
+            margin-top: 8px;
+            display: none;
+            word-break: break-all;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), #6366f1);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+        }
+
+        button.btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+        }
+        
+        button.btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--accent);
+            display: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tukang Sulap Laporan WA</h1>
+        <p class="subtitle">Bikin Laporan Excel Langsung Jadi, Ga Pake Ribet!</p>
+
+        <div class="grid-2 form-group">
+            <div>
+                <label>Nomor WO (Work Order)</label>
+                <input type="text" id="no_wo" placeholder="Contoh: 0832/83002505/V/2026">
+            </div>
+            <div>
+                <label>Nama Petugas</label>
+                <input type="text" id="petugas" placeholder="Contoh: SODIKIN / DONI">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Paste Mentahan WA di Sini</label>
+            <textarea id="wa_text" placeholder="Hari: Rabu&#10;Tgl: 17 juni 2026&#10;Jenis kegiatan: gempur penjulang cklw..."></textarea>
+        </div>
+
+        <label>Upload 3 Foto (Opsional, masukin sesuai urutan)</label>
+        <div class="grid-3">
+            <div class="file-upload">
+                <span class="icon">📸</span>
+                <span class="text">Poto SEBELUM</span>
+                <input type="file" id="foto_sebelum" accept="image/*">
+                <div class="filename" id="name_sebelum"></div>
+            </div>
+            <div class="file-upload">
+                <span class="icon">📸</span>
+                <span class="text">Poto PROSES</span>
+                <input type="file" id="foto_proses" accept="image/*">
+                <div class="filename" id="name_proses"></div>
+            </div>
+            <div class="file-upload">
+                <span class="icon">📸</span>
+                <span class="text">Poto SESUDAH</span>
+                <input type="file" id="foto_sesudah" accept="image/*">
+                <div class="filename" id="name_sesudah"></div>
+            </div>
+        </div>
+
+        <button class="btn-submit" onclick="generateExcel()">🪄 Bikin Laporan Excel Sekarang!</button>
+        <div class="status" id="status">✨ File Excel berhasil dibikin! Cek folder Download ente.</div>
+    </div>
+
+    <script>
+        // Update filename display
+        function setupFileInput(inputId, nameId) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                if(e.target.files.length > 0) {
+                    const el = document.getElementById(nameId);
+                    el.style.display = 'block';
+                    el.innerText = '✔️ ' + e.target.files[0].name;
+                }
+            });
+        }
+        setupFileInput('foto_sebelum', 'name_sebelum');
+        setupFileInput('foto_proses', 'name_proses');
+        setupFileInput('foto_sesudah', 'name_sesudah');
+
+        // Helper to read file as ArrayBuffer for ExcelJS
+        function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(e);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        // Extractor function for WA Text
+        function extractData(text) {
+            const lines = text.split('\n').map(l => l.trim());
+            const data = {
+                hari: '', tgl: '', kegiatan_awal: '', grdh: '', penjulang: '', type: '', jenis_pekerjaan: '', material: ''
+            };
+            
+            let isMaterial = false;
+            let materialLines = [];
+
+            lines.forEach(line => {
+                let lLower = line.toLowerCase();
+                
+                if(lLower.startsWith('hari:')) data.hari = line.substring(5).trim();
+                else if(lLower.startsWith('tgl:')) data.tgl = line.substring(4).trim();
+                else if(lLower.startsWith('jenis kegiatan:')) data.kegiatan_awal = line.substring(15).trim();
+                else if(lLower.startsWith('grdh:')) data.grdh = line.substring(5).trim();
+                else if(lLower.startsWith('penjulang:')) data.penjulang = line.substring(10).trim();
+                else if(lLower.startsWith('tyipe:')) data.type = line.substring(6).trim();
+                else if(lLower.startsWith('jenis pekerjaan:')) data.jenis_pekerjaan = line.substring(16).trim();
+                else if(lLower.startsWith('matrial') || lLower.startsWith('material')) {
+                    isMaterial = true;
+                } else if(isMaterial) {
+                    if(line !== 'Jenis' && line !== '') {
+                        materialLines.push(line);
+                    }
+                }
+            });
+
+            data.material = materialLines.join('\n');
+            return data;
+        }
+
+        async function generateExcel() {
+            const btn = document.querySelector('.btn-submit');
+            btn.innerText = '⏳ Sedang meracik...';
+            btn.style.opacity = '0.8';
+            document.getElementById('status').style.display = 'none';
+
+            try {
+                // 1. Ambil input
+                const waText = document.getElementById('wa_text').value;
+                const noWo = document.getElementById('no_wo').value;
+                const petugas = document.getElementById('petugas').value;
+                
+                const fSebelum = document.getElementById('foto_sebelum').files[0];
+                const fProses = document.getElementById('foto_proses').files[0];
+                const fSesudah = document.getElementById('foto_sesudah').files[0];
+
+                // 2. Parse text
+                const parsed = extractData(waText);
+
+                // 3. Setup Excel Workbook
+                const workbook = new ExcelJS.Workbook();
+                const sheet = workbook.addWorksheet('Laporan');
+
+                // 4. Bikin Style dasar
+                const thinBorder = {
+                    top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'}
+                };
+                const headerFont = { bold: true, name: 'Arial', size: 10 };
+                const centerAlign = { vertical: 'middle', horizontal: 'center', wrapText: true };
+
+                // Lebar Kolom
+                sheet.getColumn('A').width = 5;   // NO
+                sheet.getColumn('B').width = 15;  // TANGGAL
+                sheet.getColumn('C').width = 25;  // NO WO
+                sheet.getColumn('D').width = 20;  // PETUGAS
+                sheet.getColumn('E').width = 45;  // KEGIATAN
+                sheet.getColumn('F').width = 25;  // MATERIAL
+                sheet.getColumn('G').width = 6;   // PLN
+                sheet.getColumn('H').width = 6;   // HP
+                sheet.getColumn('I').width = 30;  // Poto Sebelum
+                sheet.getColumn('J').width = 30;  // Poto Proses
+                sheet.getColumn('K').width = 30;  // Poto Sesudah
+
+                // 5. Bikin Header (Baris 5 & 6)
+                sheet.mergeCells('A5:A6'); sheet.getCell('A5').value = 'NO';
+                sheet.mergeCells('B5:B6'); sheet.getCell('B5').value = 'TANGGAL';
+                sheet.mergeCells('C5:C6'); sheet.getCell('C5').value = 'NO WO';
+                sheet.mergeCells('D5:D6'); sheet.getCell('D5').value = 'PETUGAS';
+                sheet.mergeCells('E5:E6'); sheet.getCell('E5').value = 'KEGIATAN';
+                sheet.mergeCells('F5:F6'); sheet.getCell('F5').value = 'MATERIAL';
+                sheet.mergeCells('G5:G6'); sheet.getCell('G5').value = 'PLN';
+                sheet.mergeCells('H5:H6'); sheet.getCell('H5').value = 'HP';
+                
+                sheet.mergeCells('I5:K5'); sheet.getCell('I5').value = 'FOTO KEGIATAN';
+                sheet.getCell('I6').value = 'SEBELUM';
+                sheet.getCell('J6').value = 'PELAKSANAAN';
+                sheet.getCell('K6').value = 'SESUDAH';
+
+                // Style untuk header
+                for(let row=5; row<=6; row++) {
+                    for(let col=1; col<=11; col++) {
+                        let cell = sheet.getCell(row, col);
+                        cell.font = headerFont;
+                        cell.alignment = centerAlign;
+                        cell.border = thinBorder;
+                    }
+                }
+
+                // 6. Masukin Data (Baris 7)
+                sheet.getRow(7).height = 160; // Tinggi baris buat poto
+
+                sheet.getCell('A7').value = 1;
+                sheet.getCell('B7').value = parsed.tgl || parsed.hari;
+                sheet.getCell('C7').value = noWo;
+                sheet.getCell('D7').value = petugas;
+
+                // Format Kegiatan yang rapih pake baris baru
+                let kegiatanText = `REALISASI PEKERJAAN: ${parsed.kegiatan_awal.toUpperCase()}
+GARDU: ${parsed.grdh}
+PENYULANG: ${parsed.penjulang}
+TYPE: ${parsed.type}
+JENIS KEGIATAN: ${parsed.jenis_pekerjaan}`;
+                sheet.getCell('E7').value = kegiatanText;
+
+                sheet.getCell('F7').value = parsed.material;
+                sheet.getCell('G7').value = '√';
+                sheet.getCell('H7').value = '√';
+
+                // Style isi tabel
+                for(let col=1; col<=11; col++) {
+                    let cell = sheet.getCell(7, col);
+                    cell.border = thinBorder;
+                    cell.alignment = { vertical: 'middle', horizontal: col > 4 && col < 7 ? 'left' : 'center', wrapText: true };
+                }
+
+                // 7. Masukin Poto
+                const addImageToSheet = async (file, colText) => {
+                    if(!file) return;
+                    const buffer = await readFileAsArrayBuffer(file);
+                    
+                    // Nentuin ekstensi
+                    let ext = 'jpeg';
+                    if(file.name.toLowerCase().endsWith('.png')) ext = 'png';
+                    
+                    const imageId = workbook.addImage({
+                        buffer: buffer,
+                        extension: ext,
+                    });
+                    
+                    // colText misalnya 'I' -> ngitung urutan kolom buat anchor (0-indexed)
+                    let colIdx = colText.charCodeAt(0) - 65; 
+                    
+                    // Nempelin poto ke sel (kasih padding dikit)
+                    sheet.addImage(imageId, {
+                        tl: { col: colIdx + 0.1, row: 6 + 0.1 }, // Row 6 artinya baris 7 di exceljs anchor
+                        br: { col: colIdx + 0.9, row: 7 - 0.1 }
+                    });
+                };
+
+                await addImageToSheet(fSebelum, 'I');
+                await addImageToSheet(fProses, 'J');
+                await addImageToSheet(fSesudah, 'K');
+
+                // 8. Download
+                const buffer = await workbook.xlsx.writeBuffer();
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                
+                let safeTgl = (parsed.tgl || 'baru').replace(/[^a-zA-Z0-9]/g, '_');
+                saveAs(blob, `Laporan_WA_${safeTgl}.xlsx`);
+
+                document.getElementById('status').style.display = 'block';
+
+            } catch (error) {
+                console.error(error);
+                alert("Waduh bro, aya error: " + error.message);
+            } finally {
+                btn.innerText = '🪄 Bikin Laporan Excel Sekarang!';
+                btn.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+</html>

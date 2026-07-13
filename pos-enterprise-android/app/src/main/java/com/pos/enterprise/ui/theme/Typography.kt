@@ -9,16 +9,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.shape.RoundedCornerShape
-import com.pos.enterprise.R
 
-// Font Inter dari Google Fonts (bundled)
-val InterFamily = FontFamily(
-    Font(R.font.inter_regular,   FontWeight.Normal),
-    Font(R.font.inter_medium,    FontWeight.Medium),
-    Font(R.font.inter_semibold,  FontWeight.SemiBold),
-    Font(R.font.inter_bold,      FontWeight.Bold),
-    Font(R.font.inter_extrabold, FontWeight.ExtraBold),
-)
+val InterFamily = FontFamily.Default
 
 val PosTypography = Typography(
     // Judul besar: nama outlet, total transaksi

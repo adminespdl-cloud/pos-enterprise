@@ -1,0 +1,3156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WELCOME KOORDINATOR PADALARANG</title>
+    <meta name="author" content="phpmu.com">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker-bs3.css">
+    <style type="text/css"> .files{ position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; } </style>
+    <script type="text/javascript" src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jquery-1.12.3.min.js"></script>
+    <!-- <script src="https://ksktgojabar.xyz/asset/ckeditor/ckeditor.js"></script> -->
+    <style type="text/css">.checkbox-scroll { border:1px solid #ccc; width:100%; height: 114px; padding-left:8px; overflow-y: scroll; }</style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+     crossorigin="">
+
+     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+     crossorigin=""></script>
+
+    <!-- <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/pace.min.css"> -->
+    
+  </head>
+  <body class="hold-transition skin-green-light fixed sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+          <style type="text/css">
+  .sekolah{
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    font-family: fontAwesome;
+    color:#fff;
+  }
+  .sekolah:hover{
+    color:#fff;
+  }
+</style>
+        <!-- Logo -->
+        <a href="https://ksktgojabar.xyz/koordinator/home" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>JABAR-GO</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  RENCANA KERJA
+                  <span class="label label-success"><div id="allRN"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allJar"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision">THERMOVISION TM <span class="label label-success" id="allTM"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound">ULTRASOUND <span class="label label-success" id="allUltra"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/gardu" >GARDU <span class="label label-success" id="allGardu" ></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd" >THERMOVISION GD <span class="label label-success" id="allGD" ></span></a></li>
+                </ul>
+              </li>
+              <!-- <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  PEKERJAAN TERJADWAL
+                  <span class="label label-success"><div id="allTerima"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/jadwal/row">ROW <span class="label label-success" id="allTRow"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allTJar"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/gardu" >GARDU <span class="label label-success" id="allTGardu" ></span></a></li>
+                </ul>
+              </li> -->
+                            <li>
+                <a href="https://ksktgojabar.xyz/koordinator/password">Ganti Password</a>
+              </li>
+                                        </ul>
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+            
+          $(function() {
+            function notif() {
+              $.ajax({
+                url: 'https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585',
+                success: function(data) {
+                  if (data.length > 0) {
+                    var get = JSON.parse(data);
+                    $('#allRN').html(get.all);
+                    $('#allJar').html(get.jar);
+                    $('#allTM').html(get.tm);
+                    $('#allUltra').html(get.ultra);
+                    $('#allGardu').html(get.gardu);
+                    $('#allGD').html(get.gd);
+                  }
+                }
+              });
+            }
+
+            // function notifTerima() {
+            //   $.ajax({
+            //     url: 'https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585',
+            //     success: function(data) {
+            //       if (data.length > 0) {
+            //         var get = JSON.parse(data);
+            //         $('#allTerima').html(get.all);
+            //         $('#allTJar').html(get.jar);
+            //         $('#allTRow').html(get.row);
+            //         $('#allTGardu').html(get.gardu);
+            //       }
+            //     }
+            //   });
+            // }
+            
+            setInterval(
+            function () {
+              notif()
+              // notifTerima()
+            }, 60000);
+            
+          });
+
+        </script>      </header>
+
+      <aside class="main-sidebar">
+                  <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header" style='text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU <span class='uppercase'>koordinator PADALARANG</span></li>
+            <li class=""><a href="https://ksktgojabar.xyz/koordinator/home"><i class="fa fa-dashboard"></i> <span>DASHBOARD</span></a></li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT BAIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiperalatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisigardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisithermo'><i class='fa fa-circle-o'></i> THERMO TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiultra'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 1</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/visual'><i class='fa fa-circle-o'></i> KONDISI VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 2</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/tegangan'><i class='fa fa-circle-o'></i> TEG. UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview     ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>RENCANA KERJA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/row'><i class='fa fa-circle-o'></i> ROW</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PERENCANAAN JADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>LIST PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN TERJADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN HARI INI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>EKSEKUSI PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>REALISASI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARJAR</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/harjar'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/harjar'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO TM</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermo'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermo'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ULTRASOUND</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/ultra'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/ultra'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARDU</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/hardu'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/hardu'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO GD</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermogd'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermogd'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ROW</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/row'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/mandorline'><i class='fa fa-circle-o'></i> BULANAN PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/row'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/mandorline'><i class='fa fa-circle-o'></i> TAHUNAN PARTOLI</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>LAP. MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/renperalatan'><i class='fa fa-circle-o'></i>REN. PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rengardu'><i class='fa fa-circle-o'></i>REN. GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li> -->
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rekap'><i class='fa fa-circle-o'></i> REKAP MATERIAL</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li> -->
+              </ul>
+            </li>
+            <li class="treeview            ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>LAPORAN ASSESMENT</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment'><i class='fa fa-circle-o'></i> REKAP ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/periode'><i class='fa fa-circle-o'></i> REKAP PERIODE ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/mandorline'><i class='fa fa-circle-o'></i> ROW PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/tegangan'><i class='fa fa-circle-o'></i> TEGANGAN UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermotm'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/visual'><i class='fa fa-circle-o'></i> VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermogd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="fa fa-bar-chart"></i> <span>GRAFIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/bulanan'><i class='fa fa-circle-o'></i> GRAFIK BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/padam'><i class='fa fa-circle-o'></i> GRAFIK BULANAN PADAM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik'><i class='fa fa-circle-o'></i> TOTAL HEALTH INDEX</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-warning-sign"></i> <span>GANGGUAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/'><i class='fa fa-circle-o'></i> LIST GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/grafik'><i class='fa fa-circle-o'></i> GRAFIK GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/top'><i class='fa fa-circle-o'></i> GRAFIK TOP GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/zona'><i class='fa fa-circle-o'></i> GRAFIK PER ZONA</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/penyebab'><i class='fa fa-circle-o'></i> GRAFIK PENYEBAB</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/durasi'><i class='fa fa-circle-o'></i> GRAFIK DURASI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/indikasi'><i class='fa fa-circle-o'></i> GRAFIK INDIKASI</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-globe"></i> <span>PETA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/jaringan/peta/potensi?pencarian=all'><i class='fa fa-circle-o'></i> PETA POTENSI GANGGUAN</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gangguan'><i class='fa fa-circle-o'></i> PETA HISTORICAL GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/tiang'><i class='fa fa-circle-o'></i> PETA TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gardu'><i class='fa fa-circle-o'></i> PETA GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/pohon'><i class='fa fa-circle-o'></i> PETA POHON</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/peralatan'><i class='fa fa-circle-o'></i> PETA PERALATAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/beban'><i class='fa fa-circle-o'></i> PETA BEBAN GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview active  ">
+              <a href="#"><i class="glyphicon glyphicon-hdd"></i> <span>DATA ASSET</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="active" ><a href='https://ksktgojabar.xyz/koordinator/datatiang/index'><i class='fa fa-circle-o'></i> TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datagardu/index'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datapohon/index'><i class='fa fa-circle-o'></i> POHON</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>PEK & MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/pekerjaan'><i class='fa fa-circle-o'></i> LIST PEKERJAAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/material'><i class='fa fa-circle-o'></i> LIST MATERIAL</a></li>
+              </ul>
+            </li>
+            <li><a href="https://ksktgojabar.xyz/koordinator/home/logout"><i class="fa fa-power-off"></i> <span>LOGOUT</span></a></li>
+          </ul>
+        </section>      </aside>
+
+      <div class="content-wrapper">
+
+        <section class="content">
+            <!-- Page heading -->
+<div class="row">
+<div class="col-lg-12">
+    <h3 class="page-header">Daftar Tiang</h3>
+</div>
+<div class="box-body">
+  <div class="col-sm-3">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Feeder All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=GLNG&sts=All'>GLNG</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=PRBY&sts=All'>PRBY</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=CKLW&sts=All'>CKLW</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=CKRH&sts=All'>CKRH</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=PSLU&sts=All'>PSLU</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=MWTI&sts=All'>MWTI</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=RJDL&sts=All'>RJDL</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= PGP&sts=All'> PGP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= CBA&sts=All'> CBA</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=SLCU&sts=All'>SLCU</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=LBSR&sts=All'>LBSR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=BTJR&sts=All'>BTJR</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= PCS&sts=All'> PCS</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= PCP&sts=All'> PCP</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= PCJ&sts=All'> PCJ</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl= PTB&sts=All'> PTB</a></li>      </ul>
+    </div>
+  </div>
+  <div style="width: 18%;  float: left;">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">STATUS All      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=All'>All</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=Baik'>Baik</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=Cukup'>Cukup</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=Kurang'>Kurang</a></li><li><a href='https://ksktgojabar.xyz/koordinator/datatiang/index?pyl=All&sts=Buruk'>Buruk</a></li>      </ul>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <div class="panel panel-default">
+      <div class="panel-body">
+                </div>
+  </div>
+</div>
+<div class="col-sm-12">
+
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="overflow-x: scroll;">
+            <div class="dataTable_wrapper">
+                        <h3><b>Total Tiang 7711</b></h3>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ULP</th>
+                    <th>FEEDER</th>
+                    <th>SEGMENT</th>
+                    <th>EAM</th>
+                    <th>KODE TIANG</th>
+                    <th>LAT</th>
+                    <th>LNG</th>
+                    <th>TIANG</th>
+                    <th>TRAVERS</th>
+                    <th>TRECK SCHOOR</th>
+                    <th>DRUG SCHOOR</th>
+                    <th>ARM TIE</th>
+                    <th>PONDASI TIANG</th>
+                    <th>KONDUKTOR</th>
+                    <th>LA</th>
+                    <th>FCO</th>
+                    <th>GROUNDING</th>
+                    <th>ISOLATOR TARIK</th>
+                    <th>ISOLATOR TUMPU</th>
+                    <th>TOP TIES</th>
+                    <th>JUMPER</th>
+                    <th>GWS</th>
+                    <th>STATUS</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                                                <td>1</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR1</td>
+                            <td>-6.9266</td>
+                            <td>107.498959</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291545" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>2</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR10</td>
+                            <td>-6.923982</td>
+                            <td>107.498067</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291551" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>3</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR11</td>
+                            <td>-6.923711</td>
+                            <td>107.497719</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291552" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>4</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR12</td>
+                            <td>-6.923358</td>
+                            <td>107.497181</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ANDONGAN KENDOR</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291553" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>5</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR13</td>
+                            <td>-6.922989</td>
+                            <td>107.496675</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291554" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>6</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR14</td>
+                            <td>-6.922604</td>
+                            <td>107.496172</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291555" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>7</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR15</td>
+                            <td>-6.922234</td>
+                            <td>107.495635</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291556" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>8</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR16</td>
+                            <td>-6.92214</td>
+                            <td>107.495033</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291557" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>9</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR17</td>
+                            <td>-6.921718</td>
+                            <td>107.495064</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291558" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>10</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR18</td>
+                            <td>-6.921322</td>
+                            <td>107.49509</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291559" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>11</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR19</td>
+                            <td>-6.920837</td>
+                            <td>107.49512</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291560" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>12</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR2</td>
+                            <td>-6.92648</td>
+                            <td>107.498755</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291546" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>13</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR20</td>
+                            <td>-6.9205</td>
+                            <td>107.495142</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291324" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>14</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR21</td>
+                            <td>-6.920251</td>
+                            <td>107.495161</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291561" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>15</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR22</td>
+                            <td>-6.919789</td>
+                            <td>107.495182</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291562" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>16</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23</td>
+                            <td>-6.919751</td>
+                            <td>107.495358</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291563" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>17</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R1</td>
+                            <td>-6.919663</td>
+                            <td>107.495749</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291564" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>18</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R2</td>
+                            <td>-6.919576</td>
+                            <td>107.496094</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291325" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>19</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R3</td>
+                            <td>-6.919456</td>
+                            <td>107.496454</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291326" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>20</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R4</td>
+                            <td>-6.919306</td>
+                            <td>107.496861</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291327" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>21</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R5</td>
+                            <td>-6.919147</td>
+                            <td>107.497292</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291328" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>22</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R6</td>
+                            <td>-6.919025</td>
+                            <td>107.497622</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291565" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>23</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R7</td>
+                            <td>-6.918862</td>
+                            <td>107.498048</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291329" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>24</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R8</td>
+                            <td>-6.918652</td>
+                            <td>107.498564</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291566" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>25</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR23R9</td>
+                            <td>-6.918473</td>
+                            <td>107.499048</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291567" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>26</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR24</td>
+                            <td>-6.919546</td>
+                            <td>107.495366</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291568" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>27</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR25</td>
+                            <td>-6.919172</td>
+                            <td>107.495382</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291569" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>28</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR26</td>
+                            <td>-6.91869</td>
+                            <td>107.495377</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291570" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>29</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR27</td>
+                            <td>-6.918378</td>
+                            <td>107.495365</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291571" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>30</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR28</td>
+                            <td>-6.917973</td>
+                            <td>107.495424</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291572" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>31</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR29</td>
+                            <td>-6.917564</td>
+                            <td>107.495428</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291330" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>32</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR3</td>
+                            <td>-6.926262</td>
+                            <td>107.498441</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291547" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>33</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR30</td>
+                            <td>-6.917245</td>
+                            <td>107.495269</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291573" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>34</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR31</td>
+                            <td>-6.917098</td>
+                            <td>107.495169</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291331" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>35</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR32</td>
+                            <td>-6.916745</td>
+                            <td>107.494983</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291574" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>36</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR33</td>
+                            <td>-6.916617</td>
+                            <td>107.494858</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291575" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>37</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR34</td>
+                            <td>-6.916163</td>
+                            <td>107.494571</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291332" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>38</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR35</td>
+                            <td>-6.915943</td>
+                            <td>107.494458</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291576" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>39</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR36</td>
+                            <td>-6.91572</td>
+                            <td>107.49433</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291577" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>40</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR37</td>
+                            <td>-6.915692</td>
+                            <td>107.494369</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291578" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>41</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR38</td>
+                            <td>-6.915509</td>
+                            <td>107.494744</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291333" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>42</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR39</td>
+                            <td>-6.915346</td>
+                            <td>107.495125</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291334" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>43</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td></td>
+                            <td></td>
+                            <td>BTJR4-LBS-BTJR</td>
+                            <td>-6.925937</td>
+                            <td>107.498134</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291548" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>44</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR40</td>
+                            <td>-6.915099</td>
+                            <td>107.495539</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291335" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>45</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR41</td>
+                            <td>-6.914902</td>
+                            <td>107.495978</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291579" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>46</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR42</td>
+                            <td>-6.91476</td>
+                            <td>107.496298</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291336" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>47</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR43</td>
+                            <td>-6.91457</td>
+                            <td>107.496536</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291580" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>48</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44</td>
+                            <td>-6.914342</td>
+                            <td>107.496995</td>
+                            <td>KOROSI</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291581" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>49</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R1</td>
+                            <td>-6.914561</td>
+                            <td>107.497157</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291337" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>50</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R2</td>
+                            <td>-6.914839</td>
+                            <td>107.497324</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291338" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>51</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R3</td>
+                            <td>-6.915157</td>
+                            <td>107.497479</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291582" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>52</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R3R1</td>
+                            <td>-6.915386</td>
+                            <td>107.497231</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291583" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>53</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R3R2</td>
+                            <td>-6.915529</td>
+                            <td>107.496942</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291339" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>54</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R3R3</td>
+                            <td>-6.915546</td>
+                            <td>107.496899</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291340" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>55</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R4</td>
+                            <td>-6.91551</td>
+                            <td>107.497694</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291584" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>56</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R5</td>
+                            <td>-6.915916</td>
+                            <td>107.49789</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291341" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>57</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R6</td>
+                            <td>-6.916246</td>
+                            <td>107.498089</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291342" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>58</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R7</td>
+                            <td>-6.916401</td>
+                            <td>107.498156</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291343" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>59</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR44R8</td>
+                            <td>-6.916443</td>
+                            <td>107.498181</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291344" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>60</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR45</td>
+                            <td>-6.914185</td>
+                            <td>107.497435</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291585" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>61</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR46</td>
+                            <td>-6.913949</td>
+                            <td>107.497878</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ANDONGAN KENDOR</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291345" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>62</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR47</td>
+                            <td>-6.913827</td>
+                            <td>107.498072</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291586" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>63</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR48</td>
+                            <td>-6.913526</td>
+                            <td>107.498572</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291346" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>64</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR49</td>
+                            <td>-6.913367</td>
+                            <td>107.498895</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291347" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>65</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR5</td>
+                            <td>-6.925477</td>
+                            <td>107.4977</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td>ANCHOR LEPAS</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291549" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>66</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR50</td>
+                            <td>-6.913161</td>
+                            <td>107.499206</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291348" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>67</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR51</td>
+                            <td>-6.912339</td>
+                            <td>107.500758</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291587" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>68</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR52</td>
+                            <td>-6.912119</td>
+                            <td>107.50118</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291349" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>69</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR53</td>
+                            <td>-6.912036</td>
+                            <td>107.501357</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291350" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>70</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR54</td>
+                            <td>-6.911965</td>
+                            <td>107.501524</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291588" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>71</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>KP CKRH - LBS KHT</td>
+                            <td></td>
+                            <td>BTJR54R1</td>
+                            <td>-6.912062</td>
+                            <td>107.501711</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/295061" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>72</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>KP CKRH - LBS KHT</td>
+                            <td></td>
+                            <td>BTJR54R2</td>
+                            <td>-6.912217</td>
+                            <td>107.501808</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/295062" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>73</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>KP CKRH - LBS KHT</td>
+                            <td></td>
+                            <td>BTJR54R3</td>
+                            <td>-6.912238</td>
+                            <td>107.501819</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/295063" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>74</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR55</td>
+                            <td>-6.911915</td>
+                            <td>107.501843</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291589" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>75</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR56</td>
+                            <td>-6.911719</td>
+                            <td>107.502134</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291590" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>76</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57</td>
+                            <td>-6.91159</td>
+                            <td>107.502404</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291591" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>77</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R1</td>
+                            <td>-6.911596</td>
+                            <td>107.502796</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291592" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>78</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td></td>
+                            <td></td>
+                            <td>BTJR57R10-LBS-PBI</td>
+                            <td>-6.911787</td>
+                            <td>107.505639</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291607" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>79</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R11</td>
+                            <td>-6.911813</td>
+                            <td>107.505892</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>KENDOR</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291362" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>80</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R12</td>
+                            <td>-6.911831</td>
+                            <td>107.506207</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ARDE HILANG</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291608" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>81</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R13</td>
+                            <td>-6.911847</td>
+                            <td>107.506619</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291609" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>82</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R14</td>
+                            <td>-6.911865</td>
+                            <td>107.50711</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ARDE HILANG</td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291610" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>83</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R15</td>
+                            <td>-6.911929</td>
+                            <td>107.507596</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291611" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>84</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R16</td>
+                            <td>-6.911943</td>
+                            <td>107.507994</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291612" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>85</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R17</td>
+                            <td>-6.912014</td>
+                            <td>107.5083</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291613" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>86</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R18</td>
+                            <td>-6.912075</td>
+                            <td>107.508571</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291614" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>87</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R19</td>
+                            <td>-6.912113</td>
+                            <td>107.508906</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291615" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>88</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R2</td>
+                            <td>-6.911626</td>
+                            <td>107.503188</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291351" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>89</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R20</td>
+                            <td>-6.912171</td>
+                            <td>107.50934</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291363" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>90</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R21</td>
+                            <td>-6.91222</td>
+                            <td>107.509791</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ANDONGAN KENDOR</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291364" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>91</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R22</td>
+                            <td>-6.912316</td>
+                            <td>107.510281</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291616" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>92</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R23</td>
+                            <td>-6.912624</td>
+                            <td>107.510296</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291617" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>93</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R24</td>
+                            <td>-6.913075</td>
+                            <td>107.510499</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291365" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>94</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R25</td>
+                            <td>-6.913113</td>
+                            <td>107.510519</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291618" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>95</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R26</td>
+                            <td>-6.913471</td>
+                            <td>107.510617</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291619" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>96</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R27</td>
+                            <td>-6.913589</td>
+                            <td>107.510395</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291366" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>97</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R28</td>
+                            <td>-6.913927</td>
+                            <td>107.51016</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>ANDONGAN KENDOR</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Kurang</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291620" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>98</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R29</td>
+                            <td>-6.914183</td>
+                            <td>107.510375</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291621" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>99</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R3</td>
+                            <td>-6.911637</td>
+                            <td>107.503617</td>
+                            <td>MIRING < 5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Cukup</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291593" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                                <td>100</td>
+                            <td>PADALARANG</td>
+                            <td>BTJR</td>
+                            <td>PMT GI - REC SBK</td>
+                            <td></td>
+                            <td>BTJR57R30</td>
+                            <td>-6.914444</td>
+                            <td>107.510778</td>
+                            <td>BAIK</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Baik</td>
+                            <td><a href="https://ksktgojabar.xyz/koordinator/datatiang/view/291367" class="btn btn-primary btn-circle">View</a></td>
+                        </tr>
+                                     </tbody>
+            </table>
+            <nav aria-label="page navigation">
+                <ul class="pagination"><li class="active"><a href="#">1</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datatiang/index/100" data-ci-pagination-page="2">2</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datatiang/index/200" data-ci-pagination-page="3">3</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datatiang/index/100" data-ci-pagination-page="2" rel="next">Selanjutnya</a></li><li><a href="https://ksktgojabar.xyz/koordinator/datatiang/index/7700" data-ci-pagination-page="78">Akhir</a></ul>            </nav>
+                        </div>
+        </div>
+    </div>
+</div>         </section>
+        <div style='clear:both'></div>
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+          
+<strong>Copyright &copy; 2019 - KSKT-GO PLN KALSELTENG </strong> All rights reserved.       </footer>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://ksktgojabar.xyz/asset/jquery-1.12.4.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/jquery-ui.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button);</script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="https://ksktgojabar.xyz/asset/admin/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/pace/pace.min.js"></script> -->
+    <!-- DataTables -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+    <!-- Morris.js charts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Slimscroll -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://ksktgojabar.xyz/asset/admin/dist/js/app.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
+    <script>
+      $(function () { 
+        $("#example1").DataTable({
+           dom: 'Bfrtip',
+          buttons: [
+              {
+                  extend: 'pdf',
+                  filename: 'datatiang',
+                  orientation: 'landscape'
+              },
+              {
+                  extend: 'excel',
+                  filename: 'datatiang',
+                  orientation: 'landscape'
+              }
+          ],
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('#example2').DataTable({
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('.datepicker').datepicker();
+      });
+    </script>  
+  </body>
+</html>

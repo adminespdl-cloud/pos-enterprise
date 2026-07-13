@@ -33,7 +33,7 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
-            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000/api/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://pos-backend-production-2c4a.up.railway.app/api/v1/\"")
         }
         release {
             isMinifyEnabled = true
@@ -42,6 +42,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"https://pos-backend-production-2c4a.up.railway.app/api/v1/\"")
         }
     }
 

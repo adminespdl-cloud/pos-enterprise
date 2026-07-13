@@ -1,6 +1,7 @@
 package com.pos.enterprise.features.auth.presentation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -42,9 +43,8 @@ fun EmailLoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                Brush.radialGradient(
-                    colors = listOf(BgSurface, BgElevated),
-                    radius = 1200f,
+                Brush.linearGradient(
+                    colors = listOf(Color.White, Primary50),
                 )
             ),
         contentAlignment = Alignment.Center,

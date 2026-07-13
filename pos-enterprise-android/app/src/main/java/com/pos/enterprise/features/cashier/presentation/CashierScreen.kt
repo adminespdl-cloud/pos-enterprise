@@ -1,5 +1,6 @@
 package com.pos.enterprise.features.cashier.presentation
 
+import android.content.res.Configuration
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
@@ -19,6 +20,7 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -69,51 +71,151 @@ fun CashierScreen(
         }
     }
 
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color    = BgElevated,
     ) {
-        Row(Modifier.fillMaxSize()) {
-            // ── LEFT: Produk catalog ─────────────────────────────────
-            ProductCatalogPanel(
-                modifier        = Modifier.weight(0.58f),
-                uiState         = uiState,
-                onSearchChange  = viewModel::onSearchChange,
-                onCategorySelect = viewModel::onCategorySelect,
-                onProductClick  = { product ->
-                    viewModel.addToCart(
-                        productId   = product.product.id,
-                        variantId   = null,
-                        productName = product.product.name,
-                        variantName = null,
-                        unitPrice   = product.product.basePrice,
+        if (isLandscape) {
+            Row(Modifier.fillMaxSize()) {
+                // ── LEFT: Produk catalog ─────────────────────────────────
+                ProductCatalogPanel(
+                    modifier        = Modifier.weight(0.58f),
+                    uiState         = uiState,
+                    onSearchChange  = viewModel::onSearchChange,
+                    onCategorySelect = viewModel::onCategorySelect,
+                    onProductClick  = { product ->
+                        viewModel.addToCart(
+                            productId   = product.product.id,
+                            variantId   = null,
+                            productName = product.product.name,
+                            variantName = null,
+                            unitPrice   = product.product.basePrice,
+                        )
+                    },
+                    onBarcodeScanned = viewModel::onBarcodeScanned,
+                    onHistoryClick  = onNavigateToHistory,
+                    onShiftClick    = onNavigateToShift,
+                )
+
+                // Divider vertikal
+                VerticalDivider(
+                    thickness = 1.dp,
+                    color     = BorderSubtle,
+                )
+
+                // ── RIGHT: Cart / Keranjang ──────────────────────────────
+                CartPanel(
+                    modifier        = Modifier.weight(0.42f),
+                    uiState         = uiState,
+                    onQtyChange     = viewModel::updateQty,
+                    onRemoveItem    = viewModel::removeFromCart,
+                    onMemberSearch  = viewModel::searchMember,
+                    onMemberRemove  = viewModel::removeMember,
+                    onVoucherApply  = viewModel::applyVoucher,
+                    onVoucherRemove = viewModel::removeVoucher,
+                    onPointsChange  = viewModel::setPointsToRedeem,
+                    onCheckout      = { if (!uiState.isEmpty) onNavigateToPayment(uiState.total) },
+                    onClearCart     = viewModel::clearCart,
+                )
+            }
+        } else {
+            // ── PORTRAIT: Full-screen tab-based layout ──────────
+            var selectedTab by remember { mutableStateOf(0) }
+
+            Column(Modifier.fillMaxSize()) {
+                // Tab Row
+                TabRow(
+                    selectedTabIndex = selectedTab,
+                    containerColor   = BgSurface,
+                    contentColor     = Primary600,
+                ) {
+                    Tab(
+                        selected = selectedTab == 0,
+                        onClick  = { selectedTab = 0 },
+                        selectedContentColor   = Primary600,
+                        unselectedContentColor = TextTertiary,
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(vertical = 14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        ) {
+                            Icon(Icons.Outlined.Inventory2, null, modifier = Modifier.size(20.dp))
+                            Text(
+                                "Produk",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal,
+                            )
+                        }
+                    }
+                    Tab(
+                        selected = selectedTab == 1,
+                        onClick  = { selectedTab = 1 },
+                        selectedContentColor   = Primary600,
+                        unselectedContentColor = TextTertiary,
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(vertical = 14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        ) {
+                            Icon(Icons.Outlined.ShoppingCart, null, modifier = Modifier.size(20.dp))
+                            Text(
+                                "Keranjang",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal,
+                            )
+                            if (uiState.itemCount > 0) {
+                                Badge(containerColor = Secondary500) {
+                                    Text(
+                                        "${uiState.itemCount}",
+                                        color = Color.White,
+                                        style = MaterialTheme.typography.labelSmall,
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Tab Content — full screen
+                when (selectedTab) {
+                    0 -> ProductCatalogPanel(
+                        modifier         = Modifier.weight(1f),
+                        uiState          = uiState,
+                        onSearchChange   = viewModel::onSearchChange,
+                        onCategorySelect = viewModel::onCategorySelect,
+                        onProductClick   = { product ->
+                            viewModel.addToCart(
+                                productId   = product.product.id,
+                                variantId   = null,
+                                productName = product.product.name,
+                                variantName = null,
+                                unitPrice   = product.product.basePrice,
+                            )
+                        },
+                        onBarcodeScanned = viewModel::onBarcodeScanned,
+                        onHistoryClick   = onNavigateToHistory,
+                        onShiftClick     = onNavigateToShift,
                     )
-                },
-                onBarcodeScanned = viewModel::onBarcodeScanned,
-                onHistoryClick  = onNavigateToHistory,
-                onShiftClick    = onNavigateToShift,
-            )
-
-            // Divider vertikal
-            VerticalDivider(
-                thickness = 1.dp,
-                color     = BorderSubtle,
-            )
-
-            // ── RIGHT: Cart / Keranjang ──────────────────────────────
-            CartPanel(
-                modifier        = Modifier.weight(0.42f),
-                uiState         = uiState,
-                onQtyChange     = viewModel::updateQty,
-                onRemoveItem    = viewModel::removeFromCart,
-                onMemberSearch  = viewModel::searchMember,
-                onMemberRemove  = viewModel::removeMember,
-                onVoucherApply  = viewModel::applyVoucher,
-                onVoucherRemove = viewModel::removeVoucher,
-                onPointsChange  = viewModel::setPointsToRedeem,
-                onCheckout      = { if (!uiState.isEmpty) onNavigateToPayment(uiState.total) },
-                onClearCart     = viewModel::clearCart,
-            )
+                    1 -> CartPanel(
+                        modifier        = Modifier.weight(1f),
+                        uiState         = uiState,
+                        onQtyChange     = viewModel::updateQty,
+                        onRemoveItem    = viewModel::removeFromCart,
+                        onMemberSearch  = viewModel::searchMember,
+                        onMemberRemove  = viewModel::removeMember,
+                        onVoucherApply  = viewModel::applyVoucher,
+                        onVoucherRemove = viewModel::removeVoucher,
+                        onPointsChange  = viewModel::setPointsToRedeem,
+                        onCheckout      = { if (!uiState.isEmpty) onNavigateToPayment(uiState.total) },
+                        onClearCart     = viewModel::clearCart,
+                    )
+                }
+            }
         }
     }
 }
@@ -136,10 +238,9 @@ private fun ProductCatalogPanel(
     Column(
         modifier = modifier
             .fillMaxHeight()
-            .background(BgElevated)
-            .padding(16.dp),
+            .background(BgElevated),
     ) {
-        // ── Top Bar ──────────────────────────────────────────────
+        // ── Top Bar (handles status bar inset internally) ─────────
         TopBar(
             shift           = uiState.activeShift,
             pendingCount    = uiState.pendingSyncCount,
@@ -147,81 +248,88 @@ private fun ProductCatalogPanel(
             onShiftClick    = onShiftClick,
         )
 
-        Spacer(Modifier.height(12.dp))
-
-        // ── Search + Scan ────────────────────────────────────────
-        Row(
-            modifier    = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        // ── Konten di bawah TopBar (dengan padding horizontal) ──
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
         ) {
-            OutlinedTextField(
-                value         = uiState.searchQuery,
-                onValueChange = onSearchChange,
-                modifier      = Modifier.weight(1f),
-                placeholder   = { Text("Cari produk, barcode...", color = TextTertiary) },
-                leadingIcon   = { Icon(Icons.Outlined.Search, null, tint = TextSecondary) },
-                trailingIcon  = {
-                    if (uiState.searchQuery.isNotEmpty()) {
-                        IconButton(onClick = { onSearchChange("") }) {
-                            Icon(Icons.Filled.Clear, null, tint = TextSecondary)
+            Spacer(Modifier.height(12.dp))
+
+            // ── Search + Scan ───────────────────────────────────────
+            Row(
+                modifier    = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                OutlinedTextField(
+                    value         = uiState.searchQuery,
+                    onValueChange = onSearchChange,
+                    modifier      = Modifier.weight(1f),
+                    placeholder   = { Text("Cari produk, barcode...", color = TextTertiary) },
+                    leadingIcon   = { Icon(Icons.Outlined.Search, null, tint = TextSecondary) },
+                    trailingIcon  = {
+                        if (uiState.searchQuery.isNotEmpty()) {
+                            IconButton(onClick = { onSearchChange("") }) {
+                                Icon(Icons.Filled.Clear, null, tint = TextSecondary)
+                            }
                         }
-                    }
-                },
-                colors        = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor   = BgSurface,
-                    unfocusedContainerColor = BgSurface,
-                    focusedBorderColor      = Primary600,
-                    unfocusedBorderColor    = BorderDefault,
-                    focusedTextColor        = TextPrimary,
-                    unfocusedTextColor      = TextPrimary,
-                ),
-                shape         = MaterialTheme.shapes.medium,
-                singleLine    = true,
+                    },
+                    colors        = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor   = BgSurface,
+                        unfocusedContainerColor = BgSurface,
+                        focusedBorderColor      = Primary600,
+                        unfocusedBorderColor    = BorderDefault,
+                        focusedTextColor        = TextPrimary,
+                        unfocusedTextColor      = TextPrimary,
+                    ),
+                    shape         = MaterialTheme.shapes.medium,
+                    singleLine    = true,
+                )
+
+                // Tombol scan barcode
+                OutlinedIconButton(
+                    onClick = { /* Launch camera scanner */ },
+                    border  = BorderStroke(1.dp, BorderDefault),
+                    colors  = IconButtonDefaults.outlinedIconButtonColors(
+                        containerColor = BgSurface,
+                    ),
+                    modifier = Modifier.size(56.dp),
+                ) {
+                    Icon(Icons.Outlined.QrCodeScanner, "Scan barcode", tint = Primary400)
+                }
+            }
+
+            Spacer(Modifier.height(10.dp))
+
+            // ── Category Chips ───────────────────────────────────
+            CategoryChips(
+                categories       = uiState.categories,
+                selectedId       = uiState.selectedCategoryId,
+                onCategorySelect = onCategorySelect,
             )
 
-            // Tombol scan barcode
-            OutlinedIconButton(
-                onClick = { /* Launch camera scanner */ },
-                border  = BorderStroke(1.dp, BorderDefault),
-                colors  = IconButtonDefaults.outlinedIconButtonColors(
-                    containerColor = BgSurface,
-                ),
-                modifier = Modifier.size(56.dp),
-            ) {
-                Icon(Icons.Outlined.QrCodeScanner, "Scan barcode", tint = Primary400)
-            }
-        }
+            Spacer(Modifier.height(12.dp))
 
-        Spacer(Modifier.height(10.dp))
-
-        // ── Category Chips ───────────────────────────────────────
-        CategoryChips(
-            categories       = uiState.categories,
-            selectedId       = uiState.selectedCategoryId,
-            onCategorySelect = onCategorySelect,
-        )
-
-        Spacer(Modifier.height(12.dp))
-
-        // ── Product Grid ─────────────────────────────────────────
-        if (uiState.products.isEmpty()) {
-            EmptyProductsPlaceholder()
-        } else {
-            LazyVerticalGrid(
-                columns           = GridCells.Adaptive(minSize = 160.dp),
-                contentPadding    = PaddingValues(bottom = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalArrangement   = Arrangement.spacedBy(10.dp),
-                modifier              = Modifier.fillMaxSize(),
-            ) {
-                items(
-                    items = uiState.products,
-                    key   = { it.product.id },
-                ) { product ->
-                    ProductCard(
-                        product  = product,
-                        onClick  = { onProductClick(product) },
-                    )
+            // ── Product Grid ──────────────────────────────────────
+            if (uiState.products.isEmpty()) {
+                EmptyProductsPlaceholder()
+            } else {
+                LazyVerticalGrid(
+                    columns           = GridCells.Adaptive(minSize = 160.dp),
+                    contentPadding    = PaddingValues(bottom = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalArrangement   = Arrangement.spacedBy(10.dp),
+                    modifier              = Modifier.fillMaxSize(),
+                ) {
+                    items(
+                        items = uiState.products,
+                        key   = { it.product.id },
+                    ) { product ->
+                        ProductCard(
+                            product  = product,
+                            onClick  = { onProductClick(product) },
+                        )
+                    }
                 }
             }
         }
@@ -235,99 +343,119 @@ private fun TopBar(
     onHistoryClick: () -> Unit,
     onShiftClick: () -> Unit,
 ) {
-    Row(
+    // ── Blue App Bar — absorbs status bar area cleanly ──────────
+    Surface(
         modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        color    = Primary700,
+        shadowElevation = 4.dp,
     ) {
-        // Logo + info shift
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            // Logo placeholder
-            Box(
-                modifier = Modifier
-                    .size(38.dp)
-                    .background(
-                        Brush.linearGradient(listOf(Primary600, Secondary500)),
-                        CircleShape,
-                    ),
-                contentAlignment = Alignment.Center,
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()            // ← kunci: dorong konten di bawah status bar
+                .padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            // ── Kiri: Logo + Nama + Status Shift ─────────────────
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.weight(1f),
             ) {
-                Text("P", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-            }
-
-            Spacer(Modifier.width(10.dp))
-
-            Column {
-                Text(
-                    text       = "POS Enterprise",
-                    style      = MaterialTheme.typography.titleMedium,
-                    color      = TextPrimary,
-                    fontWeight = FontWeight.Bold,
-                )
-                if (shift != null) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            Modifier
-                                .size(6.dp)
-                                .background(Success500, CircleShape)
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(
-                            text  = "Shift aktif · ${shift.cashierName}",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = TextSecondary,
-                        )
-                    }
-                } else {
+                // Logo bulat
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .background(Color.White.copy(alpha = 0.2f), CircleShape),
+                    contentAlignment = Alignment.Center,
+                ) {
                     Text(
-                        text  = "Tidak ada shift aktif",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Warning500,
+                        "KP",
+                        color = Color.White,
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 13.sp,
                     )
                 }
-            }
-        }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            // Pending sync badge
-            if (pendingCount > 0) {
-                AssistChip(
-                    onClick = {},
-                    label   = {
-                        Text(
-                            text  = "$pendingCount antri sync",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = Warning700,
-                        )
-                    },
-                    leadingIcon = {
-                        Icon(Icons.Outlined.CloudUpload, null,
-                            tint = Warning500, modifier = Modifier.size(14.dp))
-                    },
-                    colors = AssistChipDefaults.assistChipColors(
-                        containerColor = Warning100.copy(alpha = 0.15f),
-                    ),
-                )
-            } else {
-                AssistChip(
-                    onClick = {},
-                    label   = { Text("Sinkron", style = MaterialTheme.typography.labelSmall, color = Success700) },
-                    leadingIcon = {
-                        Icon(Icons.Outlined.CloudDone, null,
-                            tint = Success500, modifier = Modifier.size(14.dp))
-                    },
-                    colors = AssistChipDefaults.assistChipColors(
-                        containerColor = Success100.copy(alpha = 0.1f),
-                    ),
-                )
+                Spacer(Modifier.width(10.dp))
+
+                Column {
+                    Text(
+                        text       = "Kasir Pintar",
+                        style      = MaterialTheme.typography.titleMedium,
+                        color      = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        maxLines   = 1,
+                        overflow   = TextOverflow.Ellipsis,
+                    )
+                    // Status shift — satu baris compact
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        if (shift != null) {
+                            Box(
+                                Modifier
+                                    .size(6.dp)
+                                    .background(Color(0xFF69F0AE), CircleShape)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(
+                                text  = "Shift aktif · ${shift.cashierName}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = Color.White.copy(alpha = 0.85f),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        } else {
+                            Icon(
+                                Icons.Outlined.Warning,
+                                null,
+                                tint     = Color(0xFFFFD740),
+                                modifier = Modifier.size(12.dp),
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(
+                                text  = "Buka shift dulu",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = Color(0xFFFFD740),
+                                maxLines = 1,
+                            )
+                        }
+                    }
+                }
             }
 
-            IconButton(onClick = onHistoryClick) {
-                Icon(Icons.Outlined.History, "Riwayat", tint = TextSecondary)
-            }
+            // ── Kanan: Sync status + Icon buttons ────────────────
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(0.dp),
+            ) {
+                // Sync icon kecil — tidak pakai Chip agar tidak sempit
+                IconButton(onClick = {}) {
+                    Icon(
+                        if (pendingCount > 0) Icons.Outlined.CloudUpload
+                        else Icons.Outlined.CloudDone,
+                        contentDescription = if (pendingCount > 0) "$pendingCount pending sync" else "Tersinkron",
+                        tint = if (pendingCount > 0) Color(0xFFFFD740) else Color(0xFF69F0AE),
+                        modifier = Modifier.size(22.dp),
+                    )
+                }
 
-            IconButton(onClick = onShiftClick) {
-                Icon(Icons.Outlined.AccessTime, "Shift", tint = TextSecondary)
+                IconButton(onClick = onHistoryClick) {
+                    Icon(
+                        Icons.Outlined.History,
+                        "Riwayat Transaksi",
+                        tint = Color.White.copy(alpha = 0.9f),
+                        modifier = Modifier.size(22.dp),
+                    )
+                }
+
+                IconButton(onClick = onShiftClick) {
+                    Icon(
+                        Icons.Outlined.AccessTime,
+                        "Manajemen Shift",
+                        tint = Color.White.copy(alpha = 0.9f),
+                        modifier = Modifier.size(22.dp),
+                    )
+                }
             }
         }
     }

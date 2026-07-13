@@ -11,6 +11,8 @@ function ProductModal({ product, onClose, onSaved }: {
   product?: Product; onClose: () => void; onSaved: () => void
 }) {
   const isEdit = !!product
+  const { currentOutletId, user } = useAuthStore()
+
   const [form, setForm] = useState({
     name:          product?.name          ?? '',
     sku:           product?.sku           ?? '',
@@ -25,16 +27,23 @@ function ProductModal({ product, onClose, onSaved }: {
   const [saving, setSaving] = useState(false)
   const [error, setError]   = useState('')
 
+  // Daftar outlet milik user (untuk selector)
+  const outlets = user?.outlets ?? []
+  const { setOutlet } = useAuthStore()
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!form.name.trim()) { setError('Nama produk wajib diisi'); return }
+    if (!currentOutletId) { setError('Pilih outlet terlebih dahulu sebelum menyimpan produk'); return }
     setSaving(true)
+    setError('')
     try {
       if (isEdit) await productApi.update(product!.id, form)
       else        await productApi.create(form)
       onSaved()
     } catch (err: unknown) {
-      setError((err as { response?: { data?: { message?: string } } })?.response?.data?.message ?? 'Gagal menyimpan')
+      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+      setError(msg ?? 'Gagal menyimpan produk. Periksa koneksi dan coba lagi.')
     } finally { setSaving(false) }
   }
 
@@ -49,6 +58,48 @@ function ProductModal({ product, onClose, onSaved }: {
           <h3 className="text-lg font-semibold text-primary">{isEdit ? 'Edit Produk' : 'Tambah Produk'}</h3>
           <button className="btn btn-ghost btn-icon btn-sm" onClick={onClose}>✕</button>
         </div>
+
+        {/* ── Outlet Selector / Warning ─────────────────────────── */}
+        {outlets.length > 1 ? (
+          <div className="form-group mb-4">
+            <label className="form-label">Outlet *</label>
+            <select
+              className="form-input form-select"
+              value={currentOutletId ?? ''}
+              onChange={e => setOutlet(e.target.value)}
+            >
+              <option value="" disabled>— Pilih Outlet —</option>
+              {outlets.map(o => (
+                <option key={o.id} value={o.id}>{o.name}</option>
+              ))}
+            </select>
+          </div>
+        ) : !currentOutletId && outlets.length === 0 ? (
+          <div style={{
+            background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.4)',
+            borderRadius: 8, padding: '10px 14px', marginBottom: 16,
+            display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            <span style={{ fontSize: 16 }}>⚠️</span>
+            <div>
+              <p style={{ color: 'var(--color-error-500)', fontSize: 13, fontWeight: 600 }}>Outlet belum dikonfigurasi</p>
+              <p style={{ color: 'var(--color-error-500)', fontSize: 12, opacity: 0.8 }}>
+                Akun Anda belum memiliki outlet. Hubungi administrator.
+              </p>
+            </div>
+          </div>
+        ) : currentOutletId ? (
+          <div style={{
+            background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.3)',
+            borderRadius: 8, padding: '8px 14px', marginBottom: 16,
+            display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            <span style={{ fontSize: 14 }}>🏪</span>
+            <p style={{ color: 'var(--color-success-600)', fontSize: 12 }}>
+              Menyimpan ke outlet: <strong>{outlets.find(o => o.id === currentOutletId)?.name ?? currentOutletId}</strong>
+            </p>
+          </div>
+        ) : null}
 
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-4">
@@ -106,12 +157,26 @@ function ProductModal({ product, onClose, onSaved }: {
               </label>
             </div>
 
-            {error && <p className="form-error">{error}</p>}
+            {error && (
+              <div style={{
+                background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.4)',
+                borderRadius: 8, padding: '10px 14px',
+                display: 'flex', alignItems: 'flex-start', gap: 8,
+              }}>
+                <span style={{ fontSize: 14, marginTop: 1 }}>❌</span>
+                <p style={{ color: 'var(--color-error-500)', fontSize: 13 }}>{error}</p>
+              </div>
+            )}
           </div>
 
           <div className="flex gap-2 justify-end mt-6">
             <button type="button" className="btn btn-ghost" onClick={onClose}>Batal</button>
-            <button type="submit" className="btn btn-primary" disabled={saving}>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={saving || !currentOutletId}
+              title={!currentOutletId ? 'Pilih outlet terlebih dahulu' : ''}
+            >
               {saving ? 'Menyimpan...' : isEdit ? 'Simpan Perubahan' : 'Tambah Produk'}
             </button>
           </div>
@@ -139,9 +204,20 @@ export function ProductsPage() {
   const products: Product[] = data?.data?.data ?? DEMO_PRODUCTS
   const total = data?.data?.total ?? DEMO_PRODUCTS.length
 
+  const { currentOutletId } = useAuthStore()
+
   function handleDelete(id: string) {
-    if (!confirm('Hapus produk ini?')) return
-    productApi.delete(id).then(refetch)
+    if (!currentOutletId) {
+      alert('⚠️ Pilih outlet terlebih dahulu sebelum menghapus produk.')
+      return
+    }
+    if (!confirm('Hapus produk ini? Tindakan ini tidak bisa dibatalkan.')) return
+    productApi.delete(id)
+      .then(() => { refetch() })
+      .catch((err: unknown) => {
+        const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+        alert(`❌ Gagal menghapus: ${msg ?? 'Terjadi kesalahan. Coba lagi.'}`)
+      })
   }
 
   return (

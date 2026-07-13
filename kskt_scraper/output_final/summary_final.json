@@ -1,0 +1,203 @@
+{
+  "DATA_TIANG": {
+    "rows": 100,
+    "cols": 24,
+    "columns": [
+      "No",
+      "ULP",
+      "FEEDER",
+      "SEGMENT",
+      "EAM",
+      "KODE TIANG",
+      "LAT",
+      "LNG",
+      "TIANG",
+      "TRAVERS",
+      "TRECK SCHOOR",
+      "DRUG SCHOOR",
+      "ARM TIE",
+      "PONDASI TIANG",
+      "KONDUKTOR",
+      "LA",
+      "FCO",
+      "GROUNDING",
+      "ISOLATOR TARIK",
+      "ISOLATOR TUMPU",
+      "TOP TIES",
+      "JUMPER",
+      "GWS",
+      "STATUS"
+    ]
+  },
+  "DATA_GARDU": {
+    "rows": 100,
+    "cols": 17,
+    "columns": [
+      "No",
+      "ULP",
+      "FEEDER",
+      "EAM",
+      "KODE GARDU",
+      "KODE TIANG",
+      "DAYA",
+      "ALAMAT",
+      "FCO GD",
+      "LA GD",
+      "BUSHING TM",
+      "BUSHING TR",
+      "GROUNDING TM",
+      "GROUNDING TR",
+      "KONSTRUKSI GARDU",
+      "KONSTRUKSI PHBTR",
+      "STATUS GARDU"
+    ]
+  },
+  "DATA_POHON": {
+    "rows": 100,
+    "cols": 13,
+    "columns": [
+      "No",
+      "FEEDER",
+      "SEGMENT",
+      "KODE TIANG",
+      "JENIS POHON",
+      "NAMA POHON",
+      "PEMILIK POHON",
+      "JARAK POHON",
+      "JARAK SAAT INI",
+      "TANGGAL EKSEKUSI",
+      "LAT",
+      "LNG",
+      "STATUS SAAT INI"
+    ]
+  },
+  "ASSESMENT_PERALATAN": {
+    "rows": 50,
+    "cols": 6,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Status"
+    ]
+  },
+  "ASSESMENT_GARDU": {
+    "rows": 50,
+    "cols": 6,
+    "columns": [
+      "No",
+      "No. Gardu",
+      "Daya",
+      "Alamat",
+      "Tanggal",
+      "Status"
+    ]
+  },
+  "ASSESMENT_ROW": {
+    "rows": 50,
+    "cols": 11,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Nama Pohon",
+      "Pemilik Pohon",
+      "Status Pohon",
+      "Status Padam",
+      "Jarak Thd TM",
+      "Status"
+    ]
+  },
+  "TM_THERMO": {
+    "rows": 50,
+    "cols": 5,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal"
+    ]
+  },
+  "REKAP_ASSESMENT": {
+    "rows": 13,
+    "cols": 4,
+    "columns": [
+      "No",
+      "Uraian Pekerjaan",
+      "Satuan",
+      "Total"
+    ]
+  },
+  "LAP_PERALATAN": {
+    "rows": 4,
+    "cols": 6,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Status"
+    ]
+  },
+  "LAPMAT_PERALATAN": {
+    "rows": 1,
+    "cols": 4,
+    "columns": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "LAPMAT_GARDU": {
+    "rows": 1,
+    "cols": 4,
+    "columns": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "JADWAL_ROW": {
+    "rows": 150,
+    "cols": 11,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Nama Pohon",
+      "Pemilik Pohon",
+      "Status Pohon",
+      "Status Padam",
+      "Kondisi",
+      "Status",
+      "Tahun"
+    ]
+  },
+  "MASTER_PEKERJAAN": {
+    "rows": 490,
+    "cols": 3,
+    "columns": [
+      "No",
+      "Pekerjaan",
+      "Satuan"
+    ]
+  },
+  "MASTER_MATERIAL": {
+    "rows": 1660,
+    "cols": 3,
+    "columns": [
+      "No",
+      "Material",
+      "Satuan"
+    ]
+  }
+}

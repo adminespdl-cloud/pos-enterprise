@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Super Simpel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5; /* Warna ungu kebiruan modern */
+            --primary-hover: #4338CA;
+            --bg: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+        }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif; 
+        }
+        body { 
+            background: var(--bg); 
+            color: var(--text-main); 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        .app-container { 
+            background: var(--card-bg); 
+            width: 100%; 
+            max-width: 900px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
+            display: flex; 
+            overflow: hidden; 
+            height: 600px; 
+        }
+        
+        /* Bagian Kiri: Menu */
+        .menu-section { 
+            flex: 2; 
+            padding: 30px; 
+            border-right: 1px solid #E5E7EB; 
+            overflow-y: auto; 
+            background: #ffffff;
+        }
+        h2 { 
+            font-size: 1.5rem; 
+            margin-bottom: 25px; 
+            font-weight: 700; 
+            color: #111827;
+        }
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+            gap: 15px; 
+        }
+        .product-card { 
+            background: white; 
+            border: 2px solid #F3F4F6; 
+            border-radius: 16px; 
+            padding: 20px 15px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+        }
+        .product-card:hover { 
+            border-color: var(--primary); 
+            background: #EEF2FF;
+            transform: translateY(-3px); 
+        }
+        .product-icon { 
+            font-size: 2.5rem; 
+            margin-bottom: 12px; 
+        }
+        .product-name { 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            margin-bottom: 5px; 
+        }
+        .product-price { 
+            color: var(--primary); 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+        }
+
+        /* Bagian Kanan: Keranjang/Struk */
+        .cart-section { 
+            flex: 1; 
+            background: #F9FAFB; 
+            padding: 30px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .cart-items { 
+            flex: 1; 
+            overflow-y: auto; 
+            margin-bottom: 20px; 
+        }
+        .cart-empty { 
+            text-align: center; 
+            color: var(--text-muted); 
+            margin-top: 50px; 
+            font-size: 0.95rem; 
+        }
+        .total-section { 
+            border-top: 2px dashed #D1D5DB; 
+            padding-top: 20px; 
+        }
+        .total-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+            font-size: 1.3rem; 
+            color: #111827;
+        }
+        .btn-pay { 
+            width: 100%; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 12px; 
+            font-weight: 600; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            transition: background 0.2s, transform 0.1s; 
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+        .btn-pay:hover { 
+            background: var(--primary-hover); 
+        }
+        .btn-pay:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Kiri: Daftar Menu -->
+    <div class="menu-section">
+        <h2>Menu Hari Ini ☕</h2>
+        <div class="product-grid">
+            <div class="product-card" onclick="alert('Kopi Susu Gula Aren dipilih!')">
+                <div class="product-icon">☕</div>
+                <div class="product-name">Kopi Susu</div>
+                <div class="product-price">Rp 18.000</div>
+            </div>
+            <div class="product-card" onclick="alert('Matcha Latte dipilih!')">
+                <div class="product-icon">🍵</div>
+                <div class="product-name">Matcha Latte</div>
+                <div class="product-price">Rp 22.000</div>
+            </div>
+            <div class="product-card" onclick="alert('Croissant dipilih!')">
+                <div class="product-icon">🥐</div>
+                <div class="product-name">Croissant</div>
+                <div class="product-price">Rp 25.000</div>
+            </div>
+            <div class="product-card" onclick="alert('Kentang Goreng dipilih!')">
+                <div class="product-icon">🍟</div>
+                <div class="product-name">Kentang Goreng</div>
+                <div class="product-price">Rp 15.000</div>
+            </div>
+            <div class="product-card" onclick="alert('Ayam Geprek dipilih!')">
+                <div class="product-icon">🍗</div>
+                <div class="product-name">Ayam Geprek</div>
+                <div class="product-price">Rp 20.000</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kanan: Keranjang (Struk) -->
+    <div class="cart-section">
+        <h2>Pesanan</h2>
+        <div class="cart-items">
+            <div class="cart-empty">Belum ada pesanan masuk bro...</div>
+        </div>
+        <div class="total-section">
+            <div class="total-row">
+                <span>Total</span>
+                <span>Rp 0</span>
+            </div>
+            <button class="btn-pay">Bayar Sekarang</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

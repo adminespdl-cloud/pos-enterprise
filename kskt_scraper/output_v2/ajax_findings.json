@@ -1,0 +1,37 @@
+{
+  "lapassesment_peralatan": {
+    "ajax_urls": [
+      "https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585",
+      "https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585"
+    ],
+    "datatables": []
+  },
+  "gangguan": {
+    "ajax_urls": [
+      "https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585",
+      "https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585"
+    ],
+    "datatables": []
+  },
+  "data_tiang": {
+    "ajax_urls": [
+      "https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585",
+      "https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585"
+    ],
+    "datatables": []
+  },
+  "realisasi_row": {
+    "ajax_urls": [
+      "https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585",
+      "https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585"
+    ],
+    "datatables": []
+  },
+  "listjadwal_thermovision_gd": {
+    "ajax_urls": [
+      "https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585",
+      "https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585"
+    ],
+    "datatables": []
+  }
+}

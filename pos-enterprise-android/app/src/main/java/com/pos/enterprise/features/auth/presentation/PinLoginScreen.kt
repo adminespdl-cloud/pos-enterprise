@@ -65,9 +65,8 @@ fun PinLoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                Brush.radialGradient(
-                    colors  = listOf(BgSurface, BgElevated),
-                    radius  = 1200f,
+                Brush.linearGradient(
+                    colors  = listOf(Color.White, Primary50),
                 )
             ),
         contentAlignment = Alignment.Center,

@@ -39,7 +39,19 @@ class AuthRepository @Inject constructor(
                     Result.failure(Exception(body?.message ?: "Login gagal"))
                 }
             } else {
-                Result.failure(Exception("HTTP ${response.code()}: ${response.message()}"))
+                val errorBodyString = response.errorBody()?.string()
+                var errorMessage = "HTTP ${response.code()}: ${response.message()}"
+                if (!errorBodyString.isNullOrBlank()) {
+                    try {
+                        val json = org.json.JSONObject(errorBodyString)
+                        if (json.has("message")) {
+                            errorMessage = json.getString("message")
+                        }
+                    } catch (e: Exception) {
+                        // ignore parsing error
+                    }
+                }
+                Result.failure(Exception(errorMessage))
             }
         } catch (e: Exception) {
             Result.failure(e)

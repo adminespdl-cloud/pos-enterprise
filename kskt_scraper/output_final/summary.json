@@ -1,0 +1,84 @@
+{
+  "ASSESMENT_PERALATAN": {
+    "rows": 50,
+    "cols": 6,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Status"
+    ]
+  },
+  "ASSESMENT_GARDU": {
+    "rows": 50,
+    "cols": 6,
+    "columns": [
+      "No",
+      "No. Gardu",
+      "Daya",
+      "Alamat",
+      "Tanggal",
+      "Status"
+    ]
+  },
+  "ASSESMENT_ROW": {
+    "rows": 50,
+    "cols": 11,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Nama Pohon",
+      "Pemilik Pohon",
+      "Status Pohon",
+      "Status Padam",
+      "Jarak Thd TM",
+      "Status"
+    ]
+  },
+  "REKAP_ASSESMENT": {
+    "rows": 13,
+    "cols": 4,
+    "columns": [
+      "No",
+      "Uraian Pekerjaan",
+      "Satuan",
+      "Total"
+    ]
+  },
+  "LAP_PERALATAN": {
+    "rows": 4,
+    "cols": 7,
+    "columns": [
+      "No",
+      "Feeder",
+      "Segment",
+      "No. Tiang",
+      "Tanggal",
+      "Status",
+      "Tahun"
+    ]
+  },
+  "MASTER_PEKERJAAN": {
+    "rows": 490,
+    "cols": 3,
+    "columns": [
+      "No",
+      "Pekerjaan",
+      "Satuan"
+    ]
+  },
+  "MASTER_MATERIAL": {
+    "rows": 1660,
+    "cols": 3,
+    "columns": [
+      "No",
+      "Material",
+      "Satuan"
+    ]
+  }
+}

@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WELCOME KOORDINATOR PADALARANG</title>
+    <meta name="author" content="phpmu.com">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <!-- Ionicons -->
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker-bs3.css">
+    <style type="text/css"> .files{ position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; } </style>
+    <script type="text/javascript" src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jquery-1.12.3.min.js"></script>
+    <!-- <script src="https://ksktgojabar.xyz/asset/ckeditor/ckeditor.js"></script> -->
+    <style type="text/css">.checkbox-scroll { border:1px solid #ccc; width:100%; height: 114px; padding-left:8px; overflow-y: scroll; }</style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+     crossorigin="">
+
+     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+     crossorigin=""></script>
+
+    <!-- <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/admin/pace.min.css"> -->
+    
+  </head>
+  <body class="hold-transition skin-green-light fixed sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+          <style type="text/css">
+  .sekolah{
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    font-family: fontAwesome;
+    color:#fff;
+  }
+  .sekolah:hover{
+    color:#fff;
+  }
+</style>
+        <!-- Logo -->
+        <a href="https://ksktgojabar.xyz/koordinator/home" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>JABAR-GO</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  RENCANA KERJA
+                  <span class="label label-success"><div id="allRN"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allJar"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision">THERMOVISION TM <span class="label label-success" id="allTM"></span></a></li>
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound">ULTRASOUND <span class="label label-success" id="allUltra"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/gardu" >GARDU <span class="label label-success" id="allGardu" ></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd" >THERMOVISION GD <span class="label label-success" id="allGD" ></span></a></li>
+                </ul>
+              </li>
+              <!-- <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  PEKERJAAN TERJADWAL
+                  <span class="label label-success"><div id="allTerima"></div></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header" ><a href="https://ksktgojabar.xyz/koordinator/jadwal/row">ROW <span class="label label-success" id="allTRow"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/peralatan" >PERALATAN & KONSTRUKSI <span class="label label-success" id="allTJar"></span></a></li>
+                  <li class="header"><a href="https://ksktgojabar.xyz/koordinator/jadwal/gardu" >GARDU <span class="label label-success" id="allTGardu" ></span></a></li>
+                </ul>
+              </li> -->
+                            <li>
+                <a href="https://ksktgojabar.xyz/koordinator/password">Ganti Password</a>
+              </li>
+                                        </ul>
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+            
+          $(function() {
+            function notif() {
+              $.ajax({
+                url: 'https://ksktgojabar.xyz/notif/rencana.php?ulp=ULP.53585',
+                success: function(data) {
+                  if (data.length > 0) {
+                    var get = JSON.parse(data);
+                    $('#allRN').html(get.all);
+                    $('#allJar').html(get.jar);
+                    $('#allTM').html(get.tm);
+                    $('#allUltra').html(get.ultra);
+                    $('#allGardu').html(get.gardu);
+                    $('#allGD').html(get.gd);
+                  }
+                }
+              });
+            }
+
+            // function notifTerima() {
+            //   $.ajax({
+            //     url: 'https://ksktgojabar.xyz/koordinator/home/totalallterimaperencanaan?ulp=ULP.53585',
+            //     success: function(data) {
+            //       if (data.length > 0) {
+            //         var get = JSON.parse(data);
+            //         $('#allTerima').html(get.all);
+            //         $('#allTJar').html(get.jar);
+            //         $('#allTRow').html(get.row);
+            //         $('#allTGardu').html(get.gardu);
+            //       }
+            //     }
+            //   });
+            // }
+            
+            setInterval(
+            function () {
+              notif()
+              // notifTerima()
+            }, 60000);
+            
+          });
+
+        </script>      </header>
+
+      <aside class="main-sidebar">
+                  <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header" style='text-transform:uppercase; border-bottom:2px solid #00c0ef'>MENU <span class='uppercase'>koordinator PADALARANG</span></li>
+            <li class=""><a href="https://ksktgojabar.xyz/koordinator/home"><i class="fa fa-dashboard"></i> <span>DASHBOARD</span></a></li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT BAIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiperalatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisigardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisithermo'><i class='fa fa-circle-o'></i> THERMO TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/kondisiultra'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 1</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/visual'><i class='fa fa-circle-o'></i> KONDISI VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/assesment/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>ASSESMENT TIER 2</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/tegangan'><i class='fa fa-circle-o'></i> TEG. UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gardu/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview     ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>RENCANA KERJA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/row'><i class='fa fa-circle-o'></i> ROW</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaantm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/perencanaan/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PERENCANAAN JADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>LIST PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/jadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN TERJADWAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwaltm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/listjadwal/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>PEKERJAAN HARI INI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/pekerjaan/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>EKSEKUSI PEKERJAAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusitm/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/eksekusi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>REALISASI</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/realisasi/mandorline'><i class='fa fa-circle-o'></i> PATROLI ROW</a></li>
+              </ul>
+            </li>
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARJAR</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/harjar'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/harjar'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO TM</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermo'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermo'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ULTRASOUND</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/ultra'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/ultra'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN HARDU</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/hardu'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/hardu'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li>
+            <!-- <li class="treeview  ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN THERMO GD</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/thermogd'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/thermogd'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+              </ul>
+            </li> -->
+            <li class="treeview    ">
+              <a href="#"><i class="glyphicon glyphicon-book"></i> <span>LAPORAN ROW</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/row'><i class='fa fa-circle-o'></i> BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/bulanan/mandorline'><i class='fa fa-circle-o'></i> BULANAN PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/row'><i class='fa fa-circle-o'></i> TAHUNAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/tahunan/mandorline'><i class='fa fa-circle-o'></i> TAHUNAN PARTOLI</a></li>
+              </ul>
+            </li>
+            <li class="treeview      ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>LAP. MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/renperalatan'><i class='fa fa-circle-o'></i>REN. PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rengardu'><i class='fa fa-circle-o'></i>REN. GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovision'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li> -->
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/rekap'><i class='fa fa-circle-o'></i> REKAP MATERIAL</a></li>
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapmat/thermovisiongd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li> -->
+              </ul>
+            </li>
+            <li class="treeview            ">
+              <a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>LAPORAN ASSESMENT</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment'><i class='fa fa-circle-o'></i> REKAP ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/periode'><i class='fa fa-circle-o'></i> REKAP PERIODE ASSESMENT</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/row'><i class='fa fa-circle-o'></i> ROW</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/mandorline'><i class='fa fa-circle-o'></i> ROW PATROLI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/peralatan'><i class='fa fa-circle-o'></i> PERALATAN & KONSTRUKSI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/tegangan'><i class='fa fa-circle-o'></i> TEGANGAN UJUNG TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermotm'><i class='fa fa-circle-o'></i> THERMOVISION TM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ultrasound'><i class='fa fa-circle-o'></i> ULTRASOUND</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/gardu'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/ukur'><i class='fa fa-circle-o'></i> UKUR GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/visual'><i class='fa fa-circle-o'></i> VISUAL GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/lapassesment/thermogd'><i class='fa fa-circle-o'></i> THERMOVISION GD</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="fa fa-bar-chart"></i> <span>GRAFIK</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/bulanan'><i class='fa fa-circle-o'></i> GRAFIK BULANAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik/padam'><i class='fa fa-circle-o'></i> GRAFIK BULANAN PADAM</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/grafik'><i class='fa fa-circle-o'></i> TOTAL HEALTH INDEX</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-warning-sign"></i> <span>GANGGUAN</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/'><i class='fa fa-circle-o'></i> LIST GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/grafik'><i class='fa fa-circle-o'></i> GRAFIK GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/top'><i class='fa fa-circle-o'></i> GRAFIK TOP GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/zona'><i class='fa fa-circle-o'></i> GRAFIK PER ZONA</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/penyebab'><i class='fa fa-circle-o'></i> GRAFIK PENYEBAB</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/durasi'><i class='fa fa-circle-o'></i> GRAFIK DURASI</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/gangguan/indikasi'><i class='fa fa-circle-o'></i> GRAFIK INDIKASI</a></li>
+              </ul>
+            </li>
+            <li class="treeview       ">
+              <a href="#"><i class="glyphicon glyphicon-globe"></i> <span>PETA</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <!-- <li class="" ><a href='https://ksktgojabar.xyz/jaringan/peta/potensi?pencarian=all'><i class='fa fa-circle-o'></i> PETA POTENSI GANGGUAN</a></li> -->
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gangguan'><i class='fa fa-circle-o'></i> PETA HISTORICAL GANGGUAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/tiang'><i class='fa fa-circle-o'></i> PETA TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/gardu'><i class='fa fa-circle-o'></i> PETA GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/pohon'><i class='fa fa-circle-o'></i> PETA POHON</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/peralatan'><i class='fa fa-circle-o'></i> PETA PERALATAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/peta/beban'><i class='fa fa-circle-o'></i> PETA BEBAN GARDU</a></li>
+              </ul>
+            </li>
+            <li class="treeview   ">
+              <a href="#"><i class="glyphicon glyphicon-hdd"></i> <span>DATA ASSET</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datatiang/index'><i class='fa fa-circle-o'></i> TIANG</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datagardu/index'><i class='fa fa-circle-o'></i> GARDU</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/datapohon/index'><i class='fa fa-circle-o'></i> POHON</a></li>
+              </ul>
+            </li>
+            <li class="treeview active ">
+              <a href="#"><i class="glyphicon glyphicon-cog"></i> <span>PEK & MATERIAL</span><i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li class="active" ><a href='https://ksktgojabar.xyz/koordinator/setting/pekerjaan'><i class='fa fa-circle-o'></i> LIST PEKERJAAN</a></li>
+                <li class="" ><a href='https://ksktgojabar.xyz/koordinator/setting/material'><i class='fa fa-circle-o'></i> LIST MATERIAL</a></li>
+              </ul>
+            </li>
+            <li><a href="https://ksktgojabar.xyz/koordinator/home/logout"><i class="fa fa-power-off"></i> <span>LOGOUT</span></a></li>
+          </ul>
+        </section>      </aside>
+
+      <div class="content-wrapper">
+
+        <section class="content">
+            <div class="col-xs-12">  
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">View List Pekerjaan</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th style='width:20px'>No</th>
+            <th>Pekerjaan</th>
+            <th>Satuan</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr><td>1</td>
+                    <td>Pasang Travers biasa tanpa Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>2</td>
+                    <td>Pasang Travers SP/DT tanpa Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>3</td>
+                    <td>Pasang Travers biasa lkp Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>4</td>
+                    <td>Pasang Travers SP/DT lkp Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>5</td>
+                    <td>Perbaikan Travers Miring </td>
+                    <td>Bh</td>
+                </tr><tr><td>6</td>
+                    <td>Pasang Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>7</td>
+                    <td>Pasang Isolator tumpu </td>
+                    <td>Bh</td>
+                </tr><tr><td>8</td>
+                    <td>Pengepresan CCO/connector 10-25 mm2 </td>
+                    <td>Bh</td>
+                </tr><tr><td>9</td>
+                    <td>Pengepresan CCO/ connector 30-70 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>10</td>
+                    <td>Pengepresan CCO/connector 95-150 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>11</td>
+                    <td>Pengepresan CCO/connector 240 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>12</td>
+                    <td>Pasang Arrester 1 set (1) + jumper </td>
+                    <td>Bh</td>
+                </tr><tr><td>13</td>
+                    <td>Pasang Cut out 1 set (1) + jumper </td>
+                    <td>Bh</td>
+                </tr><tr><td>14</td>
+                    <td>Pasang tekep isolator /trafo </td>
+                    <td>Bh</td>
+                </tr><tr><td>15</td>
+                    <td>Pasang Top Ties </td>
+                    <td>Bh</td>
+                </tr><tr><td>16</td>
+                    <td>Pasang Tutup Ducting Kabel </td>
+                    <td>Bh</td>
+                </tr><tr><td>17</td>
+                    <td>Pasang Trafo 1 P 15 s/d 50 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>18</td>
+                    <td>Pasang Trafo 3 P 16 s/d 25 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>19</td>
+                    <td>Pasang Trafo 3 P 50 s/d 100 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>20</td>
+                    <td>Pasang Trafo 3 P 160 s/d 250 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>21</td>
+                    <td>Pasang Trafo 3 P 400 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>22</td>
+                    <td>Pasang Travers untuk LA / CO </td>
+                    <td>Bh</td>
+                </tr><tr><td>23</td>
+                    <td>Pasang Selubung beton tanpa pancang </td>
+                    <td>Bh</td>
+                </tr><tr><td>24</td>
+                    <td>Pasang CT TM + Jumper + Wiring </td>
+                    <td>Bh</td>
+                </tr><tr><td>25</td>
+                    <td>Pasang PT TM + Jumper + Wiring </td>
+                    <td>Bh</td>
+                </tr><tr><td>26</td>
+                    <td>Pasang Plate Copper LV Board </td>
+                    <td>Bh</td>
+                </tr><tr><td>27</td>
+                    <td>Pengepresan CCO/Sepatu Kabel 300 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>28</td>
+                    <td>Pengepresan CCO/Sepatu Kabel 400 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>29</td>
+                    <td>Pengepresan CCO/Sepatu Kabel 630 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>30</td>
+                    <td>Pengepresan CCO/Sepatu Kabel 800 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>31</td>
+                    <td>Pasang Tiang Besi 7 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>32</td>
+                    <td>Pasang Tiang Besi 9 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>33</td>
+                    <td>Pasang Tiang Besi 9 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>34</td>
+                    <td>Pasang Tiang Besi 9 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>35</td>
+                    <td>Pasang Tiang besi 11 m 156 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>36</td>
+                    <td>Pasang Tiang besi 11 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>37</td>
+                    <td>Pasang Tiang besi 12 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>38</td>
+                    <td>Pasang Tiang besi 12 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>39</td>
+                    <td>Pasang Tiang besi 13 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>40</td>
+                    <td>Pasang Tiang besi 13 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>41</td>
+                    <td>Pasang Tiang besi 13 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>42</td>
+                    <td>Pasang Tiang besi 14 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>43</td>
+                    <td>Pasang Tiang besi 17 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>44</td>
+                    <td>Pasang Tiang besi 21 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>45</td>
+                    <td>Pasang Tiang besi 27 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>46</td>
+                    <td>Pasang Tiang besi 27 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>47</td>
+                    <td>Pasang Tiang beton 7 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>48</td>
+                    <td>Pasang Tiang beton 9 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>49</td>
+                    <td>Pasang Tiang beton 11 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>50</td>
+                    <td>Pasang Tiang beton 12 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>51</td>
+                    <td>Pasang Tiang beton 12 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>52</td>
+                    <td>Pasang Tiang beton 13 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>53</td>
+                    <td>Pasang Tiang beton 14 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>54</td>
+                    <td>Perbaikan Tiang Miring (T. Beton & T. Besi) 9 m </td>
+                    <td>Btg</td>
+                </tr><tr><td>55</td>
+                    <td>Perbaikan Tiang Miring (T. Beton & T. Besi) 11 m </td>
+                    <td>Btg</td>
+                </tr><tr><td>56</td>
+                    <td>Perbaikan Tiang Miring (T. Beton & T. Besi) 12 m </td>
+                    <td>Btg</td>
+                </tr><tr><td>57</td>
+                    <td>Perbaikan Tiang Miring (T. Beton & T. Besi) 13 m </td>
+                    <td>Btg</td>
+                </tr><tr><td>58</td>
+                    <td>Perbaikan Tiang Miring (T. Beton & T. Besi) 14 m </td>
+                    <td>Btg</td>
+                </tr><tr><td>59</td>
+                    <td>Pengecatan tiang besi 9 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>60</td>
+                    <td>Pengecatan tiang besi 11 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>61</td>
+                    <td>Pengecatan tiang besi 12 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>62</td>
+                    <td>Pengecatan tiang besi 13 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>63</td>
+                    <td>Pengecatan tiang besi 14 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>64</td>
+                    <td>Pengecatan tiang besi 17 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>65</td>
+                    <td>Pengecatan tiang besi 21 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>66</td>
+                    <td>Pengecatan tiang besi 27 M </td>
+                    <td>Btg</td>
+                </tr><tr><td>67</td>
+                    <td>Penomoran tiang </td>
+                    <td>Btg</td>
+                </tr><tr><td>68</td>
+                    <td>Pemotongan untuk bongkar Tiang Besi  </td>
+                    <td>Btg</td>
+                </tr><tr><td>69</td>
+                    <td>Pengelasan Tiang Besi untuk modifikasi </td>
+                    <td>Btg</td>
+                </tr><tr><td>70</td>
+                    <td>Pasang Pipa Pelindung Kabel Tanah </td>
+                    <td>Btg</td>
+                </tr><tr><td>71</td>
+                    <td>Pasang Pipa Rise/End Pole </td>
+                    <td>Btg</td>
+                </tr><tr><td>72</td>
+                    <td>Pasang Kremona Tiang Besi/Beton per-Cross </td>
+                    <td>Cross</td>
+                </tr><tr><td>73</td>
+                    <td>Penarikan AAAC 35 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>74</td>
+                    <td>Penarikan AAAC 50 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>75</td>
+                    <td>Penarikan AAAC 70 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>76</td>
+                    <td>Penarikan AAAC 95 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>77</td>
+                    <td>Penarikan AAAC 120 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>78</td>
+                    <td>Penarikan AAAC 150 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>79</td>
+                    <td>Penarikan AAAC 240 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>80</td>
+                    <td>Penarikan AAACS 70 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>81</td>
+                    <td>Penarikan AAACS 150 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>82</td>
+                    <td>Penarikan AAACS 240 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>83</td>
+                    <td>Penarikan AAAC 35 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>84</td>
+                    <td>Penarikan AAAC 50 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>85</td>
+                    <td>Penarikan AAAC 70 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>86</td>
+                    <td>Penarikan AAAC 95 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>87</td>
+                    <td>Penarikan AAAC 120 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>88</td>
+                    <td>Penarikan AAAC 150 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>89</td>
+                    <td>Penarikan AAAC 240 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>90</td>
+                    <td>Penarikan AAACS 70 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>91</td>
+                    <td>Penarikan AAACS 150 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>92</td>
+                    <td>Penarikan AAACS 240 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>93</td>
+                    <td>Penarikan MVTIC 3x70 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>94</td>
+                    <td>Penarikan MVTIC 3x150 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>95</td>
+                    <td>Penarikan MVTIC 3x240 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>96</td>
+                    <td>Penarikan MVTIC 3x70 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>97</td>
+                    <td>Penarikan MVTIC 3x150 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>98</td>
+                    <td>Penarikan MVTIC 3x240 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>99</td>
+                    <td>Pasang Accessories MVTIC </td>
+                    <td>Gwg</td>
+                </tr><tr><td>100</td>
+                    <td>Penarikan GSW (ground steel wire) </td>
+                    <td>Gwg</td>
+                </tr><tr><td>101</td>
+                    <td>Penarikan TC. 3x25 s/d 3x35 mm + N </td>
+                    <td>Gwg</td>
+                </tr><tr><td>102</td>
+                    <td>Penarikan TC. 3x50 s/d 3x70 mm + N </td>
+                    <td>Gwg</td>
+                </tr><tr><td>103</td>
+                    <td>Pasang Papan ulin pelindung kabel </td>
+                    <td>Kpg</td>
+                </tr><tr><td>104</td>
+                    <td>Penggalian 0,8-1 m x 0,4 m tanah biasa + Pengurukan kembali (manual) </td>
+                    <td>m'</td>
+                </tr><tr><td>105</td>
+                    <td>Penggalian 1-1,5 m x 0,4 m tanah biasa + Pengurukan kembali (Exavator) </td>
+                    <td>m'</td>
+                </tr><tr><td>106</td>
+                    <td>Penggalian 0,8-1 m x 0,4 m tanah keras + Pengurukan kembali (manual) </td>
+                    <td>m'</td>
+                </tr><tr><td>107</td>
+                    <td>Penggalian 0,8-1 m x 0,4 m Tanah Cadas/ beton + Pengurukan kembali (manual) </td>
+                    <td>m'</td>
+                </tr><tr><td>108</td>
+                    <td>Penggalian 1-1,5 m x 0,4 m beton bertulang </td>
+                    <td>m'</td>
+                </tr><tr><td>109</td>
+                    <td>Penggalian 1-1,5 m x 0,4 m aspal (ketebalan < 30 cm) </td>
+                    <td>m'</td>
+                </tr><tr><td>110</td>
+                    <td>Penggalian 1-1,5 m x 0,4 m aspal ketebalan ( > 30 cm ) </td>
+                    <td>m'</td>
+                </tr><tr><td>111</td>
+                    <td>Penggalian pakai HDD ( Horizontal Directional Drilling ) diameter 16 cm tanpa demobilisasi </td>
+                    <td>m'</td>
+                </tr><tr><td>112</td>
+                    <td>Pengeboran manual Tanah biasa </td>
+                    <td>m'</td>
+                </tr><tr><td>113</td>
+                    <td>Pengeboran manual Tanah keras </td>
+                    <td>m'</td>
+                </tr><tr><td>114</td>
+                    <td>Pasang Kabel Tray SKTM </td>
+                    <td>m'</td>
+                </tr><tr><td>115</td>
+                    <td>Pasang Batu bata pelindung kabel </td>
+                    <td>m?</td>
+                </tr><tr><td>116</td>
+                    <td>Pasang Buis Beton Pelindung Kabel (Manual) </td>
+                    <td>m?</td>
+                </tr><tr><td>117</td>
+                    <td>Pengurugan pasir </td>
+                    <td>m?</td>
+                </tr><tr><td>118</td>
+                    <td>Penggelaran Kabel Tanah 1X70 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>119</td>
+                    <td>Penggelaran Kabel Tanah 1X150 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>120</td>
+                    <td>Penggelaran Kabel Tanah 1X240 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>121</td>
+                    <td>Penggelaran Kabel Tanah 3X70 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>122</td>
+                    <td>Penggelaran Kabel Tanah 3X150 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>123</td>
+                    <td>Penggelaran Kabel Tanah 3X240 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>124</td>
+                    <td>Pasang Kabel Tanah 1X300 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>125</td>
+                    <td>Pasang Kabel Tanah 1X400 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>126</td>
+                    <td>Pasang Kabel Tanah 1X500 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>127</td>
+                    <td>Pasang Kabel Tanah 1X630 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>128</td>
+                    <td>Pasang Kabel Tanah 1X800 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>129</td>
+                    <td>Pasang Isolator Tarik (1 set 2 piringan) </td>
+                    <td>Set</td>
+                </tr><tr><td>130</td>
+                    <td>Pasang Accesoris Druckshoor </td>
+                    <td>Set</td>
+                </tr><tr><td>131</td>
+                    <td>Pasang Treckshoor Anchor Spiral </td>
+                    <td>Set</td>
+                </tr><tr><td>132</td>
+                    <td>Pasang Treckshoor Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>133</td>
+                    <td>Pasang Treckshoor Beton Blok Bertulang SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>134</td>
+                    <td>Pasang Semi Kontramast Anchor Spiral SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>135</td>
+                    <td>Pasang Semi Kontramast Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>136</td>
+                    <td>Pasang Semi Kontramast Beton Blok Bertulang SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>137</td>
+                    <td>Pasang Aksesoris Kontramast Anchor Spiral SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>138</td>
+                    <td>Pasang Aksesoris Kontramast Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>139</td>
+                    <td>Pasang Aksesoris Kontramast Beton Blok Bertulang </td>
+                    <td>Set</td>
+                </tr><tr><td>140</td>
+                    <td>Pasang Pancang Ulin (2 kaki) </td>
+                    <td>Set</td>
+                </tr><tr><td>141</td>
+                    <td>Pasang Sepatu Tiang </td>
+                    <td>Set</td>
+                </tr><tr><td>142</td>
+                    <td>Pasang Pancang Ulin (4 kaki) </td>
+                    <td>Set</td>
+                </tr><tr><td>143</td>
+                    <td>Pasang Pancang Beton (2 bh) + Palang UNP (2 bh) SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>144</td>
+                    <td>Pasang Penghalang Panjat </td>
+                    <td>Set</td>
+                </tr><tr><td>145</td>
+                    <td>Pasang Plat tanda Bahaya </td>
+                    <td>Set</td>
+                </tr><tr><td>146</td>
+                    <td>Pasang LBS Motorized / Recloser / OMC lkp  </td>
+                    <td>Set</td>
+                </tr><tr><td>147</td>
+                    <td>Pasang LBS Three way lkp  </td>
+                    <td>Set</td>
+                </tr><tr><td>148</td>
+                    <td>Pasang LBS Manual lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>149</td>
+                    <td>Pasang DS manual lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>150</td>
+                    <td>Pasang Pentanahan Arde TM 2,75 m </td>
+                    <td>Set</td>
+                </tr><tr><td>151</td>
+                    <td>Pasang Pentanahan Arde TM 5,5 m </td>
+                    <td>Set</td>
+                </tr><tr><td>152</td>
+                    <td>Pasang Pentanahan Arde Dengan Ground Rod 2.75-3 m </td>
+                    <td>Set</td>
+                </tr><tr><td>153</td>
+                    <td>Pasang Pentanahan Arde Dengan Ground Rod 5.5-6 m </td>
+                    <td>Set</td>
+                </tr><tr><td>154</td>
+                    <td>Pasang Plat Simpul/Kupingan Las di Tiang </td>
+                    <td>Set</td>
+                </tr><tr><td>155</td>
+                    <td>Pasang Plat Simpul/Kupingan Las di Clamp </td>
+                    <td>Set</td>
+                </tr><tr><td>156</td>
+                    <td>Pasang Support Selubung Slope (TS2G) u/ T. Beton dan T.Besi </td>
+                    <td>Set</td>
+                </tr><tr><td>157</td>
+                    <td>Pasang Jointing kabel single core </td>
+                    <td>Set</td>
+                </tr><tr><td>158</td>
+                    <td>Pasang Jointing kabel 3 core  </td>
+                    <td>Set</td>
+                </tr><tr><td>159</td>
+                    <td>Pasang Terminating Kabel single core </td>
+                    <td>Set</td>
+                </tr><tr><td>160</td>
+                    <td>Pasang Terminating Kabel 3 core </td>
+                    <td>Set</td>
+                </tr><tr><td>161</td>
+                    <td>Pasang Accessories TR </td>
+                    <td>Set</td>
+                </tr><tr><td>162</td>
+                    <td>Pasang Treckshoor Beton Blok Bertulang SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>163</td>
+                    <td>Pasang Semi Kontramast Anchor Spiral SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>164</td>
+                    <td>Pasang Semi Kontramast Beton Blok Bertulang SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>165</td>
+                    <td>Pasang Aksesoris Kontramast Anchor Spiral SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>166</td>
+                    <td>Pasang Sepatu Tiang dari Ulin </td>
+                    <td>Set</td>
+                </tr><tr><td>167</td>
+                    <td>Pasang Sepatu Tiang dari Beton Bertulang </td>
+                    <td>Set</td>
+                </tr><tr><td>168</td>
+                    <td>Pasang Pancang Ulin (2 kaki) + Palang Ulin (2 Buah) </td>
+                    <td>Set</td>
+                </tr><tr><td>169</td>
+                    <td>Pasang Pancang Beton (2 bh) + Palang UNP (2 bh) SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>170</td>
+                    <td>Pasang CT - TR 3 buah  </td>
+                    <td>Set</td>
+                </tr><tr><td>171</td>
+                    <td>Pasang Bordes trafo (Gardu Portal) </td>
+                    <td>Set</td>
+                </tr><tr><td>172</td>
+                    <td>Pasang Bordes trafo (Gardu Cantol) </td>
+                    <td>Set</td>
+                </tr><tr><td>173</td>
+                    <td>Pasang LV Board Instalasi 2 jurusan </td>
+                    <td>Set</td>
+                </tr><tr><td>174</td>
+                    <td>Pasang LV Board Instalasi 4 jurusan </td>
+                    <td>Set</td>
+                </tr><tr><td>175</td>
+                    <td>Pasang perlengkapan LV Board / 2 jurusan tiang tunggal + instalasi </td>
+                    <td>Set</td>
+                </tr><tr><td>176</td>
+                    <td>Pasang perlengkapan LV Board / 4 jurusan tiang ganda + Instalasi </td>
+                    <td>Set</td>
+                </tr><tr><td>177</td>
+                    <td>Pasang Kubikel Incoming (LBS) lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>178</td>
+                    <td>Pasang Kubikel Outgoing (CBOG) + Metering lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>179</td>
+                    <td>Pasang Wall Saklar atau L. Bow Saklar </td>
+                    <td>Set</td>
+                </tr><tr><td>180</td>
+                    <td>Pasang Fuse Base Din </td>
+                    <td>Set</td>
+                </tr><tr><td>181</td>
+                    <td>Pasang Kabel Inlet + Pipa lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>182</td>
+                    <td>Pasang Kabel Outlet + Pipa lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>183</td>
+                    <td>Pasang Fuse Protection 20 kV + RCU </td>
+                    <td>Set</td>
+                </tr><tr><td>184</td>
+                    <td>Pasang LBS Motorized + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>185</td>
+                    <td>Pasang Recloser + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>186</td>
+                    <td>Pasang LBS Threeway + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>187</td>
+                    <td>Pasang Pole Capasitor 20 kV + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>188</td>
+                    <td>Pasang End Voltage Monitoring </td>
+                    <td>Set</td>
+                </tr><tr><td>189</td>
+                    <td>Pasang FIOHL (3 bh) + Box RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>190</td>
+                    <td>Pemeliharaan Recloser / LBS Motorized </td>
+                    <td>Set</td>
+                </tr><tr><td>191</td>
+                    <td>Pasang Kubikel ACO TM (CB / LBS) </td>
+                    <td>Set</td>
+                </tr><tr><td>192</td>
+                    <td>Pasang ACO TR Build In (s.d 400A) </td>
+                    <td>Set</td>
+                </tr><tr><td>193</td>
+                    <td>Pemeliharaan Base Station Analog / Digital </td>
+                    <td>Set</td>
+                </tr><tr><td>194</td>
+                    <td>Pemeliharaan Repeater Analog / Digital </td>
+                    <td>Set</td>
+                </tr><tr><td>195</td>
+                    <td>Pemeliharaan Back To Back </td>
+                    <td>Set</td>
+                </tr><tr><td>196</td>
+                    <td>Pemeliharaan Tower Self Support </td>
+                    <td>Set</td>
+                </tr><tr><td>197</td>
+                    <td>Pemeliharaan Tower Triangle </td>
+                    <td>Set</td>
+                </tr><tr><td>198</td>
+                    <td>Pemeliharaan Tower Monopole </td>
+                    <td>Set</td>
+                </tr><tr><td>199</td>
+                    <td>Pasang Radio Base </td>
+                    <td>Set</td>
+                </tr><tr><td>200</td>
+                    <td>Pasang Power Supply </td>
+                    <td>Set</td>
+                </tr><tr><td>201</td>
+                    <td>Pasang Baterai </td>
+                    <td>Set</td>
+                </tr><tr><td>202</td>
+                    <td>Pasang Antena Radio </td>
+                    <td>Set</td>
+                </tr><tr><td>203</td>
+                    <td>Pasang Track Skur </td>
+                    <td>Set</td>
+                </tr><tr><td>204</td>
+                    <td>Pasang Pondasi Angkur </td>
+                    <td>Set</td>
+                </tr><tr><td>205</td>
+                    <td>Pasang Pondasi Tower triangle </td>
+                    <td>Set</td>
+                </tr><tr><td>206</td>
+                    <td>Pasang Stage Tower Triangle (Erection Tower) </td>
+                    <td>Set</td>
+                </tr><tr><td>207</td>
+                    <td>Pasang Tiang Antena (Monopole) </td>
+                    <td>Set</td>
+                </tr><tr><td>208</td>
+                    <td>Pemeliharaan RTU GI </td>
+                    <td>Set</td>
+                </tr><tr><td>209</td>
+                    <td>Pemeliharaan Interface GI / GH </td>
+                    <td>Set</td>
+                </tr><tr><td>210</td>
+                    <td>Pemeliharaan Metering GI / GH </td>
+                    <td>Set</td>
+                </tr><tr><td>211</td>
+                    <td>Pemeliharaan Catudaya GI / GH </td>
+                    <td>Set</td>
+                </tr><tr><td>212</td>
+                    <td>Pemeliharaan RTU GH </td>
+                    <td>Set</td>
+                </tr><tr><td>213</td>
+                    <td>Pemeliharaan RTU ACO </td>
+                    <td>Set</td>
+                </tr><tr><td>214</td>
+                    <td>Pemeliharaan Interface ACO </td>
+                    <td>Set</td>
+                </tr><tr><td>215</td>
+                    <td>Pemeliharaan Metering ACO </td>
+                    <td>Set</td>
+                </tr><tr><td>216</td>
+                    <td>Pemeliharaan Catudaya ACO </td>
+                    <td>Set</td>
+                </tr><tr><td>217</td>
+                    <td>Pemeliharaan SCADA Keypoint </td>
+                    <td>Set</td>
+                </tr><tr><td>218</td>
+                    <td>Pemeliharaan SCADA FIOHL & EVM </td>
+                    <td>Set</td>
+                </tr><tr><td>219</td>
+                    <td>Pasang Buntut / Kumis TR + Pengepresan </td>
+                    <td>Titik</td>
+                </tr><tr><td>220</td>
+                    <td>Pasang VT TM Outdoor (type 2 Pole) </td>
+                    <td>Unit</td>
+                </tr><tr><td>221</td>
+                    <td>Pasang Incoming Cubicle 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>222</td>
+                    <td>Pasang Buscoupler Cubicle 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>223</td>
+                    <td>Pasang Bus VT/LA 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>224</td>
+                    <td>Pasang Bus Riser (with DS / Non DS) 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>225</td>
+                    <td>Pasang kWh Meter Elektronik 3 Phasa ready AMR + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>226</td>
+                    <td>Pasang Announciator 4 window </td>
+                    <td>Unit</td>
+                </tr><tr><td>227</td>
+                    <td>Pasang Alarm Trip Kubikel </td>
+                    <td>Unit</td>
+                </tr><tr><td>228</td>
+                    <td>Pasang Selector UFR 5 Step 2 Poles + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>229</td>
+                    <td>Pasang Selector LR / ON-OFF 2 Poles + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>230</td>
+                    <td>Pasang Relay Proteksi OCGF / Direction / Reverse Power + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>231</td>
+                    <td>Pasang Relay Proteksi UFR + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>232</td>
+                    <td>Pasang Bus Local Distribution Transformer 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>233</td>
+                    <td>Pasang Bus Tie 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>234</td>
+                    <td>Pasang CT Indoor 50-2000 A </td>
+                    <td>Unit</td>
+                </tr><tr><td>235</td>
+                    <td>Pasang VT Indoor </td>
+                    <td>Unit</td>
+                </tr><tr><td>236</td>
+                    <td>Pemeliharaan Kubikel OG GI </td>
+                    <td>Unit</td>
+                </tr><tr><td>237</td>
+                    <td>Pemeliharaan Kubikel Kopel GI </td>
+                    <td>Unit</td>
+                </tr><tr><td>238</td>
+                    <td>Pemeliharaan Busbar GI </td>
+                    <td>Unit</td>
+                </tr><tr><td>239</td>
+                    <td>Pemeliharaan STR GI </td>
+                    <td>Unit</td>
+                </tr><tr><td>240</td>
+                    <td>Pemeliharaan Kubikel OG GH </td>
+                    <td>Unit</td>
+                </tr><tr><td>241</td>
+                    <td>Pemeliharaan Kubikel Kopel GH </td>
+                    <td>Unit</td>
+                </tr><tr><td>242</td>
+                    <td>Pemeliharaan Busbar GH </td>
+                    <td>Unit</td>
+                </tr><tr><td>243</td>
+                    <td>Bongkar Travers biasa tanpa Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>244</td>
+                    <td>Bongkar Travers SP/DT tanpa Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>245</td>
+                    <td>Bongkar Travers biasa lkp Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>246</td>
+                    <td>Bongkar Travers SP/DT lkp Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>247</td>
+                    <td>Bongkar Arm Tie </td>
+                    <td>Bh</td>
+                </tr><tr><td>248</td>
+                    <td>Bongkar Isolator tumpu </td>
+                    <td>Bh</td>
+                </tr><tr><td>249</td>
+                    <td>Bongkar CCO/connector 10-25 mm2 </td>
+                    <td>Bh</td>
+                </tr><tr><td>250</td>
+                    <td>Bongkar CCO/ connector 30-70 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>251</td>
+                    <td>Bongkar CCO/connector 95-150 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>252</td>
+                    <td>Bongkar CCO/connector 240 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>253</td>
+                    <td>Bongkar Arrester 1 set (1) + jumper </td>
+                    <td>Bh</td>
+                </tr><tr><td>254</td>
+                    <td>Bongkar Cut out 1 set (1) + jumper </td>
+                    <td>Bh</td>
+                </tr><tr><td>255</td>
+                    <td>Bongkar tekep isolator /trafo </td>
+                    <td>Bh</td>
+                </tr><tr><td>256</td>
+                    <td>Bongkar Top Ties </td>
+                    <td>Bh</td>
+                </tr><tr><td>257</td>
+                    <td>Bongkar Tutup Ducting Kabel </td>
+                    <td>Bh</td>
+                </tr><tr><td>258</td>
+                    <td>Bongkar Trafo 1 P 15 s/d 50 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>259</td>
+                    <td>Bongkar Trafo 3 P 16 s/d 25 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>260</td>
+                    <td>Bongkar Trafo 3 P 50 s/d 100 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>261</td>
+                    <td>Bongkar Trafo 3 P 160 s/d 250 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>262</td>
+                    <td>Bongkar Trafo 3 P 400 kVA </td>
+                    <td>Bh</td>
+                </tr><tr><td>263</td>
+                    <td>Bongkar Traves untuk LA / CO </td>
+                    <td>Bh</td>
+                </tr><tr><td>264</td>
+                    <td>Bongkar Selubung beton tanpa pancang </td>
+                    <td>Bh</td>
+                </tr><tr><td>265</td>
+                    <td>Bongkar CT TM + Jumper + Wiring </td>
+                    <td>Bh</td>
+                </tr><tr><td>266</td>
+                    <td>Bongkar PT TM + Jumper + Wiring </td>
+                    <td>Bh</td>
+                </tr><tr><td>267</td>
+                    <td>Bongkar Plate Copper LV Board </td>
+                    <td>Bh</td>
+                </tr><tr><td>268</td>
+                    <td>Bongkar CCO/Sepatu Kabel 300 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>269</td>
+                    <td>Bongkar CCO/Sepatu Kabel 400 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>270</td>
+                    <td>Bongkar CCO/Sepatu Kabel 630 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>271</td>
+                    <td>Bongkar CCO/Sepatu Kabel 800 mm2  </td>
+                    <td>Bh</td>
+                </tr><tr><td>272</td>
+                    <td>Bongkar Tiang Besi 7 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>273</td>
+                    <td>Bongkar Tiang Besi 9 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>274</td>
+                    <td>Bongkar Tiang Besi 9 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>275</td>
+                    <td>Bongkar Tiang Besi 9 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>276</td>
+                    <td>Bongkar Tiang besi 11 m 156 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>277</td>
+                    <td>Bongkar Tiang besi 11 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>278</td>
+                    <td>Bongkar Tiang besi 12 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>279</td>
+                    <td>Bongkar Tiang besi 12 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>280</td>
+                    <td>Bongkar Tiang besi 13 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>281</td>
+                    <td>Bongkar Tiang besi 13 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>282</td>
+                    <td>Bongkar Tiang besi 13 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>283</td>
+                    <td>Bongkar Tiang besi 14 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>284</td>
+                    <td>Bongkar Tiang besi 17 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>285</td>
+                    <td>Bongkar Tiang besi 21 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>286</td>
+                    <td>Bongkar Tiang besi 27 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>287</td>
+                    <td>Bongkar Tiang besi 27 m 500 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>288</td>
+                    <td>Bongkar Tiang beton 7 m 100 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>289</td>
+                    <td>Bongkar Tiang beton 9 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>290</td>
+                    <td>Bongkar Tiang beton 11 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>291</td>
+                    <td>Bongkar Tiang beton 12 m 200 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>292</td>
+                    <td>Bongkar Tiang beton 12 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>293</td>
+                    <td>Bongkar Tiang beton 13 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>294</td>
+                    <td>Bongkar Tiang beton 14 m 350 daN </td>
+                    <td>Btg</td>
+                </tr><tr><td>295</td>
+                    <td>Pengelasan Tiang Besi untuk modifikasi </td>
+                    <td>Btg</td>
+                </tr><tr><td>296</td>
+                    <td>Bongkar Pipa Pelindung Kabel Tanah </td>
+                    <td>Btg</td>
+                </tr><tr><td>297</td>
+                    <td>Bongkar Pipa Rise/End Pole </td>
+                    <td>Btg</td>
+                </tr><tr><td>298</td>
+                    <td>Bongkar Kremona Tiang Besi/Beton per-Cross </td>
+                    <td>Cross</td>
+                </tr><tr><td>299</td>
+                    <td>Bongkar AAAC 35 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>300</td>
+                    <td>Bongkar AAAC 50 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>301</td>
+                    <td>Bongkar AAAC 70 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>302</td>
+                    <td>Bongkar AAAC 95 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>303</td>
+                    <td>Bongkar AAAC 120 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>304</td>
+                    <td>Bongkar AAAC 150 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>305</td>
+                    <td>Bongkar AAAC 240 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>306</td>
+                    <td>Bongkar AAACS 70 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>307</td>
+                    <td>Bongkar AAACS 150 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>308</td>
+                    <td>Bongkar AAACS 240 mm </td>
+                    <td>Gwg</td>
+                </tr><tr><td>309</td>
+                    <td>Bongkar AAAC 35 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>310</td>
+                    <td>Bongkar AAAC 50 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>311</td>
+                    <td>Bongkar AAAC 70 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>312</td>
+                    <td>Bongkar AAAC 95 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>313</td>
+                    <td>Bongkar AAAC 120 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>314</td>
+                    <td>Bongkar AAAC 150 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>315</td>
+                    <td>Bongkar AAAC 240 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>316</td>
+                    <td>Bongkar AAACS 70 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>317</td>
+                    <td>Bongkar AAACS 150 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>318</td>
+                    <td>Bongkar AAACS 240 mm dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>319</td>
+                    <td>Bongkar MVTIC 3x70 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>320</td>
+                    <td>Bongkar MVTIC 3x150 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>321</td>
+                    <td>Bongkar MVTIC 3x240 + G </td>
+                    <td>Gwg</td>
+                </tr><tr><td>322</td>
+                    <td>Bongkar MVTIC 3x70 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>323</td>
+                    <td>Bongkar MVTIC 3x150 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>324</td>
+                    <td>Bongkar MVTIC 3x240 + G dgn Pemadaman </td>
+                    <td>Gwg</td>
+                </tr><tr><td>325</td>
+                    <td>Bongkar Accessories MVTIC </td>
+                    <td>Gwg</td>
+                </tr><tr><td>326</td>
+                    <td>Bongkar GSW (ground steel wire) </td>
+                    <td>Gwg</td>
+                </tr><tr><td>327</td>
+                    <td>Bongkar TC. 3x25 s/d 3x35 mm + N </td>
+                    <td>Gwg</td>
+                </tr><tr><td>328</td>
+                    <td>Bongkar TC. 3x50 s/d 3x70 mm + N </td>
+                    <td>Gwg</td>
+                </tr><tr><td>329</td>
+                    <td>Bongkar Papan ulin pelindung kabel </td>
+                    <td>Kpg</td>
+                </tr><tr><td>330</td>
+                    <td>Bongkar Kabel Tray SKTM </td>
+                    <td>m'</td>
+                </tr><tr><td>331</td>
+                    <td>Bongkar Batu bata pelindung kabel </td>
+                    <td>m?</td>
+                </tr><tr><td>332</td>
+                    <td>Bongkar Buis Beton Pelindung Kabel (Manual) </td>
+                    <td>m?</td>
+                </tr><tr><td>333</td>
+                    <td>Bongkar Urugan pasir </td>
+                    <td>m?</td>
+                </tr><tr><td>334</td>
+                    <td>Bongkar Kabel Tanah 1X70 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>335</td>
+                    <td>Bongkar Kabel Tanah 1X150 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>336</td>
+                    <td>Bongkar Kabel Tanah 1X240 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>337</td>
+                    <td>Bongkar Kabel Tanah 3X70 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>338</td>
+                    <td>Bongkar Kabel Tanah 3X150 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>339</td>
+                    <td>Bongkar Kabel Tanah 3X240 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>340</td>
+                    <td>Bongkar Kabel Tanah 1X300 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>341</td>
+                    <td>Bongkar Kabel Tanah 1X400 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>342</td>
+                    <td>Bongkar Kabel Tanah 1X500 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>343</td>
+                    <td>Bongkar Kabel Tanah 1X630 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>344</td>
+                    <td>Bongkar Kabel Tanah 1X800 mm? 20 kV </td>
+                    <td>Mtr</td>
+                </tr><tr><td>345</td>
+                    <td>Bongkar SR 1 Phase </td>
+                    <td>Plg</td>
+                </tr><tr><td>346</td>
+                    <td>Bongkar SR 3 Phase </td>
+                    <td>Plg</td>
+                </tr><tr><td>347</td>
+                    <td>Bongkar Isolator Tarik (1 set 2 piringan) </td>
+                    <td>Set</td>
+                </tr><tr><td>348</td>
+                    <td>Bongkar Accesoris Druckshoor </td>
+                    <td>Set</td>
+                </tr><tr><td>349</td>
+                    <td>Bongkar Treckshoor Anchor Spiral </td>
+                    <td>Set</td>
+                </tr><tr><td>350</td>
+                    <td>Bongkar Treckshoor Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>351</td>
+                    <td>Bongkar Treckshoor Beton Blok Bertulang SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>352</td>
+                    <td>Bongkar Semi Kontramast Anchor Spiral SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>353</td>
+                    <td>Bongkar Semi Kontramast Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>354</td>
+                    <td>Bongkar Semi Kontramast Beton Blok Bertulang SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>355</td>
+                    <td>Bongkar Aksesoris Kontramast Anchor Spiral SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>356</td>
+                    <td>Bongkar Aksesoris Kontramast Ulin 10x10x200 cm </td>
+                    <td>Set</td>
+                </tr><tr><td>357</td>
+                    <td>Bongkar Aksesoris Kontramast Beton Blok Bertulang </td>
+                    <td>Set</td>
+                </tr><tr><td>358</td>
+                    <td>Bongkar Pancang Ulin (2 kaki) </td>
+                    <td>Set</td>
+                </tr><tr><td>359</td>
+                    <td>Bongkar Sepatu Tiang </td>
+                    <td>Set</td>
+                </tr><tr><td>360</td>
+                    <td>Bongkar Pancang Ulin (4 kaki) </td>
+                    <td>Set</td>
+                </tr><tr><td>361</td>
+                    <td>Bongkar Pancang Beton (2 bh) + Palang UNP (2 bh) SUTM </td>
+                    <td>Set</td>
+                </tr><tr><td>362</td>
+                    <td>Bongkar Penghalang Panjat </td>
+                    <td>Set</td>
+                </tr><tr><td>363</td>
+                    <td>Bongkar Plat tanda Bahaya </td>
+                    <td>Set</td>
+                </tr><tr><td>364</td>
+                    <td>Bongkar LBS Motorized / Recloser / OMC lkp  </td>
+                    <td>Set</td>
+                </tr><tr><td>365</td>
+                    <td>Bongkar LBS Three way lkp  </td>
+                    <td>Set</td>
+                </tr><tr><td>366</td>
+                    <td>Bongkar LBS Manual lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>367</td>
+                    <td>Bongkar DS manual lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>368</td>
+                    <td>Bongkar Pentanahan Arde TM 2,75 m </td>
+                    <td>Set</td>
+                </tr><tr><td>369</td>
+                    <td>Bongkar Pentanahan Arde TM 5,5 m </td>
+                    <td>Set</td>
+                </tr><tr><td>370</td>
+                    <td>Bongkar Pentanahan Arde Dengan Ground Rod 2.75-3 m </td>
+                    <td>Set</td>
+                </tr><tr><td>371</td>
+                    <td>Bongkar Pentanahan Arde Dengan Ground Rod 5.5-6 m </td>
+                    <td>Set</td>
+                </tr><tr><td>372</td>
+                    <td>Bongkar Plat Simpul/Kupingan Las di Tiang </td>
+                    <td>Set</td>
+                </tr><tr><td>373</td>
+                    <td>Bongkar Plat Simpul/Kupingan Las di Clamp </td>
+                    <td>Set</td>
+                </tr><tr><td>374</td>
+                    <td>Bongkar Support Selubung Slope (TS2G) u/ T. Beton dan T.Besi </td>
+                    <td>Set</td>
+                </tr><tr><td>375</td>
+                    <td>Bongkar Jointing kabel single core </td>
+                    <td>Set</td>
+                </tr><tr><td>376</td>
+                    <td>Bongkar Jointing kabel 3 core  </td>
+                    <td>Set</td>
+                </tr><tr><td>377</td>
+                    <td>Bongkar Terminating Kabel single core </td>
+                    <td>Set</td>
+                </tr><tr><td>378</td>
+                    <td>Bongkar Terminating Kabel 3 core </td>
+                    <td>Set</td>
+                </tr><tr><td>379</td>
+                    <td>Bongkar Accessories TR </td>
+                    <td>Set</td>
+                </tr><tr><td>380</td>
+                    <td>Bongkar Treckshoor Beton Blok Bertulang SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>381</td>
+                    <td>Bongkar Semi Kontramast Anchor Spiral SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>382</td>
+                    <td>Bongkar Semi Kontramast Beton Blok Bertulang SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>383</td>
+                    <td>Bongkar Aksesoris Kontramast Anchor Spiral SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>384</td>
+                    <td>Bongkar Sepatu Tiang dari Ulin </td>
+                    <td>Set</td>
+                </tr><tr><td>385</td>
+                    <td>Bongkar Sepatu Tiang dari Beton Bertulang </td>
+                    <td>Set</td>
+                </tr><tr><td>386</td>
+                    <td>Bongkar Pancang Ulin (2 kaki) + Palang Ulin (2 Buah) </td>
+                    <td>Set</td>
+                </tr><tr><td>387</td>
+                    <td>Bongkar Pancang Beton (2 bh) + Palang UNP (2 bh) SUTR </td>
+                    <td>Set</td>
+                </tr><tr><td>388</td>
+                    <td>Bongkar CT - TR 3 buah  </td>
+                    <td>Set</td>
+                </tr><tr><td>389</td>
+                    <td>Bongkar Bordes trafo (Gardu Portal) </td>
+                    <td>Set</td>
+                </tr><tr><td>390</td>
+                    <td>Bongkar Bordes trafo (Gardu Cantol) </td>
+                    <td>Set</td>
+                </tr><tr><td>391</td>
+                    <td>Bongkar LV Board Instalasi 2 jurusan </td>
+                    <td>Set</td>
+                </tr><tr><td>392</td>
+                    <td>Bongkar LV Board Instalasi 4 jurusan </td>
+                    <td>Set</td>
+                </tr><tr><td>393</td>
+                    <td>Bongkar perlengkapan LV Board / 2 jurusan tiang tunggal + instalasi </td>
+                    <td>Set</td>
+                </tr><tr><td>394</td>
+                    <td>Bongkar perlengkapan LV Board / 4 jurusan tiang ganda + Instalasi </td>
+                    <td>Set</td>
+                </tr><tr><td>395</td>
+                    <td>Bongkar Kubikel Incoming (LBS) lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>396</td>
+                    <td>Bongkar Kubikel Outgoing (CBOG) + Metering lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>397</td>
+                    <td>Bongkar Wall Saklar atau L. Bow Saklar </td>
+                    <td>Set</td>
+                </tr><tr><td>398</td>
+                    <td>Bongkar Fuse Base Din </td>
+                    <td>Set</td>
+                </tr><tr><td>399</td>
+                    <td>Bongkar Kabel Inlet + Pipa lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>400</td>
+                    <td>Bongkar Kabel Outlet + Pipa lkp </td>
+                    <td>Set</td>
+                </tr><tr><td>401</td>
+                    <td>Bongkar Fuse Protection 20 kV + RCU </td>
+                    <td>Set</td>
+                </tr><tr><td>402</td>
+                    <td>Bongkar LBS Motorized + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>403</td>
+                    <td>Bongkar Recloser + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>404</td>
+                    <td>Bongkar LBS Threeway + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>405</td>
+                    <td>Bongkar Pole Capasitor 20 kV + RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>406</td>
+                    <td>Bongkar End Voltage Monitoring </td>
+                    <td>Set</td>
+                </tr><tr><td>407</td>
+                    <td>Bongkar FIOHL (3 bh) + Box RTU </td>
+                    <td>Set</td>
+                </tr><tr><td>408</td>
+                    <td>Bongkar Kubikel ACO TM (CB / LBS) </td>
+                    <td>Set</td>
+                </tr><tr><td>409</td>
+                    <td>Bongkar ACO TR Build In (s.d 400A) </td>
+                    <td>Set</td>
+                </tr><tr><td>410</td>
+                    <td>Bongkar Power Supply </td>
+                    <td>Set</td>
+                </tr><tr><td>411</td>
+                    <td>Bongkar Baterai </td>
+                    <td>Set</td>
+                </tr><tr><td>412</td>
+                    <td>Bongkar Track Skur </td>
+                    <td>Set</td>
+                </tr><tr><td>413</td>
+                    <td>Bongkar Pondasi Angkur </td>
+                    <td>Set</td>
+                </tr><tr><td>414</td>
+                    <td>Bongkar Pondasi Tower triangle </td>
+                    <td>Set</td>
+                </tr><tr><td>415</td>
+                    <td>Bongkar Stage Tower Triangle (Erection Tower) </td>
+                    <td>Set</td>
+                </tr><tr><td>416</td>
+                    <td>Bongkar Tiang Antena (Monopole) </td>
+                    <td>Set</td>
+                </tr><tr><td>417</td>
+                    <td>Bongkar Patok Rambu Kabel Tanah </td>
+                    <td>Titik</td>
+                </tr><tr><td>418</td>
+                    <td>Bongkar Buntut / Kumis TR + Bongkar </td>
+                    <td>Titik</td>
+                </tr><tr><td>419</td>
+                    <td>Bongkar VT TM Outdoor (type 2 Pole) </td>
+                    <td>Unit</td>
+                </tr><tr><td>420</td>
+                    <td>Bongkar Incoming Cubicle 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>421</td>
+                    <td>Bongkar Buscoupler Cubicle 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>422</td>
+                    <td>Bongkar Bus VT/LA 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>423</td>
+                    <td>Bongkar Bus Riser (with DS / Non DS) 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>424</td>
+                    <td>Bongkar kWh Meter Elektronik 3 Phasa ready AMR + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>425</td>
+                    <td>Bongkar Announciator 4 window </td>
+                    <td>Unit</td>
+                </tr><tr><td>426</td>
+                    <td>Bongkar Alarm Trip Kubikel </td>
+                    <td>Unit</td>
+                </tr><tr><td>427</td>
+                    <td>Bongkar Selector UFR 5 Step 2 Poles + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>428</td>
+                    <td>Bongkar Selector LR / ON-OFF 2 Poles + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>429</td>
+                    <td>Bongkar Relay Proteksi OCGF / Direction / Reverse Power + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>430</td>
+                    <td>Bongkar Relay Proteksi UFR + Wiring </td>
+                    <td>Unit</td>
+                </tr><tr><td>431</td>
+                    <td>Bongkar Bus Local Distribution Transformer 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>432</td>
+                    <td>Bongkar Bus Tie 20 kV Gardu Induk </td>
+                    <td>Unit</td>
+                </tr><tr><td>433</td>
+                    <td>Bongkar CT Indoor 50-2000 A </td>
+                    <td>Unit</td>
+                </tr><tr><td>434</td>
+                    <td>Bongkar VT Indoor </td>
+                    <td>Unit</td>
+                </tr><tr><td>435</td>
+                    <td>Pengelasan LV Board</td>
+                    <td>Unit</td>
+                </tr><tr><td>436</td>
+                    <td>Pengecekan titik sambung gardu</td>
+                    <td>Set</td>
+                </tr><tr><td>437</td>
+                    <td>Pelumasan kontak sambung gardu</td>
+                    <td>Set</td>
+                </tr><tr><td>438</td>
+                    <td>Pasang Penghalang Hewan</td>
+                    <td>Titik</td>
+                </tr><tr><td>439</td>
+                    <td>Bongkar Box Mtrz/Rcl</td>
+                    <td>Set</td>
+                </tr><tr><td>440</td>
+                    <td>Pasang Box Mtrz/Rcl</td>
+                    <td>Set</td>
+                </tr><tr><td>441</td>
+                    <td>Penyesuaian Fuse Link</td>
+                    <td>Buah</td>
+                </tr><tr><td>442</td>
+                    <td>Pasang SR 1 Phase</td>
+                    <td>Plg</td>
+                </tr><tr><td>443</td>
+                    <td>Pembersihan Benda Asing di JTM</td>
+                    <td>Titik</td>
+                </tr><tr><td>444</td>
+                    <td>Pengecekan Fuse Link</td>
+                    <td>Buah</td>
+                </tr><tr><td>445</td>
+                    <td>Bongkar Bending Wire</td>
+                    <td>Buah</td>
+                </tr><tr><td>446</td>
+                    <td>Pasang Bending Wire</td>
+                    <td>Buah</td>
+                </tr><tr><td>447</td>
+                    <td>Pemeliharaan LBS Manual</td>
+                    <td>Set</td>
+                </tr><tr><td>448</td>
+                    <td>Bongkar Kontramast</td>
+                    <td>Set</td>
+                </tr><tr><td>449</td>
+                    <td>Pasang Kontramast</td>
+                    <td>Set</td>
+                </tr><tr><td>450</td>
+                    <td>Perbaikan Kawat Rantas</td>
+                    <td>Titik</td>
+                </tr><tr><td>451</td>
+                    <td>Pasang UGB</td>
+                    <td>Set</td>
+                </tr><tr><td>452</td>
+                    <td>Bongkar UGB</td>
+                    <td>Set</td>
+                </tr><tr><td>453</td>
+                    <td>Perbaikan Andongan JTR</td>
+                    <td>Gwg</td>
+                </tr><tr><td>454</td>
+                    <td>Perbaikan Andongan JTM</td>
+                    <td>Gwg</td>
+                </tr><tr><td>455</td>
+                    <td>Pasang MCA</td>
+                    <td>Buah</td>
+                </tr><tr><td>456</td>
+                    <td>Bongkar MCA</td>
+                    <td>Buah</td>
+                </tr><tr><td>457</td>
+                    <td>Pengecatan LV Board</td>
+                    <td>Set</td>
+                </tr><tr><td>458</td>
+                    <td>Pemerataan Beban </td>
+                    <td>Gardu</td>
+                </tr><tr><td>459</td>
+                    <td>Bongkar Druckshoor </td>
+                    <td>Set</td>
+                </tr><tr><td>460</td>
+                    <td>Pasang Druckshoor </td>
+                    <td>Set</td>
+                </tr><tr><td>461</td>
+                    <td>Pasang Treeguard</td>
+                    <td>Gwg</td>
+                </tr><tr><td>462</td>
+                    <td>Pasang Pelindung Konduktor (Pipa Westpex)</td>
+                    <td>Meter</td>
+                </tr><tr><td>463</td>
+                    <td>Pasang Genset</td>
+                    <td>Set</td>
+                </tr><tr><td>464</td>
+                    <td>Bongkar Genset</td>
+                    <td>Set</td>
+                </tr><tr><td>465</td>
+                    <td>Pembersihan Lingkungan Gardu</td>
+                    <td>Lokasi</td>
+                </tr><tr><td>466</td>
+                    <td>Perbaikan Engsel LV Board</td>
+                    <td>Set</td>
+                </tr><tr><td>467</td>
+                    <td>Pembersihan Isolator</td>
+                    <td>Buah</td>
+                </tr><tr><td>468</td>
+                    <td>Pengepresan SAA/SAT</td>
+                    <td>Buah</td>
+                </tr><tr><td>469</td>
+                    <td>Penarikan UHGW</td>
+                    <td>Gwg</td>
+                </tr><tr><td>470</td>
+                    <td>Penyesuaian NH / NT Fuse</td>
+                    <td>Buah</td>
+                </tr><tr><td>471</td>
+                    <td>Pemasangan Penangkal Petir</td>
+                    <td>Set</td>
+                </tr><tr><td>472</td>
+                    <td>Pemasangan UPS</td>
+                    <td>Set</td>
+                </tr><tr><td>473</td>
+                    <td>Penyesuaian TAP Trafo</td>
+                    <td>Buah</td>
+                </tr><tr><td>474</td>
+                    <td>Pasang Pancang Besi Travers (2 kaki)</td>
+                    <td>Set</td>
+                </tr><tr><td>475</td>
+                    <td>Penomoran Gardu</td>
+                    <td>Gardu</td>
+                </tr><tr><td>476</td>
+                    <td>Pasang Support Traves untuk Tiang</td>
+                    <td>Set</td>
+                </tr><tr><td>477</td>
+                    <td>Bongkar Support Traves untuk Tiang</td>
+                    <td>Set</td>
+                </tr><tr><td>478</td>
+                    <td>Penambalan Trafo</td>
+                    <td>Buah</td>
+                </tr><tr><td>479</td>
+                    <td>Pengepresan Sepatu Kabel 95-150 mm2  </td>
+                    <td>Buah</td>
+                </tr><tr><td>480</td>
+                    <td>Pengepresan Sepatu Kabel 30-70 mm2  </td>
+                    <td>Buah</td>
+                </tr><tr><td>481</td>
+                    <td>Pengepresan Sepatu Kabel 10-25 mm2 </td>
+                    <td>Buah</td>
+                </tr><tr><td>482</td>
+                    <td>Pengepresan Sepatu Kabel 240 mm2  </td>
+                    <td>Buah</td>
+                </tr><tr><td>483</td>
+                    <td>Pemasangan Sticker (scotlight) pada Tiang</td>
+                    <td>Titik</td>
+                </tr><tr><td>484</td>
+                    <td>Pasang Current Limiting Device (CLD)</td>
+                    <td>Buah</td>
+                </tr><tr><td>485</td>
+                    <td>Bongkar Current Limiting Device (CLD)</td>
+                    <td>Buah</td>
+                </tr><tr><td>486</td>
+                    <td>Pasang Line Lightning Protection Device (LLPD)</td>
+                    <td>Buah</td>
+                </tr><tr><td>487</td>
+                    <td>Bongkar Line Lightning Protection Device (LLPD)</td>
+                    <td>Buah</td>
+                </tr><tr><td>488</td>
+                    <td>Pasang Alat Inovasi COMPOS</td>
+                    <td>Buah</td>
+                </tr><tr><td>489</td>
+                    <td>Bongkar Alat Inovasi COMPOS</td>
+                    <td>Buah</td>
+                </tr><tr><td>490</td>
+                    <td>Pemakaian Semen Konduktif</td>
+                    <td>Kg</td>
+                </tr>        </tbody>
+      </table>
+    </div>
+  </div>
+</div>        </section>
+        <div style='clear:both'></div>
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+          
+<strong>Copyright &copy; 2019 - KSKT-GO PLN KALSELTENG </strong> All rights reserved.       </footer>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- jQuery UI 1.11.4 -->
+    <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <link rel="stylesheet" href="https://ksktgojabar.xyz/asset/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://ksktgojabar.xyz/asset/jquery-1.12.4.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/jquery-ui.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button);</script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="https://ksktgojabar.xyz/asset/admin/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/pace/pace.min.js"></script> -->
+    <!-- DataTables -->
+    <!-- <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+    <!-- Morris.js charts -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script> -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Slimscroll -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="https://ksktgojabar.xyz/asset/admin/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://ksktgojabar.xyz/asset/admin/dist/js/app.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
+    <script>
+      $(function () { 
+        $("#example1").DataTable({
+           dom: 'Bfrtip',
+          buttons: [
+              {
+                  extend: 'pdf',
+                  filename: 'pekerjaan',
+                  orientation: 'landscape'
+              },
+              {
+                  extend: 'excel',
+                  filename: 'pekerjaan',
+                  orientation: 'landscape'
+              }
+          ],
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('#example2').DataTable({
+          "paging": false,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": false,
+          "autoWidth": true
+        });
+        $('.datepicker').datepicker();
+      });
+    </script>  
+  </body>
+</html>

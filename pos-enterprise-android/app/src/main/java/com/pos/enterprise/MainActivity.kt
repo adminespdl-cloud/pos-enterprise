@@ -6,6 +6,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
@@ -41,7 +46,7 @@ class MainActivity : ComponentActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
 
         setContent {
-            PosEnterpriseTheme(darkTheme = true) {
+            PosEnterpriseTheme(darkTheme = false) {
                 PosNavHost()
             }
         }
@@ -152,36 +157,11 @@ fun PosNavHost() {
                     Button(
                         onClick = { navController.popBackStack() },
                         modifier = Modifier.align(Alignment.BottomCenter).padding(32.dp)
-            // TransactionHistoryScreen — TODO di iterasi berikutnya
-            androidx.compose.material3.Surface(
-                modifier = androidx.compose.ui.Modifier,
-                color    = com.pos.enterprise.ui.theme.BgElevated,
-            ) {
-                androidx.compose.material3.Text(
-                    "Riwayat Transaksi — Coming Soon",
-                    color    = com.pos.enterprise.ui.theme.TextPrimary,
-                    modifier = androidx.compose.ui.Modifier.padding(24.dp),
-                )
-            }
-        }
-
-        // ── Shift ─────────────────────────────────────────────────
-        composable(Routes.SHIFT) {
-            // ShiftScreen — TODO di iterasi berikutnya
-            androidx.compose.material3.Surface(
-                modifier = Modifier,
-                color    = com.pos.enterprise.ui.theme.BgElevated,
-            ) {
-                androidx.compose.material3.Text(
-                    "Manajemen Shift — Coming Soon",
-                    color    = com.pos.enterprise.ui.theme.TextPrimary,
-                    modifier = androidx.compose.ui.Modifier.padding(24.dp),
-                )
+                    ) {
+                        Text("Kembali")
+                    }
+                }
             }
         }
     }
 }
-
-private val Modifier get() = androidx.compose.ui.Modifier
-private val Modifier.padding get() = this
-private fun androidx.compose.ui.Modifier.padding(all: androidx.compose.ui.unit.Dp) = this

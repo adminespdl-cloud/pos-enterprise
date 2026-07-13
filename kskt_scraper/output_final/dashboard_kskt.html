@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Laporan KSKT GO Jabar — ULP Padalarang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#0a0e1a; --bg2:#111827; --bg3:#1a2235; --card:#1e2a3a;
+  --border:#2a3a52; --accent:#3b82f6; --accent2:#06b6d4; --accent3:#8b5cf6;
+  --green:#10b981; --yellow:#f59e0b; --red:#ef4444;
+  --text:#e2e8f0; --muted:#94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;
+  box-shadow:0 4px 24px rgba(0,0,0,.5);}
+.header-inner{max-width:1600px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:16px;}
+.logo-box{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;
+  box-shadow:0 0 20px rgba(59,130,246,.4);flex-shrink:0;}
+.header-text h1{font-size:1.2rem;font-weight:700;color:#fff;}
+.header-text p{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.header-badge{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.badge{padding:5px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;letter-spacing:.5px;}
+.badge-blue{background:rgba(59,130,246,.2);color:var(--accent);border:1px solid rgba(59,130,246,.3);}
+.badge-green{background:rgba(16,185,129,.2);color:var(--green);border:1px solid rgba(16,185,129,.3);}
+
+/* NAV TABS */
+.nav-tabs{background:var(--bg2);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1600px;margin:0 auto;padding:0 32px;display:flex;gap:4px;overflow-x:auto;}
+.nav-tab{padding:14px 20px;font-size:.8rem;font-weight:500;color:var(--muted);
+  cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* MAIN */
+.main{max-width:1600px;margin:0 auto;padding:28px 32px;}
+.page{display:none;} .page.active{display:block;}
+
+/* SECTION TITLE */
+.sec-title{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:28px;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;
+  position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:default;}
+.kpi-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4);}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--c1),var(--c2));}
+.kpi-card.blue{--c1:#3b82f6;--c2:#06b6d4;} .kpi-card.purple{--c1:#8b5cf6;--c2:#ec4899;}
+.kpi-card.green{--c1:#10b981;--c2:#34d399;} .kpi-card.orange{--c1:#f59e0b;--c2:#f97316;}
+.kpi-card.cyan{--c1:#06b6d4;--c2:#0ea5e9;} .kpi-card.pink{--c1:#ec4899;--c2:#f43f5e;}
+.kpi-icon{font-size:1.6rem;margin-bottom:8px;}
+.kpi-value{font-size:1.9rem;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.kpi-label{font-size:.72rem;color:var(--muted);margin-top:5px;font-weight:500;}
+
+/* CHARTS */
+.chart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px;}
+.chart-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:28px;}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.chart-title{font-size:.85rem;font-weight:600;margin-bottom:3px;}
+.chart-sub{font-size:.7rem;color:var(--muted);margin-bottom:18px;}
+.chart-card.span2{grid-column:span 2;}
+
+/* TABLE */
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:28px;}
+.table-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.table-title{font-size:.88rem;font-weight:600;}
+.table-count{font-size:.7rem;color:var(--muted);background:var(--bg3);padding:4px 10px;border-radius:8px;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:.77rem;}
+thead th{background:var(--bg3);color:var(--muted);font-weight:600;font-size:.67rem;letter-spacing:.5px;
+  text-transform:uppercase;padding:9px 13px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}
+tbody tr{border-bottom:1px solid rgba(42,58,82,.5);transition:background .15s;}
+tbody tr:hover{background:rgba(59,130,246,.05);}
+tbody td{padding:9px 13px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis;}
+tbody td:first-child{color:var(--muted);font-weight:500;}
+.status{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.67rem;font-weight:600;}
+.s-baik{background:rgba(16,185,129,.15);color:var(--green);}
+.s-cukup{background:rgba(245,158,11,.15);color:var(--yellow);}
+.s-buruk{background:rgba(239,68,68,.15);color:var(--red);}
+
+/* SUB TABS */
+.sub-tabs{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap;}
+.sub-tab{padding:7px 16px;border-radius:8px;font-size:.76rem;font-weight:500;cursor:pointer;
+  color:var(--muted);transition:all .2s;border:1px solid transparent;}
+.sub-tab:hover{color:var(--text);background:var(--bg3);}
+.sub-tab.active{background:rgba(59,130,246,.15);color:var(--accent);border-color:rgba(59,130,246,.3);}
+.sub-content{display:none;} .sub-content.active{display:block;}
+
+/* ── GALLERY ── */
+.gallery-controls{display:flex;gap:12px;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
+.gallery-search{flex:1;min-width:200px;padding:10px 16px;background:var(--card);
+  border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.82rem;outline:none;}
+.gallery-search:focus{border-color:var(--accent);}
+.gallery-filter{padding:10px 14px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;color:var(--text);font-size:.8rem;outline:none;cursor:pointer;}
+.gallery-stats{font-size:.75rem;color:var(--muted);}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.gallery-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.gallery-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5);}
+.gallery-main{position:relative;height:160px;overflow:hidden;cursor:pointer;background:var(--bg3);}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.gallery-card:hover .gallery-main img{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;
+  align-items:center;justify-content:center;transition:background .2s;}
+.gallery-card:hover .gallery-overlay{background:rgba(0,0,0,.4);}
+.gallery-overlay span{color:#fff;font-size:.85rem;font-weight:600;opacity:0;transition:opacity .2s;}
+.gallery-card:hover .gallery-overlay span{opacity:1;}
+.photo-count{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;
+  padding:3px 8px;border-radius:8px;font-size:.68rem;font-weight:600;}
+.gallery-info{padding:12px 14px;}
+.gallery-id{font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:6px;}
+.gallery-thumbs{display:flex;gap:4px;overflow-x:auto;}
+.gallery-thumb{width:36px;height:36px;object-fit:cover;border-radius:6px;cursor:pointer;
+  border:2px solid transparent;transition:border-color .2s;flex-shrink:0;}
+.gallery-thumb:hover{border-color:var(--accent);}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;
+  align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;}
+.lightbox-inner img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;}
+.lightbox-close{position:absolute;top:-40px;right:0;color:#fff;font-size:1.8rem;
+  cursor:pointer;background:none;border:none;line-height:1;}
+.lightbox-info{color:#94a3b8;font-size:.78rem;margin-top:10px;text-align:center;}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;
+  width:44px;height:44px;font-size:1.2rem;cursor:pointer;transition:background .2s;}
+.lightbox-nav:hover{background:rgba(255,255,255,.3);}
+.lb-prev{left:-60px;} .lb-next{right:-60px;}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:.73rem;
+  border-top:1px solid var(--border);margin-top:20px;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+@media(max-width:768px){
+  .chart-grid{grid-template-columns:1fr;}
+  .chart-grid-2{grid-template-columns:1fr;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .main{padding:16px;}
+  .header-inner{padding:12px 16px;}
+  .nav-inner{padding:0 16px;}
+  .lb-prev{left:-10px;} .lb-next{right:-10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-box">⚡</div>
+    <div class="header-text">
+      <h1>Dashboard Manajemen Jaringan — ULP Padalarang</h1>
+      <p>KSKT GO Jawa Barat &nbsp;|&nbsp; Data per Juli 2026</p>
+    </div>
+    <div class="header-badge">
+      <span class="badge badge-green">● LIVE DATA</span>
+      <span class="badge badge-blue">KOORDINATOR</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <div class="nav-inner">
+    <div class="nav-tab active" onclick="showPage('dashboard',this)">📊 Dashboard</div>
+    <div class="nav-tab" onclick="showPage('data_aset',this)">🗼 Data Aset</div>
+    <div class="nav-tab" onclick="showPage('assessment',this)">🔍 Assessment</div>
+    <div class="nav-tab" onclick="showPage('jadwal',this)">📋 Jadwal</div>
+    <div class="nav-tab" onclick="showPage('galeri',this)">📸 Galeri Foto (176 foto)</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══ PAGE: DASHBOARD ══════════════════════════════════════ -->
+<div id="page-dashboard" class="page active">
+
+  <div class="sec-title">Ringkasan Data Aset & Kegiatan</div>
+  <div class="kpi-grid">
+    <div class="kpi-card blue"><div class="kpi-icon">🗼</div><div class="kpi-value">100</div><div class="kpi-label">Data Tiang</div></div>
+    <div class="kpi-card purple"><div class="kpi-icon">🏭</div><div class="kpi-value">100</div><div class="kpi-label">Data Gardu</div></div>
+    <div class="kpi-card green"><div class="kpi-icon">🌳</div><div class="kpi-value">100</div><div class="kpi-label">Data Pohon ROW</div></div>
+    <div class="kpi-card orange"><div class="kpi-icon">📋</div><div class="kpi-value">150</div><div class="kpi-label">Jadwal ROW</div></div>
+    <div class="kpi-card cyan"><div class="kpi-icon">🔍</div><div class="kpi-value">50</div><div class="kpi-label">Ass. Peralatan</div></div>
+    <div class="kpi-card blue"><div class="kpi-icon">🏚️</div><div class="kpi-value">50</div><div class="kpi-label">Ass. Gardu</div></div>
+    <div class="kpi-card purple"><div class="kpi-icon">🌿</div><div class="kpi-value">50</div><div class="kpi-label">Ass. ROW</div></div>
+    <div class="kpi-card pink"><div class="kpi-icon">📸</div><div class="kpi-value">176</div><div class="kpi-label">Foto Lapangan</div></div>
+    <div class="kpi-card green"><div class="kpi-icon">🗼</div><div class="kpi-value">100</div><div class="kpi-label">Tiang Berfoto</div></div>
+  </div>
+
+  <div class="sec-title">Analisis Status Assessment</div>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Status Assessment Peralatan</div>
+      <div class="chart-sub">Distribusi kondisi peralatan jaringan</div>
+      <canvas id="chartAssPeralatan" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Status Assessment Gardu</div>
+      <div class="chart-sub">Distribusi kondisi gardu distribusi</div>
+      <canvas id="chartAssGardu" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Status Pohon ROW</div>
+      <div class="chart-sub">Status pohon di right-of-way</div>
+      <canvas id="chartAssRow" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="sec-title">Distribusi Aset & Jadwal</div>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Tiang per Feeder</div>
+      <div class="chart-sub">Top 10 feeder berdasarkan jumlah tiang</div>
+      <canvas id="chartTiangFeeder" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Jadwal ROW per Feeder</div>
+      <div class="chart-sub">Jumlah jadwal pekerjaan ROW per feeder</div>
+      <canvas id="chartJadwalFeeder" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Rekap Assessment</div>
+      <div class="chart-sub">Total per uraian pekerjaan assessment</div>
+      <canvas id="chartRekap" height="220"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE: DATA ASET ══════════════════════════════════════ -->
+<div id="page-data_aset" class="page">
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSub('tiang',this)">🗼 Data Tiang (100 record)</div>
+    <div class="sub-tab" onclick="showSub('gardu',this)">🏭 Data Gardu (100 record)</div>
+    <div class="sub-tab" onclick="showSub('pohon',this)">🌳 Data Pohon (100 record)</div>
+  </div>
+
+  <div id="sub-tiang" class="sub-content active">
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-title">Data Tiang Jaringan — ULP Padalarang</div>
+        <div class="table-count">Menampilkan 50 dari 100 record</div>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>No</th><th>ULP</th><th>FEEDER</th><th>SEGMENT</th><th>EAM</th><th>KODE TIANG</th><th>LAT</th><th>LNG</th><th>TIANG</th><th>TRAVERS</th><th>TRECK SCHOOR</th><th>DRUG SCHOOR</th><th>ARM TIE</th><th>PONDASI TIANG</th><th>KONDUKTOR</th><th>LA</th><th>FCO</th><th>GROUNDING</th><th>ISOLATOR TARIK</th><th>ISOLATOR TUMPU</th><th>TOP TIES</th><th>JUMPER</th><th>GWS</th><th>STATUS</th></tr></thead>
+        <tbody><tr><td>1</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR1</td><td>-6.9266</td><td>107.498959</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>2</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR10</td><td>-6.923982</td><td>107.498067</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>3</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR11</td><td>-6.923711</td><td>107.497719</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>4</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR12</td><td>-6.923358</td><td>107.497181</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td>ANDONGAN KENDOR</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Kurang</td></tr>
+<tr><td>5</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR13</td><td>-6.922989</td><td>107.496675</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>6</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR14</td><td>-6.922604</td><td>107.496172</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>7</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR15</td><td>-6.922234</td><td>107.495635</td><td>MIRING < 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>8</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR16</td><td>-6.92214</td><td>107.495033</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>9</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR17</td><td>-6.921718</td><td>107.495064</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>10</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR18</td><td>-6.921322</td><td>107.49509</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>11</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR19</td><td>-6.920837</td><td>107.49512</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>12</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR2</td><td>-6.92648</td><td>107.498755</td><td>MIRING < 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>13</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR20</td><td>-6.9205</td><td>107.495142</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>14</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR21</td><td>-6.920251</td><td>107.495161</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>15</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR22</td><td>-6.919789</td><td>107.495182</td><td>MIRING < 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>16</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23</td><td>-6.919751</td><td>107.495358</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>17</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R1</td><td>-6.919663</td><td>107.495749</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>18</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R2</td><td>-6.919576</td><td>107.496094</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>19</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R3</td><td>-6.919456</td><td>107.496454</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>20</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R4</td><td>-6.919306</td><td>107.496861</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>21</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R5</td><td>-6.919147</td><td>107.497292</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>22</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R6</td><td>-6.919025</td><td>107.497622</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>23</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R7</td><td>-6.918862</td><td>107.498048</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>24</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R8</td><td>-6.918652</td><td>107.498564</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>25</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR23R9</td><td>-6.918473</td><td>107.499048</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>26</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR24</td><td>-6.919546</td><td>107.495366</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>27</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR25</td><td>-6.919172</td><td>107.495382</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>28</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR26</td><td>-6.91869</td><td>107.495377</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>29</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR27</td><td>-6.918378</td><td>107.495365</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>30</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR28</td><td>-6.917973</td><td>107.495424</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>31</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR29</td><td>-6.917564</td><td>107.495428</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>32</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR3</td><td>-6.926262</td><td>107.498441</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>33</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR30</td><td>-6.917245</td><td>107.495269</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>34</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR31</td><td>-6.917098</td><td>107.495169</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>35</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR32</td><td>-6.916745</td><td>107.494983</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>36</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR33</td><td>-6.916617</td><td>107.494858</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>37</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR34</td><td>-6.916163</td><td>107.494571</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>38</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR35</td><td>-6.915943</td><td>107.494458</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>39</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR36</td><td>-6.91572</td><td>107.49433</td><td>MIRING < 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>40</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR37</td><td>-6.915692</td><td>107.494369</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>41</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR38</td><td>-6.915509</td><td>107.494744</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>42</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR39</td><td>-6.915346</td><td>107.495125</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>43</td><td>PADALARANG</td><td>BTJR</td><td></td><td></td><td>BTJR4-LBS-BTJR</td><td>-6.925937</td><td>107.498134</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>44</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR40</td><td>-6.915099</td><td>107.495539</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>45</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR41</td><td>-6.914902</td><td>107.495978</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>46</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR42</td><td>-6.91476</td><td>107.496298</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Kurang</td></tr>
+<tr><td>47</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR43</td><td>-6.91457</td><td>107.496536</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr>
+<tr><td>48</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR44</td><td>-6.914342</td><td>107.496995</td><td>KOROSI</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td>Kurang</td></tr>
+<tr><td>49</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR44R1</td><td>-6.914561</td><td>107.497157</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Baik</td></tr>
+<tr><td>50</td><td>PADALARANG</td><td>BTJR</td><td>PMT GI - REC SBK</td><td></td><td>BTJR44R2</td><td>-6.914839</td><td>107.497324</td><td>BAIK</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Cukup</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+  <div id="sub-gardu" class="sub-content">
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-title">Data Gardu Distribusi</div>
+        <div class="table-count">Menampilkan 50 dari 100 record</div>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>No</th><th>ULP</th><th>FEEDER</th><th>EAM</th><th>KODE GARDU</th><th>KODE TIANG</th><th>DAYA</th><th>ALAMAT</th><th>FCO GD</th><th>LA GD</th><th>BUSHING TM</th><th>BUSHING TR</th><th>GROUNDING TM</th><th>GROUNDING TR</th><th>KONSTRUKSI GARDU</th><th>KONSTRUKSI PHBTR</th><th>STATUS GARDU</th></tr></thead>
+        <tbody><tr><td>1</td><td>PADALARANG</td><td>PRBY</td><td>53585GD010000013550</td><td>GD-ACJJ</td><td></td><td>250</td><td>RW 30, Ciburuy, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012746</td><td>GD-AES</td><td>CKRH135</td><td>100</td><td>Cimahi, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td>PADALARANG</td><td>MWTI</td><td>53585GD010000012801</td><td>GD-AGF</td><td>PSLU190</td><td>250</td><td>Ciburahol-Cipeundeuy,Sarimukti,JawaBarat,40554,Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000014905</td><td>GD-AKO</td><td>CKRH97R15A</td><td>250</td><td>Jl. Cimerang</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000013069</td><td>GD-AKP</td><td>CKRH137</td><td>200</td><td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000013206</td><td>GD-APK</td><td>TKYO201R3</td><td>100</td><td>JL. RAYA CIKALONG WETAN-CIPEUNDEUY, Ciharashas, Jawa Barat, 40558, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td>PADALARANG</td><td>BTJR</td><td>53585GD010000012710</td><td>GD-ASN</td><td>CKRH57L8L6</td><td>160</td><td>Jalan Cangkorah, Cimahi, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012754</td><td>GD-ATM</td><td>CKRH97R36</td><td>250</td><td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>9</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012522</td><td>GD-AWR</td><td>CBA-SDA-91R56</td><td>160</td><td>Gadobangkong, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>10</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012523</td><td>GD-AWRA</td><td>CBA-SDA-91R58</td><td>250</td><td>Margajaya, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>11</td><td>PADALARANG</td><td>CCP</td><td>53585GD010000014827</td><td>GD-AZ</td><td>PRIMA CIBABAT</td><td>400</td><td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>12</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012528</td><td>GD-AZA</td><td>CBA-SDA-91R88</td><td>160</td><td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>13</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012524</td><td>GD-AZB</td><td>CBA-SDA-91R60</td><td>160</td><td>3, Gadobangkong, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>14</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000014998</td><td>GD-AZC</td><td>CKRH97R15A</td><td>100</td><td>STASIUN GEDOBANGKONG CIAMPEL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>15</td><td>PADALARANG</td><td>PBI</td><td>53585GD010000014841</td><td>GD-AZH</td><td>PRIMA CIBABAT</td><td>250</td><td>Kota Baru Parahyangan, Jayamekar, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>16</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012739</td><td>GD-BAR</td><td>CKRH92R9L5</td><td>160</td><td>Cimahi, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>17</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012738</td><td>GD-BARA</td><td>CKRH92R9L2</td><td>250</td><td>Cimahi, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>18</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012740</td><td>GD-BARB</td><td>CKRH92R15</td><td>250</td><td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>19</td><td>PADALARANG</td><td>PGP</td><td>53585GD010000012768</td><td>GD-BATU</td><td>CPTK50R9R5</td><td>100</td><td>Mekarsari, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>20</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012623</td><td>GD-BCAI</td><td>SLCU64</td><td>250</td><td>Nyalindung, Jawa Barat, 40532, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>21</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012622</td><td>GD-BCAS</td><td>TKYO78L23R4</td><td>250</td><td>Nyalindung, Jawa Barat, 40532, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>22</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012598</td><td>GD-BCIA_CKLW</td><td>CKLW407R84</td><td>250</td><td>03, Ciburuy, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>23</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012599</td><td>GD-BCI_CKLW</td><td>CKLW413</td><td>250</td><td>19, Tagogapu, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>24</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000019430</td><td>GD-BCM</td><td>PRIMA CIBABAT</td><td>160</td><td>Cimareme, Kabupaten Bandung Barat, Jawa Barat</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>25</td><td>PADALARANG</td><td>BTJR</td><td>53585GD010000012714</td><td>GD-BCP</td><td>CKRH110L11R4L2</td><td>250</td><td>Cimerang, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>26</td><td>PADALARANG</td><td>BTJR</td><td>53585GD010000012715</td><td>GD-BCPA</td><td>CKRH110L13</td><td>160</td><td>Cimerang, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>27</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012731</td><td>GD-BDH</td><td>CKRH82L55</td><td>250</td><td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>28</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012733</td><td>GD-BDHA</td><td>CKRH125R5</td><td>250</td><td>Laksanamekar, Jawa Barat, 40524, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>29</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012730</td><td>GD-BDHB</td><td>SLCU229L14</td><td>100</td><td>Jalan Raya Batujajar, Laksanamekar, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>30</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012509</td><td>GD-BDK</td><td>CBA-SDA-37R23R3</td><td>250</td><td>N3 Raya Padalarang, Kertamulya, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>31</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012597</td><td>GD-BDS</td><td>CKLW601R11L21</td><td>160</td><td>Ciburuy, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>32</td><td>PADALARANG</td><td>PGP</td><td>53585GD010000012771</td><td>GD-BGA</td><td>CPTK50R9R18</td><td>250</td><td>Mekarsari, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>33</td><td>PADALARANG</td><td>PGP</td><td>53585GD010000012778</td><td>GD-BGDA</td><td>CPTK50R54L20</td><td>160</td><td>Mekarsari, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>34</td><td>PADALARANG</td><td>PSLU</td><td>53585GD010000012548</td><td>GD-BGI</td><td>CKLW351L8</td><td>100</td><td>Cipada, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>35</td><td>PADALARANG</td><td>PGP</td><td>53585GD010000012777</td><td>GD-BGL</td><td>CPTK50R54L10</td><td>315</td><td>Mekarsari, Jawa Barat, 40552, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>36</td><td>PADALARANG</td><td>PRBY</td><td>53585GD010000013541</td><td>GD-BHL</td><td>CBA-MKL-25</td><td>100</td><td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>37</td><td>PADALARANG</td><td>PRBY</td><td>53585GD010000013542</td><td>GD-BHLA</td><td>CBA-MKL-33</td><td>100</td><td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>38</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012664</td><td>GD-BJG</td><td>TKYO174</td><td>100</td><td>Puteran, Jawa Barat, 40115, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>39</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012663</td><td>GD-BJGA</td><td>TKYO173L3</td><td>100</td><td>Ciharashas, Jawa Barat, 40558, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>40</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000019289</td><td>GD-BJK</td><td></td><td>400</td><td>JLN RAYA PADALARANG - CIANJUR</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>41</td><td>PADALARANG</td><td>PSLU</td><td>53585GD010000012555</td><td>GD-BJM</td><td>CKLW223L13</td><td>100</td><td>Cipada, Jawa Barat, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>42</td><td>PADALARANG</td><td>MWTI</td><td>53585GD010000012840</td><td>GD-BJN</td><td>PSLU418</td><td>100</td><td>Jatimekar,JawaBarat,40558,Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>43</td><td>PADALARANG</td><td>PSLU</td><td>53585GD010000012575</td><td>GD-BJO</td><td>CKLW91</td><td>250</td><td>RW 04, DESA CISOMANG, Tenjolaut, Jawa Barat, 41164, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>44</td><td>PADALARANG</td><td>MWTI</td><td>53585GD010000012785</td><td>GD-BJR</td><td>CPTK164</td><td>250</td><td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>45</td><td>PADALARANG</td><td>MWTI</td><td>53585GD010000012786</td><td>GD-BJRA</td><td>CPTK168</td><td>100</td><td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>46</td><td>PADALARANG</td><td>CKRH</td><td>53585GD010000012756</td><td>GD-BKN</td><td>CKRH137L6R2</td><td>100</td><td>Cipeundeuy, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>47</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000012647</td><td>GD-BKO</td><td>TKYO139</td><td>160</td><td>Mandalamukti, Jawa Barat, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>48</td><td>PADALARANG</td><td>CKLW</td><td>53585GD010000013068</td><td>GD-BKRY</td><td>SLCU88</td><td>100</td><td>DUSUN 3, Ciptagumati, Jawa Barat, 41164, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>49</td><td>PADALARANG</td><td>PBH</td><td>53585GD010000014891</td><td>GD-BKS_PBH</td><td>PRIMA CIBABAT</td><td>630</td><td>Kota Baru Parahyangan, Bojonghaleuang, Jawa Barat, 40714, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>50</td><td>PADALARANG</td><td>PRBY</td><td>53585GD010000012465</td><td>GD-BLA</td><td>CBA-KPG-48</td><td>315</td><td>RW 20, Ciburuy, Jawa Barat, 40553, Indonesia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+  <div id="sub-pohon" class="sub-content">
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-title">Data Pohon ROW</div>
+        <div class="table-count">Menampilkan 50 dari 100 record</div>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>No</th><th>FEEDER</th><th>SEGMENT</th><th>KODE TIANG</th><th>JENIS POHON</th><th>NAMA POHON</th><th>PEMILIK POHON</th><th>JARAK POHON</th><th>JARAK SAAT INI</th><th>TANGGAL EKSEKUSI</th><th>LAT</th><th>LNG</th><th>STATUS SAAT INI</th></tr></thead>
+        <tbody><tr><td>1</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L52</td><td>Nangka</td><td>Nangka651</td><td>Pribadi</td><td>1</td><td>0.67</td><td>SEGERA EKSEKUSI</td><td>-6.8469519</td><td>107.5175959</td><td>Buruk</td></tr>
+<tr><td>2</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L22</td><td>Cengkeh</td><td>Cengkeh001</td><td>Pribadi</td><td>1</td><td>0.67</td><td>SEGERA EKSEKUSI</td><td>-6.8469094</td><td>107.5103276</td><td>Buruk</td></tr>
+<tr><td>3</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L4</td><td>Ketapang</td><td>Ketapang461</td><td>Pribadi</td><td>3</td><td>2.28</td><td>2026-08-19</td><td>-6.8505682</td><td>107.5126351</td><td>Cukup</td></tr>
+<tr><td>4</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L2</td><td>Alpukat</td><td>Alpukat661</td><td>Pribadi</td><td>3</td><td>2.64</td><td>2026-11-02</td><td>-6.849115</td><td>107.5115683</td><td>Baik</td></tr>
+<tr><td>5</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R19</td><td>Pisang</td><td>Pisang381</td><td>Pribadi</td><td>3</td><td>1.68</td><td>2026-07-16</td><td>-6.8513663</td><td>107.5194265</td><td>Cukup</td></tr>
+<tr><td>6</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L6</td><td>Mahoni</td><td>Mahoni051</td><td>Pribadi</td><td>3</td><td>2.64</td><td>2026-11-02</td><td>-6.8497933</td><td>107.5111267</td><td>Baik</td></tr>
+<tr><td>7</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48</td><td>Ketapang</td><td>Ketapang201</td><td>Instansi (Lainnya)</td><td>2</td><td>1.34</td><td>SEGERA EKSEKUSI</td><td>-6.8485925</td><td>107.516618</td><td>Kurang</td></tr>
+<tr><td>8</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L8</td><td>Rambutan</td><td>Rambutan791</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8512067</td><td>107.5121883</td><td>Buruk</td></tr>
+<tr><td>9</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L2</td><td>Mangga</td><td>Mangga051</td><td>Pribadi</td><td>3</td><td>2.64</td><td>2026-11-02</td><td>-6.8499461</td><td>107.5126687</td><td>Baik</td></tr>
+<tr><td>10</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R7</td><td>Mangga</td><td>Mangga411</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8495535</td><td>107.5184051</td><td>Baik</td></tr>
+<tr><td>11</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R23L2R1</td><td>Mangga</td><td>Mangga901</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8518273</td><td>107.5184858</td><td>Cukup</td></tr>
+<tr><td>12</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L20</td><td>Mangga</td><td>Mangga471</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8519737</td><td>107.5089606</td><td>Cukup</td></tr>
+<tr><td>13</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L18</td><td>Cengkeh</td><td>Cengkeh821</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8474133</td><td>107.5109234</td><td>Baik</td></tr>
+<tr><td>14</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L84</td><td>Akasia</td><td>Akasia221</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8403967</td><td>107.5241533</td><td>Cukup</td></tr>
+<tr><td>15</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L26</td><td>Mangga</td><td>Mangga451</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8519933</td><td>107.5079352</td><td>Buruk</td></tr>
+<tr><td>16</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L5</td><td>Ketapang</td><td>Ketapang981</td><td>Pribadi</td><td>1</td><td>0.28</td><td>MENYENTUH, SEGERA EKSEKUSI</td><td>-6.8496581</td><td>107.5112499</td><td>Buruk</td></tr>
+<tr><td>17</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R8</td><td>Mangga</td><td>Mangga801</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8500193</td><td>107.5184821</td><td>Baik</td></tr>
+<tr><td>18</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L1</td><td>Mangga</td><td>Mangga901</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.84943</td><td>107.5126078</td><td>Cukup</td></tr>
+<tr><td>19</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R18</td><td>Pisang</td><td>Pisang851</td><td>Pribadi</td><td>2</td><td>0.68</td><td>SEGERA EKSEKUSI</td><td>-6.8511816</td><td>107.5191432</td><td>Buruk</td></tr>
+<tr><td>20</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L23</td><td>Tanaman Rambat / Areuy</td><td>Tanaman Rambat / Areuy341</td><td>Pribadi</td><td>2</td><td>1.01</td><td>SEGERA EKSEKUSI</td><td>-6.8466868</td><td>107.510588</td><td>Kurang</td></tr>
+<tr><td>21</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L11</td><td>Mangga</td><td>Mangga741</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8492968</td><td>107.5124031</td><td>Buruk</td></tr>
+<tr><td>22</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L22</td><td>Nangka</td><td>Nangka951</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8520011</td><td>107.5085547</td><td>Cukup</td></tr>
+<tr><td>23</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L17</td><td>Cengkeh</td><td>Cengkeh891</td><td>Pribadi</td><td>1</td><td>0.67</td><td>SEGERA EKSEKUSI</td><td>-6.8477275</td><td>107.5109795</td><td>Buruk</td></tr>
+<tr><td>24</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L23</td><td>Kencana</td><td>Kencana541</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8467111</td><td>107.5106119</td><td>Cukup</td></tr>
+<tr><td>25</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R18</td><td>Kersen</td><td>Kersen531</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8510476</td><td>107.5190806</td><td>Cukup</td></tr>
+<tr><td>26</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L44</td><td>Mangga</td><td>Mangga151</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8500337</td><td>107.5165691</td><td>Buruk</td></tr>
+<tr><td>27</td><td>PGP</td><td>AFTAK BATU</td><td>PGP32L42R1</td><td>Jambu</td><td>Jambu521</td><td>Pribadi</td><td>0</td><td>-0.72</td><td>MENYENTUH, SEGERA EKSEKUSI</td><td>-6.8505433</td><td>107.51693</td><td>Buruk</td></tr>
+<tr><td>28</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R11</td><td>Mangga</td><td>Mangga251</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8505646</td><td>107.5190547</td><td>Baik</td></tr>
+<tr><td>29</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R9</td><td>Mangga</td><td>Mangga511</td><td>Pribadi</td><td>1</td><td>0.67</td><td>SEGERA EKSEKUSI</td><td>-6.8501319</td><td>107.5185515</td><td>Buruk</td></tr>
+<tr><td>30</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R7L3</td><td>Mangga</td><td>Mangga691</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8489692</td><td>107.5187157</td><td>Baik</td></tr>
+<tr><td>31</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R7L1</td><td>Nangka</td><td>Nangka321</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8495211</td><td>107.5183868</td><td>Cukup</td></tr>
+<tr><td>32</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R6</td><td>Mangga</td><td>Mangga191</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8496932</td><td>107.5180307</td><td>Cukup</td></tr>
+<tr><td>33</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R2</td><td>Mangga</td><td>Mangga041</td><td>Pribadi</td><td>3</td><td>2.67</td><td>2026-11-05</td><td>-6.8489679</td><td>107.5169711</td><td>Baik</td></tr>
+<tr><td>34</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L55</td><td>Mahoni</td><td>Mahoni041</td><td>Pribadi</td><td>0</td><td>-0.33</td><td>MENYENTUH, SEGERA EKSEKUSI</td><td>-6.846167</td><td>107.5178974</td><td>Buruk</td></tr>
+<tr><td>35</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L9</td><td>Mahoni</td><td>Mahoni131</td><td>Pribadi</td><td>3</td><td>2.64</td><td>2026-11-02</td><td>-6.849922</td><td>107.510443</td><td>Baik</td></tr>
+<tr><td>36</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L3</td><td>Bambu</td><td>Bambu151</td><td>Pribadi</td><td>3</td><td>1.56</td><td>2026-07-16</td><td>-6.8491624</td><td>107.5114051</td><td>Cukup</td></tr>
+<tr><td>37</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L13L1</td><td>Mangga</td><td>Mangga651</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8490372</td><td>107.5115559</td><td>Cukup</td></tr>
+<tr><td>38</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L25</td><td>Jambu</td><td>Jambu191</td><td>Pribadi</td><td>2</td><td>1.28</td><td>SEGERA EKSEKUSI</td><td>-6.8519035</td><td>107.5082166</td><td>Kurang</td></tr>
+<tr><td>39</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L21</td><td>Jambu</td><td>Jambu801</td><td>Pribadi</td><td>2</td><td>1.28</td><td>SEGERA EKSEKUSI</td><td>-6.8520544</td><td>107.5088832</td><td>Kurang</td></tr>
+<tr><td>40</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L9</td><td>Mangga</td><td>Mangga821</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8513536</td><td>107.5113107</td><td>Cukup</td></tr>
+<tr><td>41</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L10L7</td><td>Belimbing</td><td>Belimbing291</td><td>Pribadi</td><td>3</td><td>2.64</td><td>2026-11-02</td><td>-6.8512007</td><td>107.5121934</td><td>Baik</td></tr>
+<tr><td>42</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L27</td><td>Mangga</td><td>Mangga941</td><td>Pribadi</td><td>0</td><td>-0.33</td><td>MENYENTUH, SEGERA EKSEKUSI</td><td>-6.8456928</td><td>107.5116959</td><td>Buruk</td></tr>
+<tr><td>43</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L48R23L2</td><td>Mangga</td><td>Mangga171</td><td>Pribadi</td><td>2</td><td>1.67</td><td>2026-07-28</td><td>-6.8519554</td><td>107.5185781</td><td>Cukup</td></tr>
+<tr><td>44</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L5</td><td>Mangga</td><td>Mangga501</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8496226</td><td>107.5146356</td><td>Buruk</td></tr>
+<tr><td>45</td><td>PGP</td><td>AFTAK BGA</td><td>PGP32L46L4</td><td>Pisang</td><td>Pisang321</td><td>Pribadi</td><td>2</td><td>0.56</td><td>SEGERA EKSEKUSI</td><td>-6.8495746</td><td>107.5151684</td><td>Buruk</td></tr>
+<tr><td>46</td><td>PGP</td><td>AFTAK CLM</td><td>PGP32L46L1</td><td>Mangga</td><td>Mangga571</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8495385</td><td>107.5162095</td><td>Cukup</td></tr>
+<tr><td>47</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L46</td><td>Mangga</td><td>Mangga401</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8493265</td><td>107.516327</td><td>Buruk</td></tr>
+<tr><td>48</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L43</td><td>Mangga</td><td>Mangga051</td><td>Pribadi</td><td>0</td><td>-0.36</td><td>MENYENTUH, SEGERA EKSEKUSI</td><td>-6.8504744</td><td>107.516729</td><td>Buruk</td></tr>
+<tr><td>49</td><td>PGP</td><td>SSO SKU SAMPAI PKBB</td><td>PGP32L44</td><td>Mangga</td><td>Mangga372</td><td>Pribadi</td><td>1</td><td>0.64</td><td>SEGERA EKSEKUSI</td><td>-6.8500599</td><td>107.5165559</td><td>Buruk</td></tr>
+<tr><td>50</td><td>PGP</td><td>AFTAK BATU</td><td>PGP32L42R1</td><td>Mangga</td><td>Mangga641</td><td>Pribadi</td><td>2</td><td>1.64</td><td>2026-07-25</td><td>-6.8507728</td><td>107.5168615</td><td>Cukup</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE: ASSESSMENT ══════════════════════════════════════ -->
+<div id="page-assessment" class="page">
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSub('ass_p',this)">🔧 Peralatan (50)</div>
+    <div class="sub-tab" onclick="showSub('ass_g',this)">🏚️ Gardu (50)</div>
+    <div class="sub-tab" onclick="showSub('ass_r',this)">🌿 ROW (50)</div>
+    <div class="sub-tab" onclick="showSub('ass_rekap',this)">📊 Rekap</div>
+  </div>
+  <div id="sub-ass_p" class="sub-content active">
+    <div class="table-card">
+      <div class="table-header"><div class="table-title">Assessment Peralatan & Konstruksi</div><div class="table-count">50 record</div></div>
+      <div class="table-wrap"><table><thead><tr><th>No</th><th>Feeder</th><th>Segment</th><th>No. Tiang</th><th>Tanggal</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R1</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>2</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R2</td><td>10 Juli 2026</td><td>Cukup</td></tr>
+<tr><td>3</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R3</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>4</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R4</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>5</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R5</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>6</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R6</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>7</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R7</td><td>10 Juli 2026</td><td>Cukup</td></tr>
+<tr><td>8</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R8</td><td>10 Juli 2026</td><td>Cukup</td></tr>
+<tr><td>9</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R9</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>10</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R10</td><td>10 Juli 2026</td><td>Kurang</td></tr>
+<tr><td>11</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R11</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>12</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R12</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>13</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R13</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>14</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R14</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>15</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R15</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>16</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R16</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>17</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R17</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>18</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R18</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>19</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R19</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>20</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R20</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>21</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R21</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>22</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R22</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>23</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R23</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>24</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R24</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>25</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L1</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>26</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L2</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>27</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L3</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>28</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L4</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>29</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L5</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>30</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L6</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>31</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L7</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>32</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L8</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>33</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L9</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>34</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L10</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>35</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L11</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>36</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L12</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>37</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L13</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>38</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L14</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>39</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L15</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>40</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L16</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>41</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>42</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L1</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>43</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L2</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>44</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU1</td><td>10 Juli 2026</td><td>Cukup</td></tr>
+<tr><td>45</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L3</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>46</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU2</td><td>10 Juli 2026</td><td>Cukup</td></tr>
+<tr><td>47</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L4</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>48</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU3</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>49</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L6</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>50</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L17L7</td><td>10 Juli 2026</td><td>Baik</td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div id="sub-ass_g" class="sub-content">
+    <div class="table-card">
+      <div class="table-header"><div class="table-title">Assessment Gardu</div><div class="table-count">50 record</div></div>
+      <div class="table-wrap"><table><thead><tr><th>No</th><th>No. Gardu</th><th>Daya</th><th>Alamat</th><th>Tanggal</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>GD-PSK</td><td>250</td><td>01, Tagogapu, Jawa Barat, 40553, Indonesia</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>2</td><td>GD-HMHA</td><td>250</td><td>Kertamulya, Jawa Barat, 40553, Indonesia</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>3</td><td>GD-KBC_MWTI</td><td>100</td><td>Ciroyom,JawaBarat,40115,Indonesia</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>4</td><td>GD-CJA</td><td>250</td><td>Ciroyom,JawaBarat,40115,Indonesia</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>5</td><td>GD-CJGR</td><td>100</td><td>JalanCisalak,Ciroyom,JawaBarat,40115,Indonesia</td><td>10 Juli 2026</td><td>Baik</td></tr>
+<tr><td>6</td><td>GD-CMT</td><td>100</td><td>Rende,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>7</td><td>GD-CJT</td><td>100</td><td>Cipeundeuy,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>8</td><td>GD-NGLB</td><td>100</td><td>Cipeundeuy,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>9</td><td>GD-CKP</td><td>100</td><td>Nyenang,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>10</td><td>GD-CAL</td><td>100</td><td>Sukahaji,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>11</td><td>GD-CRL</td><td>100</td><td>Sukahaji,JawaBarat,40558,Indonesia</td><td>09 Juli 2026</td><td>Baik</td></tr>
+<tr><td>12</td><td>GD-CSL</td><td>100</td><td>Jatimekar,JawaBarat,40558,Indonesia</td><td>08 Juli 2026</td><td>Baik</td></tr>
+<tr><td>13</td><td>GD-BJN</td><td>100</td><td>Jatimekar,JawaBarat,40558,Indonesia</td><td>08 Juli 2026</td><td>Kurang</td></tr>
+<tr><td>14</td><td>GD-PCE</td><td>50</td><td>Margalaksana, Kecamaten Cipeundeuy, Kabupaten Bandung Barat, Jawa Barat 40558</td><td>08 Juli 2026</td><td>Baik</td></tr>
+<tr><td>15</td><td>GD-CUDA</td><td>100</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>08 Juli 2026</td><td>Baik</td></tr>
+<tr><td>16</td><td>GD-CUD</td><td>100</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>08 Juli 2026</td><td>Baik</td></tr>
+<tr><td>17</td><td>GD-NGK</td><td>160</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>08 Juli 2026</td><td>Baik</td></tr>
+<tr><td>18</td><td>GD-CGB</td><td>100</td><td>Rende,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>19</td><td>GD-KCPG</td><td>100</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>20</td><td>GD-WRN</td><td>250</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>21</td><td>GD-CKO</td><td>100</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>22</td><td>GD-WRNA</td><td>100</td><td>WARUNG NANGKA A</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>23</td><td>GD-CBU</td><td>160</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>24</td><td>GD-NYGA</td><td>100</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>25</td><td>GD-NYG</td><td>160</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>07 Juli 2026</td><td>Baik</td></tr>
+<tr><td>26</td><td>GD-PSIS</td><td>100</td><td>Rende,JawaBarat,40558,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>27</td><td>GD-SAKU</td><td>160</td><td>Jln Sirnagalih Cipendeuy</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>28</td><td>GD-CPM</td><td>250</td><td>JalanSirnagalih,Sirnagalih,JawaBarat,40558,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>29</td><td>GD-PLR</td><td>50</td><td>Kanangasari,JawaBarat,40558,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>30</td><td>GD-COY</td><td>100</td><td>JalanSirnagalih,Sirnagalih,JawaBarat,40558,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>31</td><td>GD-COYA</td><td>250</td><td>JalanSirnagalih,Sirnagalih,JawaBarat,40558,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>32</td><td>GD-SGH</td><td>160</td><td>Sirnagalih,JawaBarat,40115,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>33</td><td>GD-CRTA</td><td>100</td><td>Ciroyom,JawaBarat,40115,Indonesia</td><td>06 Juli 2026</td><td>Baik</td></tr>
+<tr><td>34</td><td>GD-CAG</td><td>50</td><td>Kanangasari,JawaBarat,Indonesia</td><td>03 Juli 2026</td><td>Baik</td></tr>
+<tr><td>35</td><td>GD-CSI</td><td>100</td><td>Kanangasari,JawaBarat,Indonesia</td><td>03 Juli 2026</td><td>Baik</td></tr>
+<tr><td>36</td><td>GD-CPC</td><td>25</td><td>Kanangasari,JawaBarat,Indonesia</td><td>03 Juli 2026</td><td>Kurang</td></tr>
+<tr><td>37</td><td>GD-CRT</td><td>100</td><td>Ciroyom,JawaBarat,40115,Indonesia</td><td>03 Juli 2026</td><td>Baik</td></tr>
+<tr><td>38</td><td>GD-CRM</td><td>250</td><td>Ciroyom,JawaBarat,40558,Indonesia</td><td>03 Juli 2026</td><td>Baik</td></tr>
+<tr><td>39</td><td>GD-CTA</td><td>160</td><td>Jl. Cikadu 49-611, Ciroyom, Kecamaten Cipeundeuy, Kabupaten Bandung Barat, Jawa Barat 40558</td><td>03 Juli 2026</td><td>Baik</td></tr>
+<tr><td>40</td><td>GD-CDO</td><td>50</td><td>JL. SASAK SAAT TONGGOH CIDEPONG</td><td>02 Juli 2026</td><td>Baik</td></tr>
+<tr><td>41</td><td>GD-CEO</td><td>25</td><td>Kanangasari,JawaBarat,40532,Indonesia</td><td>02 Juli 2026</td><td>Baik</td></tr>
+<tr><td>42</td><td>GD-CRN</td><td>100</td><td>Ciroyom,JawaBarat,40558,Indonesia</td><td>02 Juli 2026</td><td>Baik</td></tr>
+<tr><td>43</td><td>GD-MGA</td><td>250</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>02 Juli 2026</td><td>Baik</td></tr>
+<tr><td>44</td><td>GD-CKUA</td><td>250</td><td>Margalaksana,JawaBarat,40558,Indonesia</td><td>02 Juli 2026</td><td>Baik</td></tr>
+<tr><td>45</td><td>GD-NLG</td><td>50</td><td>Sumurbandung,JawaBarat,40532,Indonesia</td><td>01 Juli 2026</td><td>Kurang</td></tr>
+<tr><td>46</td><td>GD-CPDB</td><td>100</td><td>Cipeundeuy,JawaBarat,40558,Indonesia</td><td>01 Juli 2026</td><td>Baik</td></tr>
+<tr><td>47</td><td>GD-BJRA</td><td>100</td><td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td><td>01 Juli 2026</td><td>Baik</td></tr>
+<tr><td>48</td><td>GD-BJR</td><td>250</td><td>Ciburahol-Cipeundeuy,Nyenang,JawaBarat,40558,Indonesia</td><td>01 Juli 2026</td><td>Baik</td></tr>
+<tr><td>49</td><td>GD-CWUC</td><td>100</td><td>Nyenang,JawaBarat,40558,Indonesia</td><td>01 Juli 2026</td><td>Baik</td></tr>
+<tr><td>50</td><td>GD-CWUB</td><td>100</td><td>Nyenang,JawaBarat,40558,Indonesia</td><td>01 Juli 2026</td><td>Baik</td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div id="sub-ass_r" class="sub-content">
+    <div class="table-card">
+      <div class="table-header"><div class="table-title">Assessment ROW (Right-of-Way)</div><div class="table-count">50 record</div></div>
+      <div class="table-wrap"><table><thead><tr><th>No</th><th>Feeder</th><th>Segment</th><th>No. Tiang</th><th>Tanggal</th><th>Nama Pohon</th><th>Pemilik Pohon</th><th>Status Pohon</th><th>Status Padam</th><th>Jarak Thd TM</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU24</td><td>10 Juli 2026</td><td>nangka dan selong921</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>2</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU23</td><td>10 Juli 2026</td><td>pisang261</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>3</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L21</td><td>10 Juli 2026</td><td>pohon alpukat881</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>4</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L16</td><td>10 Juli 2026</td><td>nangka dan pisang631</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>5</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L15</td><td>10 Juli 2026</td><td>mangga dan pisang361</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>6</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L13</td><td>10 Juli 2026</td><td>pisang dan rambutan981</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>7</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L11</td><td>10 Juli 2026</td><td>pisang971</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>8</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L10</td><td>10 Juli 2026</td><td>pisang251</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>9</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L8</td><td>10 Juli 2026</td><td>pisang581</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>10</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU19L5</td><td>10 Juli 2026</td><td>pisang581</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>11</td><td>PSLU</td><td>PMT GI - REC LDH</td><td>PSLU9</td><td>10 Juli 2026</td><td>mangga281</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>12</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L8</td><td>10 Juli 2026</td><td>jambu111</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>13</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI351L8</td><td>10 Juli 2026</td><td>beringin001</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>14</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R7</td><td>10 Juli 2026</td><td>rambutan581</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>15</td><td>MWTI</td><td>SSO MGA-UJUNG</td><td>MWTI323R6</td><td>10 Juli 2026</td><td>bambu311</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>16</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R23</td><td>09 Juli 2026</td><td>jambu air191</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>17</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R22</td><td>09 Juli 2026</td><td>rambutan111</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>18</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R16</td><td>09 Juli 2026</td><td>pisang041</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>19</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R15</td><td>09 Juli 2026</td><td>kopi371</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>20</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R13</td><td>09 Juli 2026</td><td>kayu jawa801</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>21</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R12</td><td>09 Juli 2026</td><td>sawo631</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>22</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R9</td><td>09 Juli 2026</td><td>alpukat301</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>23</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R7</td><td>09 Juli 2026</td><td>alpukat051</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>24</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R7</td><td>09 Juli 2026</td><td>rambutan 551</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>25</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R6</td><td>09 Juli 2026</td><td>cemara dan abutan851</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>26</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R6</td><td>09 Juli 2026</td><td>cemara271</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>3</td><td>Baik</td></tr>
+<tr><td>27</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R105</td><td>09 Juli 2026</td><td>kelapa371</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>28</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R5</td><td>09 Juli 2026</td><td>matoa891</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>29</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R4</td><td>09 Juli 2026</td><td>rambutan241</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>30</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R104</td><td>09 Juli 2026</td><td>jabon dan bambu611</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>31</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R3</td><td>09 Juli 2026</td><td>pisang321</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>3</td><td>Baik</td></tr>
+<tr><td>32</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R101</td><td>09 Juli 2026</td><td>sawo571</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>33</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R2</td><td>09 Juli 2026</td><td>kayu jawa551</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>34</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R97</td><td>09 Juli 2026</td><td>cengkeh 941</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>35</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R1R1</td><td>09 Juli 2026</td><td>pohon tinggi521</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>36</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R89</td><td>09 Juli 2026</td><td>palm dan mahoni691</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>37</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R83</td><td>09 Juli 2026</td><td>duren021</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>38</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R83</td><td>09 Juli 2026</td><td>nangka 211</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>39</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R72</td><td>09 Juli 2026</td><td>nangka331</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>40</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R70</td><td>09 Juli 2026</td><td>alkesa121</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>41</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R69</td><td>09 Juli 2026</td><td>rambutan921</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>42</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R58</td><td>09 Juli 2026</td><td>kelapa031</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>43</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R39</td><td>09 Juli 2026</td><td>rambutan421</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>44</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R38</td><td>09 Juli 2026</td><td>alpukat331</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>45</td><td>MWTI</td><td>LBS CPD-UJUNG</td><td>MWTI239R27</td><td>09 Juli 2026</td><td>rambutan331</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>46</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R43</td><td>08 Juli 2026</td><td>pisang431</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>2</td><td>Cukup</td></tr>
+<tr><td>47</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R39</td><td>08 Juli 2026</td><td>rambutan551</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>48</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R38</td><td>08 Juli 2026</td><td>rambutan991</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>1</td><td>Kurang</td></tr>
+<tr><td>49</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R37</td><td>08 Juli 2026</td><td>nangka991</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr>
+<tr><td>50</td><td>MWTI</td><td>BOX SST-REC NGL</td><td>MWTI42R36</td><td>08 Juli 2026</td><td>nangka821</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>0</td><td>Buruk</td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div id="sub-ass_rekap" class="sub-content">
+    <div class="table-card">
+      <div class="table-header"><div class="table-title">Rekap Assessment</div><div class="table-count">13 item</div></div>
+      <div class="table-wrap"><table><thead><tr><th>No</th><th>Uraian Pekerjaan</th><th>Satuan</th><th>Total</th></tr></thead><tbody><tr><td>A</td><td>REALISASI TIER-1 TIANG</td><td>KMS</td><td>0.2</td></tr>
+<tr><td>1</td><td>PERALATAN TIANG</td><td>TIANG</td><td>4.0</td></tr>
+<tr><td>2</td><td>ROW</td><td>KMS</td><td>0.0</td></tr>
+<tr><td>B</td><td>REALISASI TIER-1 GARDU</td><td>GARDU</td><td>0.0</td></tr>
+<tr><td>1</td><td>VISUAL GARDU</td><td>GARDU</td><td>0.0</td></tr>
+<tr><td>2</td><td>PERALATAN GARDU</td><td>GARDU</td><td>0.0</td></tr>
+<tr><td>C</td><td>REALISASI TIER-2 THERMOVISION</td><td>KMS</td><td>0.0</td></tr>
+<tr><td>1</td><td>THERMOVISION TM</td><td>TIANG</td><td>0.0</td></tr>
+<tr><td>2</td><td>THERMOVISION GD</td><td>GARDU</td><td>0.0</td></tr>
+<tr><td>D</td><td>REALISASI TIER-2 ULTRASOUND</td><td>KMS</td><td>0.0</td></tr>
+<tr><td>1</td><td>ULTRASOUND TM</td><td>TIANG</td><td>0.0</td></tr>
+<tr><td>E</td><td>PENGUKURAN GARDU</td><td>GARDU</td><td>0.0</td></tr>
+<tr><td>F</td><td>TEGANGAN UJUNG</td><td>TIANG</td><td>0.0</td></tr></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE: JADWAL ══════════════════════════════════════════ -->
+<div id="page-jadwal" class="page">
+  <div class="table-card">
+    <div class="table-header">
+      <div class="table-title">Jadwal Pekerjaan ROW</div>
+      <div class="table-count">Menampilkan 50 dari 150 record</div>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>No</th><th>Feeder</th><th>Segment</th><th>No. Tiang</th><th>Nama Pohon</th><th>Pemilik Pohon</th><th>Status Pohon</th><th>Status Padam</th><th>Kondisi</th><th>Status</th><th>Tahun</th></tr></thead>
+      <tbody><tr><td>1</td><td>PRBY</td><td>PMT PRBY - MTP</td><td>PRBY3</td><td>Pisang121</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>2</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L3</td><td>Palm481</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Cukup</td><td></td><td>2024</td></tr>
+<tr><td>3</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L16</td><td>Mangga581</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>4</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L17</td><td>Mangga841</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>5</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L17</td><td>Mangga502</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>6</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L17</td><td>Mangga323</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>7</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L19</td><td>Mangga471</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Cukup</td><td></td><td>2024</td></tr>
+<tr><td>8</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L21</td><td>Bambu811</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>9</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L22</td><td>Sukun501</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>10</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L27</td><td>Pisang461</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>11</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L36</td><td>Akasia021</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>12</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L36</td><td>Pisang541</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>13</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L43</td><td>Pisang721</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>14</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L44</td><td>Bambu471</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>15</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L46</td><td>Petai591</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>16</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L46</td><td>Petai612</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>17</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L49</td><td>Bambu011</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>18</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L50</td><td>Bambu011</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>19</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L51</td><td>Bambu851</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>20</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L52</td><td>Bambu821</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>21</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L52R2</td><td>Matoa411</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>22</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L52R2</td><td>Matoa442</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>23</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L52R3</td><td>Matoa101</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>24</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L53</td><td>Bambu901</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>25</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L54</td><td>Bambu131</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>26</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L56R2</td><td>Bambu431</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>27</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L56</td><td>Bambu801</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>28</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L57</td><td>Bambu581</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>29</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L60</td><td>Palm381</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>30</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L61</td><td>Palm001</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>31</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L63</td><td>Bambu611</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>32</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L64</td><td>Bambu481</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>33</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L65</td><td>Bambu531</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>34</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L65</td><td>Bambu002</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>35</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L66</td><td>Bambu951</td><td>Instansi (Lainnya)</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>36</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L70</td><td>Dadap461</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>37</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L74</td><td>Bambu451</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>38</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L82</td><td>Durian651</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>39</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L83</td><td>Durian611</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>40</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L83</td><td>Pisang721</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>41</td><td>PRBY</td><td>LBS GLA - UJUNG</td><td>PRBY10L87</td><td>Petai561</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>42</td><td>PRBY</td><td>AFTAK BLA</td><td>PRBY20R3</td><td>Manggis131</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Cukup</td><td></td><td>2024</td></tr>
+<tr><td>43</td><td>PRBY</td><td>REC MTP - REC RCB</td><td>PRBY15</td><td>Jamblang741</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>44</td><td>PRBY</td><td>REC RCBL SAMPAI SSO GNT</td><td>PRBY25</td><td>Jambu721</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>45</td><td>PRBY</td><td>REC RCBL SAMPAI SSO GNT</td><td>PRBY29</td><td>Mangga261</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>46</td><td>PRBY</td><td></td><td>PRBY20R10L1-LBS-BLA</td><td>Mangga321</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>47</td><td>PRBY</td><td></td><td>PRBY20R10L1-LBS-BLA</td><td>Kelor181</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Cukup</td><td></td><td>2024</td></tr>
+<tr><td>48</td><td>PRBY</td><td>AFTAK BLA</td><td>PRBY20R10L2</td><td>Jambu971</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr>
+<tr><td>49</td><td>PRBY</td><td>REC RCBL SAMPAI SSO GNT</td><td>PRBY33R7</td><td>Tanaman Rambat / Areuy111</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Buruk</td><td></td><td>2024</td></tr>
+<tr><td>50</td><td>PRBY</td><td>AFTAK BLA</td><td>PRBY20R10L11</td><td>Mangga151</td><td>Pribadi</td><td>Tidak Tebang</td><td>Tidak Padam</td><td>Kurang</td><td></td><td>2024</td></tr></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE: GALERI FOTO ════════════════════════════════════ -->
+<div id="page-galeri" class="page">
+  <div class="sec-title">Galeri Foto Lapangan Tiang</div>
+
+  <div class="gallery-controls">
+    <input type="text" class="gallery-search" id="gallerySearch"
+           placeholder="🔍  Cari ID tiang..." oninput="filterGallery()">
+    <select class="gallery-filter" id="gallerySort" onchange="filterGallery()">
+      <option value="all">Semua Tiang</option>
+      <option value="multi">Multi Foto (2+)</option>
+      <option value="single">1 Foto</option>
+    </select>
+    <div class="gallery-stats" id="galleryStats">100 tiang &bull; 176 foto total</div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    
+    <div class="gallery-card" data-id="291324">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291324_1.jpg')">
+        <img src="foto_tiang/tiang_291324_1.jpg" alt="Tiang 291324" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291324</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291324_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291324_1.jpg')" /><img src="foto_tiang/tiang_291324_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291324_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291325">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291325_1.jpg')">
+        <img src="foto_tiang/tiang_291325_1.jpg" alt="Tiang 291325" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291325</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291325_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291325_1.jpg')" /><img src="foto_tiang/tiang_291325_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291325_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291326">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291326_1.jpg')">
+        <img src="foto_tiang/tiang_291326_1.jpg" alt="Tiang 291326" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291326</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291326_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291326_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291327">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291327_1.jpg')">
+        <img src="foto_tiang/tiang_291327_1.jpg" alt="Tiang 291327" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291327</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291327_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291327_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291328">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291328_1.jpg')">
+        <img src="foto_tiang/tiang_291328_1.jpg" alt="Tiang 291328" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291328</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291328_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291328_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291329">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291329_1.jpg')">
+        <img src="foto_tiang/tiang_291329_1.jpg" alt="Tiang 291329" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291329</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291329_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291329_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291330">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291330_1.jpg')">
+        <img src="foto_tiang/tiang_291330_1.jpg" alt="Tiang 291330" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291330</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291330_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291330_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291331">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291331_1.jpg')">
+        <img src="foto_tiang/tiang_291331_1.jpg" alt="Tiang 291331" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291331</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291331_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291331_1.jpg')" /><img src="foto_tiang/tiang_291331_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291331_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291332">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291332_1.jpg')">
+        <img src="foto_tiang/tiang_291332_1.jpg" alt="Tiang 291332" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291332</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291332_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291332_1.jpg')" /><img src="foto_tiang/tiang_291332_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291332_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291333">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291333_1.jpg')">
+        <img src="foto_tiang/tiang_291333_1.jpg" alt="Tiang 291333" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291333</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291333_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291333_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291334">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291334_1.jpg')">
+        <img src="foto_tiang/tiang_291334_1.jpg" alt="Tiang 291334" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291334</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291334_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291334_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291335">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291335_1.jpg')">
+        <img src="foto_tiang/tiang_291335_1.jpg" alt="Tiang 291335" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291335</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291335_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291335_1.jpg')" /><img src="foto_tiang/tiang_291335_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291335_2.jpg')" /><img src="foto_tiang/tiang_291335_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291335_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291336">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291336_1.jpg')">
+        <img src="foto_tiang/tiang_291336_1.jpg" alt="Tiang 291336" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291336</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291336_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291336_1.jpg')" /><img src="foto_tiang/tiang_291336_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291336_2.jpg')" /><img src="foto_tiang/tiang_291336_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291336_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291337">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291337_1.jpg')">
+        <img src="foto_tiang/tiang_291337_1.jpg" alt="Tiang 291337" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291337</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291337_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291337_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291338">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291338_1.jpg')">
+        <img src="foto_tiang/tiang_291338_1.jpg" alt="Tiang 291338" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291338</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291338_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291338_1.jpg')" /><img src="foto_tiang/tiang_291338_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291338_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291339">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291339_1.jpg')">
+        <img src="foto_tiang/tiang_291339_1.jpg" alt="Tiang 291339" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291339</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291339_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291339_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291340">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291340_1.jpg')">
+        <img src="foto_tiang/tiang_291340_1.jpg" alt="Tiang 291340" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291340</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291340_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291340_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291341">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291341_1.jpg')">
+        <img src="foto_tiang/tiang_291341_1.jpg" alt="Tiang 291341" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291341</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291341_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291341_1.jpg')" /><img src="foto_tiang/tiang_291341_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291341_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291342">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291342_1.jpg')">
+        <img src="foto_tiang/tiang_291342_1.jpg" alt="Tiang 291342" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291342</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291342_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291342_1.jpg')" /><img src="foto_tiang/tiang_291342_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291342_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291343">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291343_1.jpg')">
+        <img src="foto_tiang/tiang_291343_1.jpg" alt="Tiang 291343" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291343</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291343_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291343_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291344">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291344_1.jpg')">
+        <img src="foto_tiang/tiang_291344_1.jpg" alt="Tiang 291344" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291344</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291344_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291344_1.jpg')" /><img src="foto_tiang/tiang_291344_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291344_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291345">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291345_1.jpg')">
+        <img src="foto_tiang/tiang_291345_1.jpg" alt="Tiang 291345" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291345</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291345_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291345_1.jpg')" /><img src="foto_tiang/tiang_291345_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291345_2.jpg')" /><img src="foto_tiang/tiang_291345_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291345_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291346">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291346_1.jpg')">
+        <img src="foto_tiang/tiang_291346_1.jpg" alt="Tiang 291346" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291346</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291346_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291346_1.jpg')" /><img src="foto_tiang/tiang_291346_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291346_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291347">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291347_1.jpg')">
+        <img src="foto_tiang/tiang_291347_1.jpg" alt="Tiang 291347" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291347</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291347_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291347_1.jpg')" /><img src="foto_tiang/tiang_291347_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291347_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291348">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291348_1.jpg')">
+        <img src="foto_tiang/tiang_291348_1.jpg" alt="Tiang 291348" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291348</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291348_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291348_1.jpg')" /><img src="foto_tiang/tiang_291348_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291348_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291349">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291349_1.jpg')">
+        <img src="foto_tiang/tiang_291349_1.jpg" alt="Tiang 291349" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291349</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291349_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291349_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291350">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291350_1.jpg')">
+        <img src="foto_tiang/tiang_291350_1.jpg" alt="Tiang 291350" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291350</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291350_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291350_1.jpg')" /><img src="foto_tiang/tiang_291350_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291350_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291351">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291351_1.jpg')">
+        <img src="foto_tiang/tiang_291351_1.jpg" alt="Tiang 291351" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291351</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291351_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291351_1.jpg')" /><img src="foto_tiang/tiang_291351_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291351_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291362">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291362_1.jpg')">
+        <img src="foto_tiang/tiang_291362_1.jpg" alt="Tiang 291362" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291362</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291362_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291362_1.jpg')" /><img src="foto_tiang/tiang_291362_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291362_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291363">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291363_1.jpg')">
+        <img src="foto_tiang/tiang_291363_1.jpg" alt="Tiang 291363" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291363</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291363_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291363_1.jpg')" /><img src="foto_tiang/tiang_291363_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291363_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291364">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291364_1.jpg')">
+        <img src="foto_tiang/tiang_291364_1.jpg" alt="Tiang 291364" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+3 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291364</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291364_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291364_1.jpg')" /><img src="foto_tiang/tiang_291364_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291364_2.jpg')" /><img src="foto_tiang/tiang_291364_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291364_3.jpg')" /><img src="foto_tiang/tiang_291364_4.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291364_4.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291365">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291365_1.jpg')">
+        <img src="foto_tiang/tiang_291365_1.jpg" alt="Tiang 291365" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291365</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291365_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291365_1.jpg')" /><img src="foto_tiang/tiang_291365_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291365_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291366">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291366_1.jpg')">
+        <img src="foto_tiang/tiang_291366_1.jpg" alt="Tiang 291366" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291366</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291366_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291366_1.jpg')" /><img src="foto_tiang/tiang_291366_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291366_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291367">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291367_1.jpg')">
+        <img src="foto_tiang/tiang_291367_1.jpg" alt="Tiang 291367" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291367</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291367_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291367_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291545">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291545_1.jpg')">
+        <img src="foto_tiang/tiang_291545_1.jpg" alt="Tiang 291545" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291545</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291545_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291545_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291546">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291546_1.jpg')">
+        <img src="foto_tiang/tiang_291546_1.jpg" alt="Tiang 291546" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291546</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291546_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291546_1.jpg')" /><img src="foto_tiang/tiang_291546_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291546_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291547">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291547_1.jpg')">
+        <img src="foto_tiang/tiang_291547_1.jpg" alt="Tiang 291547" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291547</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291547_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291547_1.jpg')" /><img src="foto_tiang/tiang_291547_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291547_2.jpg')" /><img src="foto_tiang/tiang_291547_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291547_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291548">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291548_1.jpg')">
+        <img src="foto_tiang/tiang_291548_1.jpg" alt="Tiang 291548" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291548</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291548_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291548_1.jpg')" /><img src="foto_tiang/tiang_291548_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291548_2.jpg')" /><img src="foto_tiang/tiang_291548_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291548_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291549">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291549_1.jpg')">
+        <img src="foto_tiang/tiang_291549_1.jpg" alt="Tiang 291549" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291549</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291549_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291549_1.jpg')" /><img src="foto_tiang/tiang_291549_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291549_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291551">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291551_1.jpg')">
+        <img src="foto_tiang/tiang_291551_1.jpg" alt="Tiang 291551" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291551</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291551_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291551_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291552">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291552_1.jpg')">
+        <img src="foto_tiang/tiang_291552_1.jpg" alt="Tiang 291552" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291552</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291552_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291552_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291553">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291553_1.jpg')">
+        <img src="foto_tiang/tiang_291553_1.jpg" alt="Tiang 291553" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291553</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291553_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291553_1.jpg')" /><img src="foto_tiang/tiang_291553_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291553_2.jpg')" /><img src="foto_tiang/tiang_291553_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291553_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291554">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291554_1.jpg')">
+        <img src="foto_tiang/tiang_291554_1.jpg" alt="Tiang 291554" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291554</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291554_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291554_1.jpg')" /><img src="foto_tiang/tiang_291554_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291554_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291555">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291555_1.jpg')">
+        <img src="foto_tiang/tiang_291555_1.jpg" alt="Tiang 291555" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291555</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291555_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291555_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291556">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291556_1.jpg')">
+        <img src="foto_tiang/tiang_291556_1.jpg" alt="Tiang 291556" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291556</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291556_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291556_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291557">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291557_1.jpg')">
+        <img src="foto_tiang/tiang_291557_1.jpg" alt="Tiang 291557" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291557</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291557_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291557_1.jpg')" /><img src="foto_tiang/tiang_291557_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291557_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291558">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291558_1.jpg')">
+        <img src="foto_tiang/tiang_291558_1.jpg" alt="Tiang 291558" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291558</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291558_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291558_1.jpg')" /><img src="foto_tiang/tiang_291558_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291558_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291559">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291559_1.jpg')">
+        <img src="foto_tiang/tiang_291559_1.jpg" alt="Tiang 291559" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291559</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291559_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291559_1.jpg')" /><img src="foto_tiang/tiang_291559_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291559_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291560">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291560_1.jpg')">
+        <img src="foto_tiang/tiang_291560_1.jpg" alt="Tiang 291560" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291560</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291560_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291560_1.jpg')" /><img src="foto_tiang/tiang_291560_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291560_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291561">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291561_1.jpg')">
+        <img src="foto_tiang/tiang_291561_1.jpg" alt="Tiang 291561" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291561</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291561_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291561_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291562">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291562_1.jpg')">
+        <img src="foto_tiang/tiang_291562_1.jpg" alt="Tiang 291562" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291562</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291562_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291562_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291563">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291563_1.jpg')">
+        <img src="foto_tiang/tiang_291563_1.jpg" alt="Tiang 291563" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291563</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291563_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291563_1.jpg')" /><img src="foto_tiang/tiang_291563_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291563_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291564">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291564_1.jpg')">
+        <img src="foto_tiang/tiang_291564_1.jpg" alt="Tiang 291564" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291564</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291564_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291564_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291565">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291565_1.jpg')">
+        <img src="foto_tiang/tiang_291565_1.jpg" alt="Tiang 291565" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291565</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291565_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291565_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291566">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291566_1.jpg')">
+        <img src="foto_tiang/tiang_291566_1.jpg" alt="Tiang 291566" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291566</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291566_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291566_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291567">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291567_1.jpg')">
+        <img src="foto_tiang/tiang_291567_1.jpg" alt="Tiang 291567" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291567</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291567_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291567_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291568">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291568_1.jpg')">
+        <img src="foto_tiang/tiang_291568_1.jpg" alt="Tiang 291568" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291568</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291568_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291568_1.jpg')" /><img src="foto_tiang/tiang_291568_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291568_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291569">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291569_1.jpg')">
+        <img src="foto_tiang/tiang_291569_1.jpg" alt="Tiang 291569" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291569</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291569_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291569_1.jpg')" /><img src="foto_tiang/tiang_291569_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291569_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291570">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291570_1.jpg')">
+        <img src="foto_tiang/tiang_291570_1.jpg" alt="Tiang 291570" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291570</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291570_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291570_1.jpg')" /><img src="foto_tiang/tiang_291570_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291570_2.jpg')" /><img src="foto_tiang/tiang_291570_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291570_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291571">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291571_1.jpg')">
+        <img src="foto_tiang/tiang_291571_1.jpg" alt="Tiang 291571" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291571</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291571_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291571_1.jpg')" /><img src="foto_tiang/tiang_291571_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291571_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291572">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291572_1.jpg')">
+        <img src="foto_tiang/tiang_291572_1.jpg" alt="Tiang 291572" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291572</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291572_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291572_1.jpg')" /><img src="foto_tiang/tiang_291572_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291572_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291573">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291573_1.jpg')">
+        <img src="foto_tiang/tiang_291573_1.jpg" alt="Tiang 291573" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291573</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291573_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291573_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291574">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291574_1.jpg')">
+        <img src="foto_tiang/tiang_291574_1.jpg" alt="Tiang 291574" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291574</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291574_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291574_1.jpg')" /><img src="foto_tiang/tiang_291574_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291574_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291575">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291575_1.jpg')">
+        <img src="foto_tiang/tiang_291575_1.jpg" alt="Tiang 291575" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291575</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291575_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291575_1.jpg')" /><img src="foto_tiang/tiang_291575_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291575_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291576">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291576_1.jpg')">
+        <img src="foto_tiang/tiang_291576_1.jpg" alt="Tiang 291576" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291576</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291576_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291576_1.jpg')" /><img src="foto_tiang/tiang_291576_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291576_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291577">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291577_1.jpg')">
+        <img src="foto_tiang/tiang_291577_1.jpg" alt="Tiang 291577" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291577</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291577_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291577_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291578">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291578_1.jpg')">
+        <img src="foto_tiang/tiang_291578_1.jpg" alt="Tiang 291578" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+3 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291578</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291578_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291578_1.jpg')" /><img src="foto_tiang/tiang_291578_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291578_2.jpg')" /><img src="foto_tiang/tiang_291578_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291578_3.jpg')" /><img src="foto_tiang/tiang_291578_4.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291578_4.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291579">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291579_1.jpg')">
+        <img src="foto_tiang/tiang_291579_1.jpg" alt="Tiang 291579" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291579</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291579_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291579_1.jpg')" /><img src="foto_tiang/tiang_291579_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291579_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291580">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291580_1.jpg')">
+        <img src="foto_tiang/tiang_291580_1.jpg" alt="Tiang 291580" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291580</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291580_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291580_1.jpg')" /><img src="foto_tiang/tiang_291580_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291580_2.jpg')" /><img src="foto_tiang/tiang_291580_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291580_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291581">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291581_1.jpg')">
+        <img src="foto_tiang/tiang_291581_1.jpg" alt="Tiang 291581" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291581</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291581_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291581_1.jpg')" /><img src="foto_tiang/tiang_291581_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291581_2.jpg')" /><img src="foto_tiang/tiang_291581_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291581_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291582">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291582_1.jpg')">
+        <img src="foto_tiang/tiang_291582_1.jpg" alt="Tiang 291582" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291582</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291582_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291582_1.jpg')" /><img src="foto_tiang/tiang_291582_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291582_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291583">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291583_1.jpg')">
+        <img src="foto_tiang/tiang_291583_1.jpg" alt="Tiang 291583" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291583</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291583_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291583_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291584">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291584_1.jpg')">
+        <img src="foto_tiang/tiang_291584_1.jpg" alt="Tiang 291584" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291584</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291584_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291584_1.jpg')" /><img src="foto_tiang/tiang_291584_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291584_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291585">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291585_1.jpg')">
+        <img src="foto_tiang/tiang_291585_1.jpg" alt="Tiang 291585" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291585</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291585_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291585_1.jpg')" /><img src="foto_tiang/tiang_291585_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291585_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291586">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291586_1.jpg')">
+        <img src="foto_tiang/tiang_291586_1.jpg" alt="Tiang 291586" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291586</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291586_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291586_1.jpg')" /><img src="foto_tiang/tiang_291586_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291586_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291587">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291587_1.jpg')">
+        <img src="foto_tiang/tiang_291587_1.jpg" alt="Tiang 291587" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291587</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291587_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291587_1.jpg')" /><img src="foto_tiang/tiang_291587_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291587_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291588">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291588_1.jpg')">
+        <img src="foto_tiang/tiang_291588_1.jpg" alt="Tiang 291588" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291588</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291588_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291588_1.jpg')" /><img src="foto_tiang/tiang_291588_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291588_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291589">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291589_1.jpg')">
+        <img src="foto_tiang/tiang_291589_1.jpg" alt="Tiang 291589" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291589</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291589_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291589_1.jpg')" /><img src="foto_tiang/tiang_291589_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291589_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291590">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291590_1.jpg')">
+        <img src="foto_tiang/tiang_291590_1.jpg" alt="Tiang 291590" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291590</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291590_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291590_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291591">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291591_1.jpg')">
+        <img src="foto_tiang/tiang_291591_1.jpg" alt="Tiang 291591" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291591</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291591_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291591_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291592">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291592_1.jpg')">
+        <img src="foto_tiang/tiang_291592_1.jpg" alt="Tiang 291592" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291592</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291592_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291592_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291593">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291593_1.jpg')">
+        <img src="foto_tiang/tiang_291593_1.jpg" alt="Tiang 291593" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291593</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291593_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291593_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291607">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291607_1.jpg')">
+        <img src="foto_tiang/tiang_291607_1.jpg" alt="Tiang 291607" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291607</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291607_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291607_1.jpg')" /><img src="foto_tiang/tiang_291607_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291607_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291608">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291608_1.jpg')">
+        <img src="foto_tiang/tiang_291608_1.jpg" alt="Tiang 291608" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291608</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291608_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291608_1.jpg')" /><img src="foto_tiang/tiang_291608_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291608_2.jpg')" /><img src="foto_tiang/tiang_291608_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291608_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291609">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291609_1.jpg')">
+        <img src="foto_tiang/tiang_291609_1.jpg" alt="Tiang 291609" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291609</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291609_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291609_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291610">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291610_1.jpg')">
+        <img src="foto_tiang/tiang_291610_1.jpg" alt="Tiang 291610" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291610</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291610_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291610_1.jpg')" /><img src="foto_tiang/tiang_291610_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291610_2.jpg')" /><img src="foto_tiang/tiang_291610_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291610_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291611">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291611_1.jpg')">
+        <img src="foto_tiang/tiang_291611_1.jpg" alt="Tiang 291611" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291611</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291611_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291611_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291612">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291612_1.jpg')">
+        <img src="foto_tiang/tiang_291612_1.jpg" alt="Tiang 291612" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291612</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291612_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291612_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291613">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291613_1.jpg')">
+        <img src="foto_tiang/tiang_291613_1.jpg" alt="Tiang 291613" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291613</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291613_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291613_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291614">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291614_1.jpg')">
+        <img src="foto_tiang/tiang_291614_1.jpg" alt="Tiang 291614" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291614</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291614_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291614_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291615">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291615_1.jpg')">
+        <img src="foto_tiang/tiang_291615_1.jpg" alt="Tiang 291615" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291615</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291615_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291615_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291616">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291616_1.jpg')">
+        <img src="foto_tiang/tiang_291616_1.jpg" alt="Tiang 291616" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+2 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291616</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291616_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291616_1.jpg')" /><img src="foto_tiang/tiang_291616_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291616_2.jpg')" /><img src="foto_tiang/tiang_291616_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291616_3.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291617">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291617_1.jpg')">
+        <img src="foto_tiang/tiang_291617_1.jpg" alt="Tiang 291617" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291617</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291617_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291617_1.jpg')" /><img src="foto_tiang/tiang_291617_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291617_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291618">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291618_1.jpg')">
+        <img src="foto_tiang/tiang_291618_1.jpg" alt="Tiang 291618" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+1 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291618</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291618_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291618_1.jpg')" /><img src="foto_tiang/tiang_291618_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291618_2.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291619">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291619_1.jpg')">
+        <img src="foto_tiang/tiang_291619_1.jpg" alt="Tiang 291619" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291619</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291619_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291619_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291620">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291620_1.jpg')">
+        <img src="foto_tiang/tiang_291620_1.jpg" alt="Tiang 291620" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        <div class='photo-count'>+3 foto</div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291620</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291620_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291620_1.jpg')" /><img src="foto_tiang/tiang_291620_2.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291620_2.jpg')" /><img src="foto_tiang/tiang_291620_3.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291620_3.jpg')" /><img src="foto_tiang/tiang_291620_4.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291620_4.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="291621">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_291621_1.jpg')">
+        <img src="foto_tiang/tiang_291621_1.jpg" alt="Tiang 291621" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 291621</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_291621_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_291621_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="295061">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_295061_1.jpg')">
+        <img src="foto_tiang/tiang_295061_1.jpg" alt="Tiang 295061" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 295061</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_295061_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_295061_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="295062">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_295062_1.jpg')">
+        <img src="foto_tiang/tiang_295062_1.jpg" alt="Tiang 295062" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 295062</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_295062_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_295062_1.jpg')" /></div>
+      </div>
+    </div>
+
+    <div class="gallery-card" data-id="295063">
+      <div class="gallery-main" onclick="openLightbox('foto_tiang/tiang_295063_1.jpg')">
+        <img src="foto_tiang/tiang_295063_1.jpg" alt="Tiang 295063" loading="lazy" />
+        <div class="gallery-overlay">
+          <span>🔍 Lihat</span>
+        </div>
+        
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-id">ID: 295063</div>
+        <div class="gallery-thumbs"><img src="foto_tiang/tiang_295063_1.jpg" class="gallery-thumb" onclick="openLightbox('foto_tiang/tiang_295063_1.jpg')" /></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<!-- FOOTER -->
+<div class="footer">
+  Dashboard KSKT GO Jabar &mdash; ULP Padalarang &mdash; Data diolah Juli 2026 &mdash;
+  176 foto lapangan &bull; 100 data tiang &bull; 100 data gardu
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxBg(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lb-prev" onclick="navLightbox(-1)">‹</button>
+    <button class="lightbox-nav lb-next" onclick="navLightbox(1)">›</button>
+    <img id="lightboxImg" src="" alt="Foto Lapangan">
+    <div class="lightbox-info" id="lightboxInfo"></div>
+  </div>
+</div>
+
+<script>
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = '#2a3a52';
+Chart.defaults.font.family = 'Inter';
+
+const PIE_COLORS = [
+  'rgba(16,185,129,.85)','rgba(245,158,11,.85)','rgba(239,68,68,.85)',
+  'rgba(59,130,246,.85)','rgba(139,92,246,.85)','rgba(6,182,212,.85)',
+  'rgba(249,115,22,.85)','rgba(236,72,153,.85)',
+];
+
+function doughnut(id, labels, values) {
+  const ctx = document.getElementById(id);
+  if (!ctx || !labels.length) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: PIE_COLORS,
+        borderColor: '#1e2a3a', borderWidth: 3, hoverOffset: 8 }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'right', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } },
+        tooltip: { callbacks: {
+          label: c => ` ${c.label}: ${c.raw} (${Math.round(c.raw/c.dataset.data.reduce((a,b)=>a+b,0)*100)}%)`
+        }}
+      },
+      cutout: '62%',
+    }
+  });
+}
+
+function hbar(id, labels, values, color) {
+  const ctx = document.getElementById(id);
+  if (!ctx || !labels.length) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ data: values, backgroundColor: color,
+      borderRadius: 5, borderSkipped: false }] },
+    options: {
+      responsive: true, indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#2a3a52' }, ticks: { font: { size: 10 } } },
+        y: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      }
+    }
+  });
+}
+
+function bar(id, labels, values, color) {
+  const ctx = document.getElementById(id);
+  if (!ctx || !labels.length) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ data: values, backgroundColor: color,
+      borderRadius: 5, borderSkipped: false }] },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45 } },
+        y: { grid: { color: '#2a3a52' }, ticks: { font: { size: 10 } } },
+      }
+    }
+  });
+}
+
+// Data
+doughnut('chartAssPeralatan', ["Baik", "Cukup", "Kurang"], [44, 5, 1]);
+doughnut('chartAssGardu', ["Baik", "Kurang"], [47, 3]);
+doughnut('chartAssRow', ["Tidak Tebang"], [50]);
+hbar('chartTiangFeeder', ["BTJR"], [100], 'rgba(59,130,246,.8)');
+hbar('chartJadwalFeeder', ["PRBY"], [150], 'rgba(139,92,246,.8)');
+bar('chartRekap', ["REALISASI TIER-1 TIANG", "PERALATAN TIANG", "ROW", "REALISASI TIER-1 GARDU", "VISUAL GARDU", "PERALATAN GARDU", "REALISASI TIER-2 THERMOVISION", "THERMOVISION TM", "THERMOVISION GD", "REALISASI TIER-2 ULTRASOUND", "ULTRASOUND TM", "PENGUKURAN GARDU"], [0.2, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'rgba(6,182,212,.8)');
+
+// ── Navigation ────────────────────────────────────────────────
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+function showSub(name, el) {
+  const parent = el.closest('.page, .main');
+  parent.querySelectorAll('.sub-content').forEach(p => p.classList.remove('active'));
+  parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sub-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── Status badge coloring ─────────────────────────────────────
+document.querySelectorAll('tbody td').forEach(td => {
+  const t = td.textContent.trim().toLowerCase();
+  if (t === 'baik') td.innerHTML = '<span class="status s-baik">Baik</span>';
+  else if (t === 'cukup') td.innerHTML = '<span class="status s-cukup">Cukup</span>';
+  else if (t === 'buruk' || t === 'rusak') td.innerHTML = '<span class="status s-buruk">Buruk</span>';
+});
+
+// ── Gallery ───────────────────────────────────────────────────
+function filterGallery() {
+  const q = document.getElementById('gallerySearch').value.toLowerCase();
+  const sort = document.getElementById('gallerySort').value;
+  const cards = document.querySelectorAll('.gallery-card');
+  let visible = 0;
+  cards.forEach(c => {
+    const id = c.dataset.id.toLowerCase();
+    const photoCount = c.querySelectorAll('.gallery-thumb').length;
+    const matchQ = !q || id.includes(q);
+    const matchSort = sort === 'all'
+      || (sort === 'multi' && photoCount >= 2)
+      || (sort === 'single' && photoCount < 2);
+    if (matchQ && matchSort) { c.style.display = ''; visible++; }
+    else c.style.display = 'none';
+  });
+  document.getElementById('galleryStats').textContent =
+    visible + ' tiang ditampilkan • 176 foto total';
+}
+
+// ── Lightbox ──────────────────────────────────────────────────
+let lbImages = [];
+let lbIndex = 0;
+
+function openLightbox(src) {
+  // Kumpulkan semua foto di halaman
+  lbImages = Array.from(document.querySelectorAll('#galleryGrid .gallery-main img, #galleryGrid .gallery-thumb'))
+    .map(i => i.src).filter((v,i,a) => a.indexOf(v) === i);
+  lbIndex = lbImages.findIndex(s => s.includes(src.split('/').pop()));
+  if (lbIndex < 0) lbIndex = 0;
+  showLb();
+}
+
+function showLb() {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const info = document.getElementById('lightboxInfo');
+  img.src = lbImages[lbIndex];
+  const fname = lbImages[lbIndex].split('/').pop();
+  info.textContent = fname + '  (' + (lbIndex+1) + ' / ' + lbImages.length + ')';
+  lb.classList.add('open');
+}
+
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+function closeLightboxBg(e) { if (e.target.id === 'lightbox') closeLightbox(); }
+function navLightbox(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  showLb();
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') navLightbox(1);
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>

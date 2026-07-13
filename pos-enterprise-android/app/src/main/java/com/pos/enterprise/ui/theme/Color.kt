@@ -5,83 +5,94 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 // ═══════════════════════════════════════════════════════════════════
-// COLOR TOKENS — Sesuai Design System v1.0.0
+// COLOR TOKENS — Light Theme v2.0 — Biru / Putih / Orange / Hijau
 // ═══════════════════════════════════════════════════════════════════
 
-// Primary — Violet
-val Primary50  = Color(0xFFF5F3FF)
-val Primary100 = Color(0xFFEDE9FE)
-val Primary200 = Color(0xFFDDD6FE)
-val Primary300 = Color(0xFFC4B5FD)
-val Primary400 = Color(0xFFA78BFA)
-val Primary500 = Color(0xFF8B5CF6)
-val Primary600 = Color(0xFF7C3AED)  // ← MAIN PRIMARY
-val Primary700 = Color(0xFF6D28D9)
-val Primary800 = Color(0xFF5B21B6)
-val Primary900 = Color(0xFF4C1D95)
+// Primary — Blue
+val Primary50  = Color(0xFFE3F2FD)
+val Primary100 = Color(0xFFBBDEFB)
+val Primary200 = Color(0xFF90CAF9)
+val Primary300 = Color(0xFF64B5F6)
+val Primary400 = Color(0xFF42A5F5)
+val Primary500 = Color(0xFF2196F3)
+val Primary600 = Color(0xFF1E88E5)  // ← MAIN PRIMARY
+val Primary700 = Color(0xFF1976D2)
+val Primary800 = Color(0xFF1565C0)
+val Primary900 = Color(0xFF0D47A1)
 
-// Secondary — Cyan
-val Secondary400 = Color(0xFF22D3EE)
-val Secondary500 = Color(0xFF06B6D4)  // ← MAIN SECONDARY
-val Secondary600 = Color(0xFF0891B2)
+// Secondary — Orange
+val Secondary400 = Color(0xFFFFA726)
+val Secondary500 = Color(0xFFFF9800)  // ← MAIN SECONDARY
+val Secondary600 = Color(0xFFFB8C00)
 
-// Semantic
-val Success100 = Color(0xFFD1FAE5)
-val Success500 = Color(0xFF10B981)
-val Success700 = Color(0xFF047857)
+// Semantic — Green (Success)
+val Success100 = Color(0xFFE8F5E9)
+val Success500 = Color(0xFF4CAF50)
+val Success700 = Color(0xFF2E7D32)
 
-val Warning100 = Color(0xFFFEF3C7)
-val Warning500 = Color(0xFFF59E0B)
-val Warning700 = Color(0xFFB45309)
+// Warning — Amber
+val Warning100 = Color(0xFFFFF8E1)
+val Warning500 = Color(0xFFFFC107)
+val Warning700 = Color(0xFFFF8F00)
 
-val Error100   = Color(0xFFFFE4E6)
-val Error500   = Color(0xFFF43F5E)
-val Error700   = Color(0xFFBE123C)
+// Error — Red
+val Error100   = Color(0xFFFFEBEE)
+val Error500   = Color(0xFFF44336)
+val Error700   = Color(0xFFD32F2F)
 
-val Info500    = Color(0xFF0EA5E9)
-
-// Dark Mode Surfaces
-val BgBase      = Color(0xFF0A0E1A)
-val BgElevated  = Color(0xFF0F1724)  // ← Background utama
-val BgSurface   = Color(0xFF1A2332)  // ← Card, panel
-val BgSurface2  = Color(0xFF243044)  // ← Hover state
-val BgSurface3  = Color(0xFF2E3D57)  // ← Modal
-
-val BorderSubtle  = Color(0xFF1E2D42)
-val BorderDefault = Color(0xFF2A3D57)
-val BorderStrong  = Color(0xFF3D5270)
-
-val TextPrimary   = Color(0xFFF1F5F9)
-val TextSecondary = Color(0xFF94A3B8)
-val TextTertiary  = Color(0xFF64748B)
-val TextDisabled  = Color(0xFF475569)
-
-// Payment method colors
-val CashBg     = Color(0xFF064E3B)
-val CashText   = Color(0xFF34D399)
-val QrisBg     = Color(0xFF1E3A5F)
-val QrisText   = Color(0xFF60A5FA)
-val TransferBg = Color(0xFF3B1E64)
-val TransferText = Color(0xFFA78BFA)
+val Info500    = Color(0xFF29B6F6)
 
 // ═══════════════════════════════════════════════════════════════════
-// MATERIAL 3 COLOR SCHEME — Dark Mode
+// LIGHT MODE SURFACES
 // ═══════════════════════════════════════════════════════════════════
-private val DarkColorScheme = darkColorScheme(
+
+val BgBase      = Color(0xFFFFFFFF)
+val BgElevated  = Color(0xFFF5F7FA)  // ← Background utama (sangat terang)
+val BgSurface   = Color(0xFFFFFFFF)  // ← Card, panel (putih)
+val BgSurface2  = Color(0xFFEEF2F7)  // ← Hover state / secondary bg
+val BgSurface3  = Color(0xFFE3E8EF)  // ← Modal backdrop
+
+val BorderSubtle  = Color(0xFFE8ECF1)
+val BorderDefault = Color(0xFFD0D7E2)
+val BorderStrong  = Color(0xFFB0BEC5)
+
+// Text colors for light mode
+val TextPrimary   = Color(0xFF1A2332)   // Dark text on light bg
+val TextSecondary = Color(0xFF546E7A)
+val TextTertiary  = Color(0xFF90A4AE)
+val TextDisabled  = Color(0xFFB0BEC5)
+
+// Payment method colors — Light Mode
+val CashBg     = Color(0xFFE8F5E9)
+val CashText   = Color(0xFF2E7D32)
+val QrisBg     = Color(0xFFE3F2FD)
+val QrisText   = Color(0xFF1565C0)
+val TransferBg = Color(0xFFFFF3E0)
+val TransferText = Color(0xFFE65100)
+
+// ═══════════════════════════════════════════════════════════════════
+// MATERIAL 3 COLOR SCHEME — Light Mode (DEFAULT)
+// ═══════════════════════════════════════════════════════════════════
+private val LightColorScheme = lightColorScheme(
     primary          = Primary600,
     onPrimary        = Color.White,
-    primaryContainer = Primary800,
-    onPrimaryContainer = Primary200,
+    primaryContainer = Primary100,
+    onPrimaryContainer = Primary900,
 
     secondary        = Secondary500,
     onSecondary      = Color.White,
-    secondaryContainer = Color(0xFF0E4D5C),
-    onSecondaryContainer = Secondary400,
+    secondaryContainer = Color(0xFFFFF3E0),
+    onSecondaryContainer = Color(0xFFE65100),
+
+    tertiary         = Success500,
+    onTertiary       = Color.White,
+    tertiaryContainer = Success100,
+    onTertiaryContainer = Success700,
 
     error            = Error500,
     onError          = Color.White,
-    errorContainer   = Color(0xFF7F1D1D),
-    onErrorContainer = Error100,
+    errorContainer   = Error100,
+    onErrorContainer = Error700,
 
     background       = BgElevated,
     onBackground     = TextPrimary,
@@ -92,30 +103,36 @@ private val DarkColorScheme = darkColorScheme(
     outline          = BorderDefault,
     outlineVariant   = BorderSubtle,
 
-    inverseSurface   = TextPrimary,
-    inverseOnSurface = BgElevated,
-    inversePrimary   = Primary400,
+    inverseSurface   = Color(0xFF2D3748),
+    inverseOnSurface = Color(0xFFF5F7FA),
+    inversePrimary   = Primary200,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary          = Primary600,
-    onPrimary        = Color.White,
-    primaryContainer = Primary100,
-    onPrimaryContainer = Primary900,
+// Dark scheme (tersedia tapi tidak dipakai secara default)
+private val DarkColorScheme = darkColorScheme(
+    primary          = Primary400,
+    onPrimary        = Primary900,
+    primaryContainer = Primary700,
+    onPrimaryContainer = Primary200,
 
-    secondary        = Secondary500,
-    onSecondary      = Color.White,
+    secondary        = Secondary400,
+    onSecondary      = Color(0xFF4E2600),
+    secondaryContainer = Color(0xFF6B3A00),
+    onSecondaryContainer = Secondary400,
 
-    error            = Error500,
-    onError          = Color.White,
+    error            = Color(0xFFEF9A9A),
+    onError          = Color(0xFF690005),
+    errorContainer   = Color(0xFF93000A),
+    onErrorContainer = Error100,
 
-    background       = Color(0xFFF8FAFC),
-    onBackground     = Color(0xFF0F172A),
-    surface          = Color.White,
-    onSurface        = Color(0xFF0F172A),
-    surfaceVariant   = Color(0xFFF1F5F9),
-    onSurfaceVariant = Color(0xFF475569),
-    outline          = Color(0xFFCBD5E1),
+    background       = Color(0xFF121212),
+    onBackground     = Color(0xFFE0E0E0),
+    surface          = Color(0xFF1E1E1E),
+    onSurface        = Color(0xFFE0E0E0),
+    surfaceVariant   = Color(0xFF2C2C2C),
+    onSurfaceVariant = Color(0xFFB0B0B0),
+    outline          = Color(0xFF444444),
+    outlineVariant   = Color(0xFF333333),
 )
 
 // ═══════════════════════════════════════════════════════════════════
@@ -123,7 +140,7 @@ private val LightColorScheme = lightColorScheme(
 // ═══════════════════════════════════════════════════════════════════
 @Composable
 fun PosEnterpriseTheme(
-    darkTheme: Boolean = true,   // Default dark mode
+    darkTheme: Boolean = false,   // Default: LIGHT mode
     content: @Composable () -> Unit,
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme

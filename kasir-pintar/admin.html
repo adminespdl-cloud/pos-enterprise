@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Pintar — Pengaturan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-icon">🏪</span>
+        <span class="logo-text">Kasir Pintar</span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Kasir</a>
+        <a href="laporan.html">Laporan</a>
+        <a href="admin.html" class="active">Pengaturan</a>
+    </div>
+</nav>
+
+<div class="container-admin">
+
+    <div class="admin-header">
+        <h2>Pengaturan Toko &amp; Menu</h2>
+        <p>Kelola identitas toko, QRIS, printer, dan daftar produk.</p>
+    </div>
+
+    <div class="admin-grid">
+
+        <!-- ── Identitas Toko ──────────────────────────────── -->
+        <div class="admin-card">
+            <h3>
+                <span class="card-icon violet">🏷️</span>
+                Identitas Toko
+            </h3>
+            <div class="form-group">
+                <label>Nama Toko</label>
+                <input type="text" id="storeNameInput" placeholder="Contoh: Roti Bakar Fathia">
+            </div>
+            <div class="form-group">
+                <label>Teks Logo (Navbar)</label>
+                <input type="text" id="storeLogoInput" placeholder="Contoh: 🔥 Roti Bakar Fathia">
+            </div>
+            <div class="form-group">
+                <label>Alamat Toko</label>
+                <input type="text" id="storeAddressInput" placeholder="Alamat muncul di struk cetak">
+            </div>
+            <div class="form-group">
+                <label>Catatan Struk</label>
+                <input type="text" id="receiptNoteInput" placeholder="Contoh: Terima kasih sudah berbelanja!">
+            </div>
+            <button class="btn-primary" onclick="saveSettings()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Simpan Pengaturan
+            </button>
+        </div>
+
+        <!-- ── QRIS ──────────────────────────────────────────── -->
+        <div class="admin-card">
+            <h3>
+                <span class="card-icon coral">📱</span>
+                Pembayaran QRIS
+            </h3>
+            <p class="card-desc">Upload gambar QR Code QRIS dari bank/dompet digital Anda. Gambar ini akan ditampilkan saat pelanggan memilih metode QRIS.</p>
+
+            <div id="qrisPreviewWrap" class="qris-preview-wrap" style="display:none">
+                <img id="qrisPreview" src="" alt="QRIS Preview" class="qris-preview-img">
+                <span class="qris-preview-label">QR Code aktif</span>
+            </div>
+
+            <div class="form-group" style="margin-top:16px">
+                <label>Upload Gambar QRIS</label>
+                <input type="file" id="qrisImageInput" accept="image/*">
+            </div>
+            <button class="btn-primary btn-coral" onclick="saveQRIS()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                Simpan QRIS
+            </button>
+        </div>
+
+        <!-- ── Printer Bluetooth ─────────────────────────────── -->
+        <div class="admin-card">
+            <h3>
+                <span class="card-icon violet">🖨️</span>
+                Printer Bluetooth
+            </h3>
+            <p class="card-desc">Hubungkan printer thermal Bluetooth (ESC/POS) untuk mencetak struk. Fitur ini membutuhkan browser Chrome atau Edge.</p>
+
+            <div class="printer-status-row">
+                <div id="printerStatus">
+                    <span class="badge-disconnected">● Belum Terhubung</span>
+                </div>
+            </div>
+
+            <div class="printer-btn-group">
+                <button class="btn-primary" id="connectPrinterBtn" onclick="connectBluetoothPrinter()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m17.5 6.5-11 11"/><path d="M8 4h8l4 4-4 4-2-2"/><path d="m8 20 4-4 2 2"/></svg>
+                    Hubungkan Printer
+                </button>
+                <button class="btn-warning" id="testPrintBtn" onclick="testPrint()" disabled>
+                    Test Print
+                </button>
+            </div>
+
+            <div class="printer-info">
+                <p>Printer yang didukung: Zebra, Epson, Sewoo, dan printer ESC/POS BLE lainnya.</p>
+            </div>
+        </div>
+
+        <!-- ── Tambah Produk ─────────────────────────────────── -->
+        <div class="admin-card">
+            <h3>
+                <span class="card-icon coral">➕</span>
+                Tambah Produk Baru
+            </h3>
+            <div class="form-group">
+                <label>Nama Produk</label>
+                <input type="text" id="productName" placeholder="Contoh: Roti Bakar Keju">
+            </div>
+            <div class="form-group">
+                <label>Harga (Rp)</label>
+                <input type="number" id="productPrice" placeholder="Contoh: 15000" min="0">
+            </div>
+            <div class="form-group">
+                <label>Foto Produk (Opsional)</label>
+                <input type="file" id="productImage" accept="image/*">
+            </div>
+            <button class="btn-primary btn-coral" onclick="addProduct()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Tambah Produk
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ── Daftar Produk (Full Width) ───────────────────────── -->
+    <div class="admin-card table-card">
+        <h3>
+            <span class="card-icon violet">📋</span>
+            Daftar Produk Saat Ini
+        </h3>
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width:60px">Foto</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="adminProductTableBody">
+                    <tr><td colspan="4" class="loading-row">Memuat produk...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Firebase & Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

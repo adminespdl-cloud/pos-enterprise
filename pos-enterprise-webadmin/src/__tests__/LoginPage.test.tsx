@@ -149,8 +149,9 @@ describe('LoginPage', () => {
     const passwordInput = screen.getByPlaceholderText(/••••••••/i) as HTMLInputElement
     expect(passwordInput.type).toBe('password')
 
-    // Klik toggle show
-    const toggleButton = screen.getByTitle ? undefined : screen.getAllByRole('button')[1]
+    // Klik toggle show password (button ke-2 di form)
+    const buttons = screen.getAllByRole('button')
+    const toggleButton = buttons[1]
     if (toggleButton) {
       await user.click(toggleButton)
       expect(passwordInput.type).toBe('text')
