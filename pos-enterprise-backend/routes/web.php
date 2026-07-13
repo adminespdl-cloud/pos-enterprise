@@ -11,3 +11,9 @@ Route::get('/', function () {
         'timestamp' => now()->toIso8601String(),
     ]);
 });
+
+Route::get('/dev/seed', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
+    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+    return response()->json(['message' => 'Database reset and seeded successfully.']);
+});
