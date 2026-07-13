@@ -58,7 +58,7 @@ Route::get('/force-migrate', function() {
     }
 });
 
-Route::middleware(['throttle:api', SecurityHeaders::class])->group(function () {
+Route::middleware(['throttle:api', SecurityHeaders::class])->prefix('v1')->group(function () {
 
     // ══════════════════════════════════════════════════════════════════
     // AUTH — Public (tidak butuh token)
