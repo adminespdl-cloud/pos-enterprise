@@ -186,8 +186,9 @@ class AuthController extends Controller
         ];
 
         return response()->json([
-            'status' => 'success',
-            'data'   => [
+            'status'  => 'success',
+            'message' => 'Login berhasil',
+            'data'    => [
                 'token'      => $token,
                 'expires_at' => $expiresAt->toISOString(),
                 'user'       => [
