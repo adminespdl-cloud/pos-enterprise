@@ -258,22 +258,6 @@ class DatabaseSeeder extends Seeder
             'updated_at'      => now(),
         ]);
 
-        $this->command->info('');
-        $this->command->info('✅ Database seeded successfully!');
-        $this->command->info('');
-        $this->command->info('═══════════════════════════════════════');
-        $this->command->info('  LOGIN CREDENTIALS');
-        $this->command->info('═══════════════════════════════════════');
-        $this->command->info('  Super Admin : superadmin@pos-enterprise.com');
-        $this->command->info('               Password: SuperAdmin@123');
-        $this->command->info('  Admin       : admin@usahamaju.com');
-        $this->command->info('               Password: Admin@123');
-        $this->command->info('  Manager     : manager@usahamaju.com');
-        $this->command->info('               Password: Manager@123 | PIN: 123456');
-        $this->command->info('  Kasir       : andi.kasir@usahamaju.com');
-        $this->command->info('               PIN: 112233');
-        $this->command->info('═══════════════════════════════════════');
-        $this->command->info('  Voucher Demo: WELCOME10 (diskon 10%)');
-        $this->command->info('═══════════════════════════════════════');
+        // Done
     }
 }
